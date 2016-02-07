@@ -27,6 +27,13 @@
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
 				<version>1.1.0.Alpha5</version>
+				<configuration>
+					<hostname>127.0.0.1</hostname>
+					<port>9990</port>
+					<username>jjjunior</username>
+					<password>$Vinicius123$</password>
+					<name>vote-no-restaurante.war</name>
+				</configuration>
 				<executions>
 					<execution>
 						<phase>install</phase>
