@@ -4,7 +4,7 @@
                         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="votacao_pu" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>br.com.bluesoft.votacao.domain.Restaurante.java</class>
+		<class>br.com.bluesoft.votacao.domain.Restaurante</class>
 			
 		<properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
