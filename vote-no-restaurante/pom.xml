@@ -24,6 +24,17 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<verbose>true</verbose>
+					<fork>true</fork>					
+					<executable>${JAVA_HOME}/bin/javac</executable>
+					<compilerVersion>1.7</compilerVersion>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
 				<version>1.0.2.Final</version>
@@ -35,7 +46,7 @@
 					<password>$Vinicius123$</password>
 					<name>vote-no-restaurante.war</name>
 				</configuration>
-				
+
 				<executions>
 					<execution>
 						<phase>install</phase>
