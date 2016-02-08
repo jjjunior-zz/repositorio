@@ -25,11 +25,7 @@
 					<a class="navbar-brand"	href="${pageContext.request.contextPath}/index.jsp">Início</a>
 				</div>
 			</div>			
-		</nav>
-	
-		<c:if test="${mensagem != null}">
-			<div class="${mensagem.tipoMensagem.classeCss}" role="alert">${mensagem.texto}</div>
-		</c:if>
+		</nav>		
 	
 		<div class="panel panel-default">
 			<div class="panel-body">
