@@ -3,16 +3,35 @@ package br.com.bluesoft.votacao.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({ @NamedQuery(name = Restaurante.TUDO, query = "select r from Restaurante r") })
 public class Restaurante implements Serializable {
 
 	private static final long	serialVersionUID	= 1L;
-	
+	public static final String	TUDO				= "br.com.bluesoft.votacao.domain.Restaurante.todos";
+
 	@Id
+	@GeneratedValue
 	private Integer				id;
 	private String				nome;
+
+	Restaurante() {
+	}
+
+	public static Restaurante newInstance() {
+		return new Restaurante();
+	}
+
+	public static Restaurante newInstance(String nome) {
+		Restaurante restaurante = new Restaurante();
+		restaurante.setNome(nome);
+		return restaurante;
+	}
 
 	public Integer getId() {
 		return id;
@@ -30,7 +49,6 @@ public class Restaurante implements Serializable {
 		this.nome = nome;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
