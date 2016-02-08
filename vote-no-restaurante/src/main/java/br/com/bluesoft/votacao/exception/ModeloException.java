@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.dao;
+package br.com.bluesoft.votacao.exception;
 
 public class ModeloException extends Exception {
 

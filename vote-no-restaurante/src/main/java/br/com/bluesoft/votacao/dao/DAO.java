@@ -17,11 +17,13 @@ import javax.persistence.QueryTimeoutException;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+
+import br.com.bluesoft.votacao.exception.ModeloException;
 
 public class DAO<T, K> {
 
+	final static Logger logger = Logger.getLogger(DAO.class);
 	private final EntityManager entityManager;
 	private final Class<T> classe;
 
@@ -163,6 +165,8 @@ public class DAO<T, K> {
 	public void alterar(T t) throws ModeloException {
 		try {
 			this.entityManager.merge(t);
+			this.entityManager.flush();
+			this.entityManager.clear();
 		} catch (IllegalStateException e) {
 			mensagemException("Entidade em status inconsistente ao realizar o merge: " + this.classe.getName() + ".", e);
 		} catch (TransactionRequiredException e) {
@@ -177,6 +181,8 @@ public class DAO<T, K> {
 	public void inserir(T t) throws ModeloException {
 		try {
 			this.entityManager.persist(t);
+			this.entityManager.flush();
+			this.entityManager.clear();
 		} catch (EntityExistsException e) {
 			mensagemException("Violação da Chave primaria para a entidade :" + this.classe.getName() + ".", e);
 		} catch (PersistenceException e) {
@@ -190,6 +196,8 @@ public class DAO<T, K> {
 		try {
 			t = this.entityManager.merge(t);
 			this.entityManager.remove(t);
+			this.entityManager.flush();
+			this.entityManager.clear();
 		} catch (PersistenceException e) {
 			mensagemException("Problema ao tentar deletar entidade :" + this.classe.getName() + ".", e);
 		} catch (Exception e) {
@@ -198,12 +206,12 @@ public class DAO<T, K> {
 	}
 
 	private void mensagemException(String mensagem, Exception e) throws ModeloException {
-		Logger.getLogger(this.getClass().getName()).log(Level.ERROR, mensagem, e);
+		logger.error(mensagem, e);
 		throw new ModeloException(mensagem, e);
 	}
 
 	private void mensagemLog(String mensagem, Exception e) {
-		Logger.getLogger(this.getClass().getName()).log(Level.ERROR, mensagem, e);
+		logger.error(mensagem, e);		
 	}
 
 	private Query setParametros(Map<String, Object> parametros, Query query) {

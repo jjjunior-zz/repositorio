@@ -5,7 +5,7 @@
 <html>
 <tiles:insertDefinition name="template">
 	<tiles:putAttribute name="corpo">
-		<p align="center">Bem vindo !!!?? Escolha sua opção logo.</p>
+		<p align="center">Bem vindo !!!?? ---- Escolha sua opção logo.</p>
 		<button>
 			<img src="/images/mc_donalds.png"
 				id="dagger"  />

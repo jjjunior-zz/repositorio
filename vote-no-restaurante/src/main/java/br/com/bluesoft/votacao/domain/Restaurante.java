@@ -7,13 +7,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = Restaurante.TUDO, query = "select r from Restaurante r") })
+@Table(name = "restaurante")
+@NamedQueries({ 
+	@NamedQuery(name = Restaurante.TUDO, query = "select r from Restaurante r"),
+	@NamedQuery(name = Restaurante.SELECIONAR_POR_NOME, query = "select r from Restaurante r where r.nome = :nome")	
+})
 public class Restaurante implements Serializable {
 
 	private static final long	serialVersionUID	= 1L;
 	public static final String	TUDO				= "br.com.bluesoft.votacao.domain.Restaurante.todos";
+	public static final String	SELECIONAR_POR_NOME	= "br.com.bluesoft.votacao.domain.Restaurante.selecionarPorNome";
 
 	@Id
 	@GeneratedValue

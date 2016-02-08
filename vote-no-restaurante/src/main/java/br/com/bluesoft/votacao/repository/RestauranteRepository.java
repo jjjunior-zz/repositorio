@@ -10,8 +10,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.bluesoft.votacao.dao.DAO;
-import br.com.bluesoft.votacao.dao.ModeloException;
+import br.com.bluesoft.votacao.dao.ParametroDaConsulta;
 import br.com.bluesoft.votacao.domain.Restaurante;
+import br.com.bluesoft.votacao.exception.ModeloException;
 
 @Repository
 public class RestauranteRepository {
@@ -34,10 +35,17 @@ public class RestauranteRepository {
 		return this.daoRestaurante.selecionar(Restaurante.TUDO);
 	}
 	
+	public List<Restaurante> buscarRestaurantePorNome(String nome){		
+		return this.daoRestaurante.selecionarComParametro(Restaurante.SELECIONAR_POR_NOME,ParametroDaConsulta.com("nome", nome).parametros());
+	}
+	
 	@Transactional
 	public void incluirRestautante(Restaurante restaurante) throws ModeloException{ 		
-		this.daoRestaurante.inserir(restaurante);		
+		this.daoRestaurante.inserir(restaurante);
 	}
-
-
+	
+	@Transactional
+	public void excluirRestautante(Restaurante restaurante) throws ModeloException{ 		
+		this.daoRestaurante.deletar(restaurante);		
+	}
 }
