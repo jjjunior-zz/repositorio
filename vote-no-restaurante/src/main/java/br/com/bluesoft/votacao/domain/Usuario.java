@@ -6,6 +6,7 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -30,8 +31,8 @@ public class Usuario implements Serializable {
 	public static final String	SELECIONAR_POR_EMAIL	= "br.com.bluesoft.votacao.domain.Usuario.selecionarPorEmail";	
 
 	@Id
-	@GeneratedValue
-	private Long				id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Integer				id;
 
 	private String				nome;
 
@@ -71,16 +72,15 @@ public class Usuario implements Serializable {
 	public void preUpdate() {
 		this.setDataAlteracao(Calendar.getInstance());
 		Util.tratarAtributosString(this);
-	}
+	}	
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	
 
 	public String getEmail() {
 		return email;

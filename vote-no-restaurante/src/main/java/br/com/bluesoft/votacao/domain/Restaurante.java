@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,7 +23,7 @@ public class Restaurante implements Serializable {
 	public static final String	SELECIONAR_POR_NOME	= "br.com.bluesoft.votacao.domain.Restaurante.selecionarPorNome";
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer				id;
 	private String				nome;
 

@@ -6,10 +6,12 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Votação para o melhor restaurante</title>		
-		<link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>"/>
-		<link rel="stylesheet" href="<c:url value="/static/js/jquery-2.1.3.min.js"/>"/>
-		<link rel="stylesheet" href="<c:url value="/static/js/bootstrap.min.js"/>"/>		
+		<title>Votação para o melhor restaurante</title>
+		        
+        <link rel="stylesheet" href="<c:url value='/static/css/bootstrap.min.css'/>"/>
+		<link rel="stylesheet" href="<c:url value='/static/js/jquery-2.1.3.min.js'/>"/>
+		<link rel="stylesheet" href="<c:url value='/static/js/bootstrap.min.js'/>"/>
+        		
 	</head>
 
 	<body>

@@ -20,7 +20,6 @@
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="use_sql_comments" value="true" />
-
 		</properties>
 	</persistence-unit>
 </persistence>

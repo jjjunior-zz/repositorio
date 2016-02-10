@@ -46,7 +46,7 @@ public class VotacaoController {
 		
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("escolha", escolha);
-		if(contador < 10){
+		if(contador <= 10){
 			contador++;
 		}else{
 			contador = 1L;
@@ -56,14 +56,22 @@ public class VotacaoController {
 	
 	@RequestMapping("/votacaoEsquerda" )
 	public String votacaoEsquerda() {
-		System.out.println("Restaurante votado foi: " + this.escolha.getRestauranteLadoEsquerdo());				
+		
+		
+		System.out.println("Restaurante votado foi: " + this.escolha.getRestauranteLadoEsquerdo());
+		if(contador > 10){
+			return "redirect:/formulario";
+		}		
 		return "redirect:/";
 		
 	}
 	
 	@RequestMapping("/votacaoDireita")
 	public String votacaoDireita() {
-		System.out.println("Restaurante votado foi: " + this.escolha.getRestauranteLadoDireito());				
+		System.out.println("Restaurante votado foi: " + this.escolha.getRestauranteLadoDireito());
+		if(contador > 10){
+			return "redirect:/formulario";
+		}
 		return "redirect:/";		
 	}
 

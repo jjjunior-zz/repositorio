@@ -15,7 +15,6 @@
 
 		<div class="row">
 
-
 			<div class="col-xs-6 col-xs-6">
 				<div class="thumbnail">
 					<img src="<c:url value="${escolha.pathImagemLadoEsquerdo}"/>" />
@@ -28,8 +27,6 @@
 				</div>
 			</div>
 
-
-
 			<div class="col-xs-6 col-xs-6">
 				<div class="thumbnail">
 					<img src="<c:url value="${escolha.pathImagemLadoDireito}"/>" />
@@ -41,11 +38,8 @@
 					</div>
 				</div>
 			</div>
-
-
 		</div>
-
-
-	</tiles:putAttribute>
+		
+	</tiles:putAttribute>	
 </tiles:insertDefinition>
 </html>
