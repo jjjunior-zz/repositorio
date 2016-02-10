@@ -164,9 +164,7 @@ public class DAO<T, K> {
 
 	public void alterar(T t) throws ModeloException {
 		try {
-			this.entityManager.merge(t);
-			this.entityManager.flush();
-			this.entityManager.clear();
+			this.entityManager.merge(t);			
 		} catch (IllegalStateException e) {
 			mensagemException("Entidade em status inconsistente ao realizar o merge: " + this.classe.getName() + ".", e);
 		} catch (TransactionRequiredException e) {
@@ -180,9 +178,7 @@ public class DAO<T, K> {
 
 	public void inserir(T t) throws ModeloException {
 		try {
-			this.entityManager.persist(t);
-			this.entityManager.flush();
-			this.entityManager.clear();
+			this.entityManager.persist(t);			
 		} catch (EntityExistsException e) {
 			mensagemException("Violação da Chave primaria para a entidade :" + this.classe.getName() + ".", e);
 		} catch (PersistenceException e) {
@@ -195,9 +191,7 @@ public class DAO<T, K> {
 	public void deletar(T t) throws ModeloException {
 		try {
 			t = this.entityManager.merge(t);
-			this.entityManager.remove(t);
-			this.entityManager.flush();
-			this.entityManager.clear();
+			this.entityManager.remove(t);			
 		} catch (PersistenceException e) {
 			mensagemException("Problema ao tentar deletar entidade :" + this.classe.getName() + ".", e);
 		} catch (Exception e) {
