@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
+import br.com.bluesoft.votacao.exception.UtilException;
+
 public class Util {
 	
 	final static Logger logger = Logger.getLogger(Util.class);
@@ -15,11 +17,11 @@ public class Util {
 	static int quantidadeDeVotacao(final int quantidadeTotalRestaurantes, final int quantidadeDeRestaurantesPorVotacao) {
 
 		if (quantidadeTotalRestaurantes < 2) {
-			throw new RuntimeException("Não é possível determinar quantidade de votações, com a quantidade de total de restaurantes menor que 2.");
+			throw new UtilException("Não é possível determinar quantidade de votações, com a quantidade de total de restaurantes menor que 2.");
 		} else if (quantidadeTotalRestaurantes > 5) {
-			throw new RuntimeException("Quantidade total maxima de restaurantes é 5.");
+			throw new UtilException("Quantidade total maxima de restaurantes é 5.");
 		} else if (quantidadeDeRestaurantesPorVotacao > 2) {
-			throw new RuntimeException("Quantidade maxima de restaurantes por votação é 2.");
+			throw new UtilException("Quantidade maxima de restaurantes por votação é 2.");
 		}
 
 		int resultado = 1;
@@ -46,7 +48,7 @@ public class Util {
 
 					if (param[0] != null && param[0] instanceof String) {
 
-						param[0] = param[0].toString().toUpperCase();
+						param[0] = param[0].toString();
 						param[0] = retirarAcentuacao(param[0].toString().trim());
 
 						type[0] = classObj.getMethod(element.getName(), classNull).getReturnType();
@@ -60,13 +62,13 @@ public class Util {
 			}
 		} catch (IllegalAccessException e) {
 			logger.error("Erro ao tratar string.IllegalAccessException: ", e);
-			throw new RuntimeException(e);
+			throw new UtilException(e);
 		} catch (InvocationTargetException e) {
 			logger.error("Erro ao tratar string.InvocationTargetException: ", e);
-			throw new RuntimeException(e);
+			throw new UtilException(e);
 		} catch (NoSuchMethodException e) {
 			logger.error("Erro ao tratar string.NoSuchMethodException: ", e);
-			throw new RuntimeException(e);
+			throw new UtilException(e);
 		}
 	}
 
@@ -81,7 +83,7 @@ public class Util {
 				resultado += matcher.group();
 			}
 		}
-		return resultado.toUpperCase();
+		return resultado;
 	}
 
 }

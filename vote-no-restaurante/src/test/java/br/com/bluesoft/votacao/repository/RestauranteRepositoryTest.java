@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import br.com.bluesoft.votacao.domain.Restaurante;
+import br.com.bluesoft.votacao.enumeration.RestauranteEnum;
 import br.com.bluesoft.votacao.exception.ModeloException;
 import br.com.bluesoft.votacao.repository.RestauranteRepository;
 
@@ -28,21 +29,21 @@ public class RestauranteRepositoryTest {
 	
 	@Test
 	public void deveIncluirUmRestaurante() throws ModeloException{		
-		Restaurante r0 = Restaurante.newInstance("McDonalds");
+		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome());
 		
 		this.restauranteRepository.incluirRestautante(r0);		
 		
 		List<Restaurante> lista =  this.restauranteRepository.buscarTodosRestaurantes();		
 		
 		assertEquals(1, lista.size());		
-		assertEquals("McDonalds", lista.get(0).getNome());
+		assertEquals(RestauranteEnum.MCDONALDS.getNome(), lista.get(0).getNome());
 	}
 	
 	@Test
 	public void deveBuscarTodosRestaurantes() throws ModeloException{
 	
-		Restaurante r0 = Restaurante.newInstance("McDonalds");
-		Restaurante r1 = Restaurante.newInstance("Bobs");
+		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome());
+		Restaurante r1 = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome());
 		
 		this.restauranteRepository.incluirRestautante(r0);
 		this.restauranteRepository.incluirRestautante(r1);
@@ -50,25 +51,23 @@ public class RestauranteRepositoryTest {
 		List<Restaurante> lista =  this.restauranteRepository.buscarTodosRestaurantes();		
 
 		assertEquals(2, lista.size());		
-		assertEquals("McDonalds", lista.get(0).getNome());
-		assertEquals("Bobs", lista.get(1).getNome());
+		assertEquals(RestauranteEnum.MCDONALDS.getNome(), lista.get(0).getNome());
+		assertEquals(RestauranteEnum.BURGER_KING.getNome(), lista.get(1).getNome());
 	}
 	
 	@Test
-	public void deveExcluirUmRestaurante() throws ModeloException{
-		
-		String nomeRestaurante = "McDonalds";
+	public void deveExcluirUmRestaurante() throws ModeloException{		
 	
-		Restaurante r0 = Restaurante.newInstance(nomeRestaurante);
+		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome());
 		
 		this.restauranteRepository.incluirRestautante(r0);		
-		List<Restaurante> lista =  this.restauranteRepository.buscarRestaurantePorNome(nomeRestaurante);
+		List<Restaurante> lista =  this.restauranteRepository.buscarRestaurantePorNome(RestauranteEnum.MCDONALDS.getNome());
 		
 		Restaurante r1 = lista.get(0);
 		
 		this.restauranteRepository.excluirRestautante(r1);
 	
-		List<Restaurante> lista1 =  this.restauranteRepository.buscarRestaurantePorNome(nomeRestaurante);		
+		List<Restaurante> lista1 =  this.restauranteRepository.buscarRestaurantePorNome(RestauranteEnum.MCDONALDS.getNome());		
 
 		assertEquals(0, lista1.size());		
 	}

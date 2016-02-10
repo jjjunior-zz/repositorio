@@ -14,6 +14,8 @@
 						http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
 	<context:component-scan base-package="br.com.bluesoft.votacao.domain" />
+	<context:component-scan base-package="br.com.bluesoft.votacao.controller"/>
+	<context:component-scan base-package="br.com.bluesoft.votacao.repository"/>
 
 	<mvc:annotation-driven />
 
@@ -32,6 +34,7 @@
 		<property name="suffix" 	value=".jsp" />
 	</bean>
 	
+	 <mvc:resources mapping="/static/**" location="/" />
 	
 
 </beans>

@@ -53,32 +53,50 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
-			<scope>provided</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>4.1.2.RELEASE</version>
+			<artifactId>spring-web</artifactId>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.1.2.RELEASE</version>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>4.1.2.RELEASE</version>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>2.5.6</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency>		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>		
+
+		<!-- Tiles, servlet -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
@@ -101,6 +119,8 @@
 			<version>2.4.2</version>
 		</dependency>
 
+		<!-- Log -->
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -109,28 +129,29 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.6.1</version>			
+			<version>1.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>			
+			<version>1.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>			
+			<version>1.2.16</version>
 		</dependency>
 
+		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.0.Final</version>
+			<version>4.1.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.3.0.Final</version>
+			<version>4.1.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
@@ -138,22 +159,20 @@
 			<version>1.0.0.Final</version>
 		</dependency>
 
+		<!-- Driver Hsqldb e h2 -->
 		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>1.8.0.10</version>
 		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.191</version>
+			<scope>test</scope>
+		</dependency>
 
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.1.0.Final</version>
-		</dependency>
+		<!-- Testes -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -165,12 +184,9 @@
 			<artifactId>cglib-nodep</artifactId>
 			<version>3.2.0</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.191</version>
-			<scope>test</scope>
-		</dependency>
+		</dependency>		
 	</dependencies>
+
+
+
 </project>

@@ -6,7 +6,8 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>br.com.bluesoft.votacao.domain.Restaurante</class>
 		<class>br.com.bluesoft.votacao.domain.Usuario</class>
-			
+		<class>br.com.bluesoft.votacao.domain.PossivelEscollha</class>
+			   
 		<properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:votacao;DB_CLOSE_DELAY=-1" />

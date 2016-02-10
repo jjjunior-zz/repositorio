@@ -7,48 +7,69 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.bluesoft.votacao.util.Util;
 
 @Table(name = "usuario")
 @Entity
+@NamedQueries({ 
+	@NamedQuery(name = Usuario.TUDO, query = "select u from Usuario u"),
+	@NamedQuery(name = Usuario.SELECIONAR_POR_EMAIL, query = "select u from Usuario u where u.email = :email")
+})
 public class Usuario implements Serializable {
 
-	private static final long	serialVersionUID	= 1L;
+	private static final long	serialVersionUID		= 1L;
+	public static final String	TUDO					= "br.com.bluesoft.votacao.domain.Usuario.tudo";
+	public static final String	SELECIONAR_POR_EMAIL	= "br.com.bluesoft.votacao.domain.Usuario.selecionarPorEmail";	
 
 	@Id
 	@GeneratedValue
 	private Long				id;
 
-	@NotBlank
 	private String				nome;
 
-	@NotBlank
 	private String				email;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")	
 	@Column(name = "data_cadastro")
 	private Calendar			dataCadastro;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")	
 	@Column(name = "data_alteracao")
 	private Calendar			dataAlteracao;
+	
+	Usuario(){		
+	}
+	
+	Usuario(String nome, String email){
+		this.nome = nome;
+		this.email = email;	
+	}
+	
+	public static Usuario newInstance() {
+		return new Usuario();
+	}
+
+	public static Usuario newInstance(String nome, String email) {		
+		return new Usuario(nome,email);
+	}	
 
 	@PrePersist
 	public void prePersist() {
-		this.dataCadastro = Calendar.getInstance();
+		this.setDataCadastro(Calendar.getInstance());		
 		Util.tratarAtributosString(this);
 	}
 
 	@PreUpdate
 	public void preUpdate() {
-		this.dataAlteracao = Calendar.getInstance();
+		this.setDataAlteracao(Calendar.getInstance());
 		Util.tratarAtributosString(this);
 	}
 
@@ -59,6 +80,7 @@ public class Usuario implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 
 	public String getEmail() {
 		return email;
@@ -82,6 +104,14 @@ public class Usuario implements Serializable {
 
 	public void setDataAlteracao(Calendar dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
+	}	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	@Override
@@ -108,7 +138,6 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
-	
 	
 
 }
