@@ -34,7 +34,6 @@
 		<property name="suffix" 	value=".jsp" />
 	</bean>
 	
-	 <mvc:resources mapping="/static/**" location="/resources" />	  
-	
+	<mvc:default-servlet-handler/>
 
 </beans>

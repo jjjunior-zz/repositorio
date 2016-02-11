@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -8,7 +8,7 @@
 	<tiles:putAttribute name="corpo">
 
 		<div class="page-header">
-			<h1>Veja qual √© o melhor restaurante na opini√£o de quem voltou!</h1>
+			<h1>Veja qual È o melhor restaurante na opini„o de quem voltou!</h1>
 		</div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

@@ -23,20 +23,15 @@ public class VotacaoController {
 	
 	private Long contador  = 1L;
 	private PossivelEscollha escolha;
-	private Map<String, String> map = new HashMap<>();
-	
-	@PostConstruct
-	public void init(){		
-		map.put(RestauranteEnum.BURGER_KING.getNome(), "/static/images/burgerking.jpg");
-		map.put(RestauranteEnum.KFC.getNome(), "/static/images/kfc.jpg");
-		map.put(RestauranteEnum.MCDONALDS.getNome(), "/static/images/mcdonalds.jpg");
-		map.put(RestauranteEnum.OUTBACK.getNome(), "/static/images/outback.jpg");
-		map.put(RestauranteEnum.SUBWAY.getNome(), "/static/images/subway.jpg");		
-	}
-	
+	private Map<String, String> map = new HashMap<>();	
 
 	@RequestMapping("/")
 	public ModelAndView execute() {
+		map.put(RestauranteEnum.BURGER_KING.getNome(), "/resources/images/burgerking.jpg");
+		map.put(RestauranteEnum.KFC.getNome(),         "/resources/images/kfc.jpg");
+		map.put(RestauranteEnum.MCDONALDS.getNome(), "/resources/images/mcdonalds.jpg");
+		map.put(RestauranteEnum.OUTBACK.getNome(), "/resources/images/outback.jpg");
+		map.put(RestauranteEnum.SUBWAY.getNome(), "/resources/images/subway.jpg");
 		//consultar banco de dados 
 		escolha =  escolhaRepository.buscarPossivelEscolhaPorIndice(contador);
 		String pathImagemDireito = map.get(escolha.getRestauranteLadoDireito());
@@ -48,8 +43,6 @@ public class VotacaoController {
 		modelAndView.addObject("escolha", escolha);
 		if(contador <= 10){
 			contador++;
-		}else{
-			contador = 1L;
 		}
 		return modelAndView;
 	}
@@ -60,6 +53,7 @@ public class VotacaoController {
 		
 		System.out.println("Restaurante votado foi: " + this.escolha.getRestauranteLadoEsquerdo());
 		if(contador > 10){
+			contador = 1L;
 			return "redirect:/formulario";
 		}		
 		return "redirect:/";
@@ -70,6 +64,7 @@ public class VotacaoController {
 	public String votacaoDireita() {
 		System.out.println("Restaurante votado foi: " + this.escolha.getRestauranteLadoDireito());
 		if(contador > 10){
+			contador = 1L;
 			return "redirect:/formulario";
 		}
 		return "redirect:/";		

@@ -14,6 +14,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.bluesoft.votacao.util.Util;
@@ -34,8 +35,10 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer				id;
 
+	@NotBlank(message = "field.required.usuario.nome")
 	private String				nome;
 
+	@NotBlank(message = "field.required.usuario.email")
 	private String				email;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")	
