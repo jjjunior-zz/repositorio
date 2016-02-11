@@ -1,6 +1,7 @@
 package br.com.bluesoft.votacao.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.bluesoft.votacao.dao.DAO;
-import br.com.bluesoft.votacao.domain.PossivelEscollha;
+import br.com.bluesoft.votacao.dao.ParametroDaConsulta;
+import br.com.bluesoft.votacao.domain.PossivelEscolha;
+import br.com.bluesoft.votacao.domain.Restaurante;
 import br.com.bluesoft.votacao.exception.ModeloException;
 
 @Repository
@@ -19,23 +22,28 @@ public class PossivelEscolhaRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private DAO<PossivelEscollha, Long> daoEscolha;	
+	private DAO<PossivelEscolha, Integer> daoEscolha;	
 	
 	@PostConstruct
 	public void init(){
-		this.daoEscolha = DAO.newInstance(this.entityManager, PossivelEscollha.class);
+		this.daoEscolha = DAO.newInstance(this.entityManager, PossivelEscolha.class);
 	}
 	
-	public PossivelEscollha buscarPossivelEscolhaPorIndice(Long indice){		
+	public PossivelEscolha buscarPossivelEscolhaPorIndice(Integer indice){		
 		return this.daoEscolha.selecionarPeloIndice(indice);
 	}	
 	
-	public List<PossivelEscollha> buscarTodasPossiveisEscolhas(){		
-		return this.daoEscolha.selecionar(PossivelEscollha.TUDO);
-	}
+	public List<PossivelEscolha> buscarTodasPossiveisEscolhas(){		
+		return this.daoEscolha.selecionar(PossivelEscolha.TUDO);
+	}	
 	
 	@Transactional
-	public void incluirPossivelEscolha(PossivelEscollha possivelEscollha ) throws ModeloException{		
-		this.daoEscolha.inserir(possivelEscollha);
+	public void incluirPossivelEscolha(PossivelEscolha possivelEscolha) throws ModeloException{		
+		this.daoEscolha.inserir(possivelEscolha);
+	}
+	
+	public List<PossivelEscolha> buscarPossiveisEscolhasPorRestaurante(Restaurante esquerda, Restaurante direita){
+		Map<String,Object> parametros = ParametroDaConsulta.com("restauranteEsquerdo", esquerda).mais("restauranteDireito", direita).parametros();		
+		return this.daoEscolha.selecionarComParametro(PossivelEscolha.SELECIONAR_POR_RESTAURANTE, parametros);
 	}
 }
