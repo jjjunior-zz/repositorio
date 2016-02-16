@@ -41,7 +41,7 @@ public class UsuarioRepositoryTest {
 	public void deveBuscarTodosUsuarios() throws ModeloException{		
 		
 		Usuario usuario0 = Usuario.newInstance("Junior", "jjjunior@gmail.com");		
-		Usuario usuario1 = Usuario.newInstance("Joao", "jjjunior@gmail.com");		
+		Usuario usuario1 = Usuario.newInstance("Joao", "jjjunior1@gmail.com");		
 		
 		usuarioRepository.incluirUsuario(usuario0);
 		usuarioRepository.incluirUsuario(usuario1);		

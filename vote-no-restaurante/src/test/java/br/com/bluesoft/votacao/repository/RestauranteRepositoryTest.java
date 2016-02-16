@@ -18,10 +18,10 @@ import br.com.bluesoft.votacao.enumeration.RestauranteEnum;
 import br.com.bluesoft.votacao.exception.ModeloException;
 import br.com.bluesoft.votacao.repository.RestauranteRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test-context.xml","classpath:applicationContext.xml"})
-@Transactional
 @TransactionConfiguration(defaultRollback = true)
+@Transactional
+@ContextConfiguration(locations = {"classpath:test-context.xml","classpath:applicationContext.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
 public class RestauranteRepositoryTest {
 	
 	@Autowired
@@ -29,7 +29,7 @@ public class RestauranteRepositoryTest {
 	
 	@Test
 	public void deveIncluirUmRestaurante() throws ModeloException{		
-		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome());
+		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(),RestauranteEnum.MCDONALDS.getPathImagem());		
 		
 		this.restauranteRepository.incluirRestautante(r0);		
 		
@@ -42,8 +42,8 @@ public class RestauranteRepositoryTest {
 	@Test
 	public void deveBuscarTodosRestaurantes() throws ModeloException{
 	
-		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome());
-		Restaurante r1 = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome());
+		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(),RestauranteEnum.MCDONALDS.getPathImagem());
+		Restaurante r1 = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(),RestauranteEnum.BURGER_KING.getPathImagem());		
 		
 		this.restauranteRepository.incluirRestautante(r0);
 		this.restauranteRepository.incluirRestautante(r1);
@@ -58,11 +58,11 @@ public class RestauranteRepositoryTest {
 	@Test
 	public void deveExcluirUmRestaurante() throws ModeloException{		
 	
-		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome());
+		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(),RestauranteEnum.MCDONALDS.getPathImagem());		
 		
 		this.restauranteRepository.incluirRestautante(r0);		
 		List<Restaurante> lista =  this.restauranteRepository.buscarRestaurantePorNome(RestauranteEnum.MCDONALDS.getNome());
-		
+				
 		Restaurante r1 = lista.get(0);
 		
 		this.restauranteRepository.excluirRestautante(r1);
