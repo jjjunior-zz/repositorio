@@ -12,32 +12,22 @@
 						http://www.springframework.org/schema/tx/spring-tx.xsd
 						http://www.springframework.org/schema/mvc
 						http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-<<<<<<< HEAD
 
-
+	<context:component-scan base-package="br.com.bluesoft.votacao.domain" />
+	<context:component-scan base-package="br.com.bluesoft.votacao.controller" />
+	<context:component-scan base-package="br.com.bluesoft.votacao.repository" />
+	<context:component-scan base-package="br.com.bluesoft.votacao.service" />
 
 	<context:annotation-config />
 	<mvc:annotation-driven />
 	<tx:annotation-driven />
-	<mvc:default-servlet-handler />
 
 	<bean id="entityManagerFactory"	class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean" />
-=======
-	
-	<context:component-scan base-package="br.com.bluesoft.votacao.domain" />
-	<context:component-scan base-package="br.com.bluesoft.votacao.controller"/>
-	<context:component-scan base-package="br.com.bluesoft.votacao.repository"/>
-
-	<mvc:annotation-driven />
-
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean" />
->>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-<<<<<<< HEAD
 	<bean id="viewResolver"	class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"	value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/pages/" />
@@ -51,23 +41,6 @@
 		</property>
 	</bean>
 
-	<context:component-scan base-package="br.com.bluesoft.votacao." />
-=======
-	<tx:annotation-driven />
-
-	<bean id="viewResolver"	class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass"  value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix"     value="/WEB-INF/pages/" />
-		<property name="suffix" 	value=".jsp" />
-	</bean>
-	
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename">
-            <value>messages</value>
-        </property>
-    </bean>
-	
-	<mvc:default-servlet-handler/>
->>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
+	<mvc:default-servlet-handler />
 
 </beans>

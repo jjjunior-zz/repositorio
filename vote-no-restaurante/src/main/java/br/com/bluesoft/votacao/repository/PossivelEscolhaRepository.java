@@ -35,7 +35,7 @@ public class PossivelEscolhaRepository {
 	}
 	
 	public Integer buscarMenorEscolha(){
-		Long count = (Long) this.entityManager.createNamedQuery(PossivelEscollha.MENOR_ESCOLHA).getSingleResult();
+		Integer count = (Integer) this.entityManager.createNamedQuery(PossivelEscollha.MENOR_ESCOLHA).getSingleResult();
 		if(count == null){
 			return 0;
 		}
