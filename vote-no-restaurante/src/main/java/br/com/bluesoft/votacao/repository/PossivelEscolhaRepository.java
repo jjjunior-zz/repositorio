@@ -19,19 +19,27 @@ public class PossivelEscolhaRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private DAO<PossivelEscollha, Long> daoEscolha;	
+	private DAO<PossivelEscollha, Integer> daoEscolha;	
 	
 	@PostConstruct
 	public void init(){
 		this.daoEscolha = DAO.newInstance(this.entityManager, PossivelEscollha.class);
 	}
 	
-	public PossivelEscollha buscarPossivelEscolhaPorIndice(Long indice){		
+	public PossivelEscollha buscarPossivelEscolhaPorIndice(Integer indice){		
 		return this.daoEscolha.selecionarPeloIndice(indice);
 	}	
 	
 	public List<PossivelEscollha> buscarTodasPossiveisEscolhas(){		
 		return this.daoEscolha.selecionar(PossivelEscollha.TUDO);
+	}
+	
+	public Integer buscarMenorEscolha(){
+		Integer count = (Integer) this.entityManager.createNamedQuery(PossivelEscollha.MENOR_ESCOLHA).getSingleResult();
+		if(count == null){
+			return 0;
+		}
+		return count;		
 	}
 	
 	@Transactional

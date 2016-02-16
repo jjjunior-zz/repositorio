@@ -1,73 +1,71 @@
 package br.com.bluesoft.votacao.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.bluesoft.votacao.domain.PossivelEscollha;
-import br.com.bluesoft.votacao.enumeration.RestauranteEnum;
+import br.com.bluesoft.votacao.repository.DadoMestreRepository;
 import br.com.bluesoft.votacao.repository.PossivelEscolhaRepository;
 
 @Controller
 @RequestMapping("/")
 public class VotacaoController {
-	
+
 	@Autowired
 	private PossivelEscolhaRepository escolhaRepository;
 	
-	private Long contador  = 1L;
-	private PossivelEscollha escolha;
-	private Map<String, String> map = new HashMap<>();	
+	@Autowired
+	private DadoMestreRepository dadoMestreRepository;
+
+	private Integer contadorInicial = 1;
+	private Integer contadorFinal = 1;
+	private Integer contador = 1;
+	private boolean inicializou = false;
+	private PossivelEscollha escolha;	
 
 	@RequestMapping("/")
 	public ModelAndView execute() {
-		map.put(RestauranteEnum.BURGER_KING.getNome(), "/resources/images/burgerking.jpg");
-		map.put(RestauranteEnum.KFC.getNome(),         "/resources/images/kfc.jpg");
-		map.put(RestauranteEnum.MCDONALDS.getNome(), "/resources/images/mcdonalds.jpg");
-		map.put(RestauranteEnum.OUTBACK.getNome(), "/resources/images/outback.jpg");
-		map.put(RestauranteEnum.SUBWAY.getNome(), "/resources/images/subway.jpg");
-		//consultar banco de dados 
-		escolha =  escolhaRepository.buscarPossivelEscolhaPorIndice(contador);
-		String pathImagemDireito = map.get(escolha.getRestauranteLadoDireito());
-		String pathImagemEsquerda = map.get(escolha.getRestauranteLadoEsquerdo());		
-		escolha.setPathImagemLadoDireito(pathImagemDireito);
-		escolha.setPathImagemLadoEsquerdo(pathImagemEsquerda);
-		
+		if(!inicializou){
+			contadorInicial = this.escolhaRepository.buscarMenorEscolha();
+			if (contadorInicial == 0) {
+				dadoMestreRepository.carregar();
+				contadorInicial = this.escolhaRepository.buscarMenorEscolha();
+			} 
+			contadorFinal = contadorInicial + 10;
+			contador = contadorInicial;
+			inicializou = true;
+		}
+		// consultar banco de dados
+		escolha = escolhaRepository.buscarPossivelEscolhaPorIndice(contador);
+		escolha.setPathImagemLadoDireito(escolha.getRestauranteLadoDireito().getPathImagem());
+		escolha.setPathImagemLadoEsquerdo(escolha.getRestauranteLadoEsquerdo().getPathImagem());
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("escolha", escolha);
-		if(contador <= 10){
+		if (contador <= contadorFinal) {
 			contador++;
 		}
 		return modelAndView;
 	}
-	
-	@RequestMapping("/votacaoEsquerda" )
+
+	@RequestMapping("/votacaoEsquerda")
 	public String votacaoEsquerda() {
-		
-		
-		System.out.println("Restaurante votado foi: " + this.escolha.getRestauranteLadoEsquerdo());
-		if(contador > 10){
-			contador = 1L;
-			return "redirect:/formulario";
-		}		
-		return "redirect:/";
-		
-	}
-	
-	@RequestMapping("/votacaoDireita")
-	public String votacaoDireita() {
-		System.out.println("Restaurante votado foi: " + this.escolha.getRestauranteLadoDireito());
-		if(contador > 10){
-			contador = 1L;
+		if (contador >= contadorFinal) {
+			contador = contadorInicial;			
 			return "redirect:/formulario";
 		}
-		return "redirect:/";		
+		return "redirect:/";
+
+	}
+
+	@RequestMapping("/votacaoDireita")
+	public String votacaoDireita() {
+		if (contador >= contadorFinal) {
+			contador = contadorInicial;			
+			return "redirect:/formulario";
+		}
+		return "redirect:/";
 	}
 
 }

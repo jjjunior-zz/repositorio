@@ -13,8 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.bluesoft.votacao.util.Util;
@@ -35,14 +35,16 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer				id;
 
-	@NotBlank(message = "field.required.usuario.nome")
+	@NotNull(message = "usuario.nome")
+	@Column(nullable = false, unique = true)
 	private String				nome;
 
-	@NotBlank(message = "field.required.usuario.email")
+	@NotNull(message = "usuario.email")
+	@Column(nullable = false, unique = true)
 	private String				email;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")	
-	@Column(name = "data_cadastro")
+	@Column(name = "data_cadastro", nullable = false)
 	private Calendar			dataCadastro;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")	

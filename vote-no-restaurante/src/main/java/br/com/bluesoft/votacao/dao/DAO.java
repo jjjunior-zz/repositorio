@@ -178,7 +178,8 @@ public class DAO<T, K> {
 
 	public void inserir(T t) throws ModeloException {
 		try {
-			this.entityManager.persist(t);			
+			this.entityManager.persist(t);	
+			this.entityManager.flush();
 		} catch (EntityExistsException e) {
 			mensagemException("Violação da Chave primaria para a entidade :" + this.classe.getName() + ".", e);
 		} catch (PersistenceException e) {
@@ -191,7 +192,8 @@ public class DAO<T, K> {
 	public void deletar(T t) throws ModeloException {
 		try {
 			t = this.entityManager.merge(t);
-			this.entityManager.remove(t);			
+			this.entityManager.remove(t);
+			this.entityManager.flush();
 		} catch (PersistenceException e) {
 			mensagemException("Problema ao tentar deletar entidade :" + this.classe.getName() + ".", e);
 		} catch (Exception e) {

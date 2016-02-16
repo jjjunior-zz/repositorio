@@ -2,6 +2,7 @@ package br.com.bluesoft.votacao.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,12 @@ public class Restaurante implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer				id;
+	
+	@Column(nullable = false, unique = true)
 	private String				nome;
+	
+	@Column(nullable = false, unique = true)
+	private String pathImagem;
 
 	Restaurante() {
 	}
@@ -34,9 +40,10 @@ public class Restaurante implements Serializable {
 		return new Restaurante();
 	}
 
-	public static Restaurante newInstance(String nome) {
+	public static Restaurante newInstance(String nome,String pathImagem) {
 		Restaurante restaurante = new Restaurante();
 		restaurante.setNome(nome);
+		restaurante.setPathImagem(pathImagem);
 		return restaurante;
 	}
 
@@ -54,6 +61,14 @@ public class Restaurante implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}	
+
+	public String getPathImagem() {
+		return pathImagem;
+	}
+
+	public void setPathImagem(String pathImagem) {
+		this.pathImagem = pathImagem;
 	}
 
 	@Override
@@ -83,7 +98,6 @@ public class Restaurante implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Restaurante [id=" + id + ", nome=" + nome + "]";
-	}
-
+		return this.nome;
+	}	
 }
