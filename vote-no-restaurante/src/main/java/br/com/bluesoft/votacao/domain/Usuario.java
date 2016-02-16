@@ -13,7 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,11 +34,9 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer				id;
 
-	@NotNull(message = "usuario.nome")
 	@Column(nullable = false, unique = true)
 	private String				nome;
 
-	@NotNull(message = "usuario.email")
 	@Column(nullable = false, unique = true)
 	private String				email;
 
