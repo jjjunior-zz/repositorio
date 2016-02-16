@@ -6,7 +6,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>br.com.bluesoft.votacao.domain.Restaurante</class>
 		<class>br.com.bluesoft.votacao.domain.Usuario</class>
-		<class>br.com.bluesoft.votacao.domain.PossivelEscollha</class>
+		<class>br.com.bluesoft.votacao.domain.PossivelEscolha</class>
 		
 		 <properties>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>

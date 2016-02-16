@@ -35,11 +35,11 @@ public class PossivelEscolhaRepository {
 	}
 	
 	public Integer buscarMenorEscolha(){
-		Integer count = (Integer) this.entityManager.createNamedQuery(PossivelEscollha.MENOR_ESCOLHA).getSingleResult();
+		Long count = (Long) this.entityManager.createNamedQuery(PossivelEscollha.MENOR_ESCOLHA).getSingleResult();
 		if(count == null){
 			return 0;
 		}
-		return count;		
+		return count.intValue();		
 	}
 	
 	@Transactional

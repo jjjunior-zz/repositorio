@@ -8,15 +8,23 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
+<<<<<<< HEAD
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+=======
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+>>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.4</version>
@@ -24,7 +32,10 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
@@ -48,24 +59,41 @@
 				</executions>
 
 			</plugin>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 		</plugins>
 	</build>
 
 	<dependencies>
+<<<<<<< HEAD
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>4.2.4.RELEASE</version>
+=======
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>4.1.0.RELEASE</version>
+>>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
+<<<<<<< HEAD
 			<version>4.2.4.RELEASE</version>
+=======
+			<version>4.1.0.RELEASE</version>
+>>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+<<<<<<< HEAD
 			<version>4.2.4.RELEASE</version>
 		</dependency>
 		<dependency>
@@ -101,6 +129,21 @@
 			<version>4.1.0.Final</version>
 		</dependency>
 					
+=======
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+>>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -108,6 +151,19 @@
 			<version>2.5.6</version>
 			<scope>test</scope>
 		</dependency>
+<<<<<<< HEAD
+=======
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+>>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 
 		<!-- Tiles, servlet -->
 		<dependency>
@@ -155,6 +211,26 @@
 			<version>1.2.16</version>
 		</dependency>
 
+<<<<<<< HEAD
+=======
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
+		</dependency>
+
+>>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 		<!-- Driver Hsqldb e h2 -->
 		<dependency>
 			<groupId>hsqldb</groupId>
@@ -180,6 +256,25 @@
 			<artifactId>cglib-nodep</artifactId>
 			<version>3.2.0</version>
 			<scope>test</scope>
+<<<<<<< HEAD
 		</dependency>	
 	</dependencies>
+=======
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.1.0.Final</version>
+		</dependency>
+	</dependencies>
+
+
+
+>>>>>>> ffa04b1f220a7ffcae0cbcc6cdfc1769fa2c6594
 </project>

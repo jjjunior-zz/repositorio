@@ -28,7 +28,7 @@ public class PossivelEscollha implements Serializable {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
-	private Integer id;	
+	private long id;	
 	
 	@OneToOne
 	@JoinColumn(name = "restaurante_esquerdo_id")
@@ -60,11 +60,11 @@ public class PossivelEscollha implements Serializable {
 		return new PossivelEscollha(restauranteLadoEsquerdo,restauranteLadoDireito);
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
