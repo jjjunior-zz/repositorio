@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Votação para o melhor restaurante</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>VotaÃ§Ã£o para o melhor restaurante</title>
 		
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.3.min.js"></script>
@@ -23,7 +23,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand"	href="${pageContext.request.contextPath}/">Início</a>
+					<a class="navbar-brand"	href="${pageContext.request.contextPath}/">InÃ­cio</a>
 				</div>
 			</div>			
 		</nav>
