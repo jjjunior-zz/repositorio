@@ -24,7 +24,7 @@ public class PossivelEscolha implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public static final String TUDO = "br.com.bluesoft.votacao.domain.PossivelEscolha.tudo";
-	public static final String MENOR_ESCOLHA = "br.com.bluesoft.votacao.domain.PossivelEscolha.MenorEscolha";
+	public static final String MENOR_ESCOLHA = "br.com.bluesoft.votacao.domain.PossivelEscolha.nenorEscolha";
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
