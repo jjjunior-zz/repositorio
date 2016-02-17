@@ -15,35 +15,37 @@ import br.com.bluesoft.votacao.exception.ModeloException;
 
 @Repository
 public class PossivelEscolhaRepository {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-	private DAO<PossivelEscolha, Integer> daoEscolha;	
-	
+
+	private DAO<PossivelEscolha, Integer> daoEscolha;
+	private DAO<Integer, Integer> daoMenorEscolha;
+
 	@PostConstruct
-	public void init(){
+	public void init() {
 		this.daoEscolha = DAO.newInstance(this.entityManager, PossivelEscolha.class);
+		this.daoMenorEscolha = DAO.newInstance(this.entityManager, Integer.class);
 	}
-	
-	public PossivelEscolha buscarPossivelEscolhaPorIndice(Integer indice){		
+
+	public PossivelEscolha buscarPossivelEscolhaPorIndice(Integer indice) {
 		return this.daoEscolha.selecionarPeloIndice(indice);
-	}	
-	
-	public List<PossivelEscolha> buscarTodasPossiveisEscolhas(){		
+	}
+
+	public List<PossivelEscolha> buscarTodasPossiveisEscolhas() {
 		return this.daoEscolha.selecionar(PossivelEscolha.TUDO);
 	}
-	
-	public Integer buscarMenorEscolha(){
-		Integer count = (Integer) this.entityManager.createNamedQuery(PossivelEscolha.MENOR_ESCOLHA).getSingleResult();
-		if(count == null){
+
+	public Integer buscarMenorEscolha() {
+		Integer count = daoMenorEscolha.selecionarUnicoResultado(PossivelEscolha.MENOR_ESCOLHA);
+		if (count == null) {
 			return 0;
 		}
-		return count.intValue();		
+		return count.intValue();
 	}
-	
+
 	@Transactional
-	public void incluirPossivelEscolha(PossivelEscolha possivelEscollha ) throws ModeloException{		
+	public void incluirPossivelEscolha(PossivelEscolha possivelEscollha) throws ModeloException {
 		this.daoEscolha.inserir(possivelEscollha);
 	}
 }

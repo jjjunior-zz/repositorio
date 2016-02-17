@@ -13,18 +13,20 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-@Table(name = "possivel_escolha")
 @Entity
+@Table(name = "possivel_escolha")
 @NamedQueries({ 
 	@NamedQuery(name = PossivelEscolha.TUDO, query = "select p from PossivelEscolha p"),
-	@NamedQuery(name = PossivelEscolha.MENOR_ESCOLHA, query = "select min(p.id) from PossivelEscolha p")
+	@NamedQuery(name = PossivelEscolha.MENOR_ESCOLHA, query = "select min(p.id) from PossivelEscolha p"),
+	@NamedQuery(name = PossivelEscolha.SELECIONAR_RESTAURANTES_NAO_VOTADOS, query = "select p from PossivelEscolha p where p.restauranteLadoEsquerdo not in :restaurantesEsquerdo and p.restauranteLadoDireito not in :restaurantesDireito")
 })
 public class PossivelEscolha implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public static final String TUDO = "br.com.bluesoft.votacao.domain.PossivelEscolha.tudo";
-	public static final String MENOR_ESCOLHA = "br.com.bluesoft.votacao.domain.PossivelEscolha.nenorEscolha";
+	public static final String TUDO = "br.com.bluesoft.votacao.domain.PossivelEscolha.tudo";	
+	public static final String SELECIONAR_RESTAURANTES_NAO_VOTADOS = "br.com.bluesoft.votacao.domain.PossivelEscolha.selecionaNaoVotados";
+	public static final String MENOR_ESCOLHA = "br.com.bluesoft.votacao.domain.PossivelEscolha.menorEscolha";
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
