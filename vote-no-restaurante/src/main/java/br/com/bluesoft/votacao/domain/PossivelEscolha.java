@@ -6,40 +6,58 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Table(name = "possivel_escolha")
 @Entity
-@NamedQueries({
-		@NamedQuery(name = PossivelEscolha.TUDO, query = "select p from PossivelEscolha p"),
-		@NamedQuery(name = PossivelEscolha.SELECIONAR_POR_RESTAURANTE, query = "select p from PossivelEscolha p where p.restauranteLadoEsquerdo = :restauranteEsquerdo and p.restauranteLadoDireito = :restauranteDireito"),
-		@NamedQuery(name = PossivelEscolha.SELECIONAR_RESTAURANTES_NAO_VOTADOS, query = "select p from PossivelEscolha p where p.restauranteLadoEsquerdo not in :restaurantesEsquerdo and p.restauranteLadoDireito not in :restaurantesDireito") })
+@NamedQueries({ 
+	@NamedQuery(name = PossivelEscolha.TUDO, query = "select p from PossivelEscolha p"),
+	@NamedQuery(name = PossivelEscolha.MENOR_ESCOLHA, query = "select min(p.id) from PossivelEscolha p")
+})
 public class PossivelEscolha implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
-	private static final long	serialVersionUID					= 1L;
+	public static final String TUDO = "br.com.bluesoft.votacao.domain.PossivelEscolha.tudo";
+	public static final String MENOR_ESCOLHA = "br.com.bluesoft.votacao.domain.PossivelEscolha.MenorEscolha";
 
-	public static final String	TUDO								= "br.com.bluesoft.votacao.domain.PossivelEscolha.tudo";
-	public static final String	SELECIONAR_POR_RESTAURANTE			= "br.com.bluesoft.votacao.domain.PossivelEscolha.selecionarPorRestaurante";
-	public static final String	SELECIONAR_RESTAURANTES_NAO_VOTADOS	= "br.com.bluesoft.votacao.domain.PossivelEscolha.selecionarRestaurantesNaoVotados";
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Integer				id;
-
+	@Id 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
+	private Integer id;	
+	
 	@OneToOne
-	private Restaurante			restauranteLadoEsquerdo;
-
+	@JoinColumn(name = "restaurante_esquerdo_id")
+	private Restaurante restauranteLadoEsquerdo;
+	
 	@OneToOne
-	private Restaurante			restauranteLadoDireito;
-
-	PossivelEscolha() {
+	@JoinColumn(name = "restaurante_direito_id")
+	private Restaurante restauranteLadoDireito;
+	
+	@Transient
+	private String pathImagemLadoEsquerdo;
+	
+	@Transient
+	private String pathImagemLadoDireito;	
+	
+	PossivelEscolha(){		
 	}
-
+	
+	PossivelEscolha(Restaurante restauranteLadoEsquerdo,Restaurante restauranteLadoDireito){
+		this.restauranteLadoEsquerdo = restauranteLadoEsquerdo;
+		this.restauranteLadoDireito = restauranteLadoDireito;
+	}	
+	
 	public static PossivelEscolha newInstance() {
 		return new PossivelEscolha();
+	}
+	
+	public static PossivelEscolha newInstance(Restaurante restauranteLadoEsquerdo,Restaurante restauranteLadoDireito) {
+		return new PossivelEscolha(restauranteLadoEsquerdo,restauranteLadoDireito);
 	}
 
 	public Integer getId() {
@@ -49,7 +67,7 @@ public class PossivelEscolha implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	
 	public Restaurante getRestauranteLadoEsquerdo() {
 		return restauranteLadoEsquerdo;
 	}
@@ -64,6 +82,22 @@ public class PossivelEscolha implements Serializable {
 
 	public void setRestauranteLadoDireito(Restaurante restauranteLadoDireito) {
 		this.restauranteLadoDireito = restauranteLadoDireito;
+	}	
+
+	public String getPathImagemLadoEsquerdo() {
+		return pathImagemLadoEsquerdo;
+	}
+
+	public void setPathImagemLadoEsquerdo(String pathImagemLadoEsquerdo) {
+		this.pathImagemLadoEsquerdo = pathImagemLadoEsquerdo;
+	}
+
+	public String getPathImagemLadoDireito() {
+		return pathImagemLadoDireito;
+	}
+
+	public void setPathImagemLadoDireito(String pathImagemLadoDireito) {
+		this.pathImagemLadoDireito = pathImagemLadoDireito;
 	}
 
 	@Override

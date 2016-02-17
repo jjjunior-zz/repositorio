@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.bluesoft.votacao.domain.PossivelEscollha;
+import br.com.bluesoft.votacao.domain.PossivelEscolha;
 import br.com.bluesoft.votacao.repository.DadoMestreRepository;
 import br.com.bluesoft.votacao.repository.PossivelEscolhaRepository;
 
@@ -23,7 +23,7 @@ public class VotacaoController {
 	private Integer contadorFinal = 1;
 	private Integer contador = 1;
 	private boolean inicializou = false;
-	private PossivelEscollha escolha;	
+	private PossivelEscolha escolha;	
 
 	@RequestMapping("/")
 	public ModelAndView execute() {

@@ -24,8 +24,6 @@
 				<form:input path="email" type="email" />
 				<form:errors path="email" />
 			</div>
-
-
 			<button type="submit">Enviar</button>
 		</form:form>
 

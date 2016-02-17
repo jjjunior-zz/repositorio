@@ -29,7 +29,7 @@ public class UsuarioValidation implements Validator {
 			Pattern pattern = Pattern.compile(".+@.+\\..+");
 			Matcher matcher = pattern.matcher(usuario.getEmail());
 			if(!matcher.matches()){
-				errors.rejectValue("email","email", "Por favor, insira um email valido.");
+				errors.rejectValue("email","email", "Insira um email valido.");
 			}			
 		}	
 	}

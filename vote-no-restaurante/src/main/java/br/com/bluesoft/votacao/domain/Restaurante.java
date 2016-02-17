@@ -30,7 +30,7 @@ public class Restaurante implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String				nome;
 	
-	@Column(nullable = false, unique = true)
+	@Column(name ="path_imagem", nullable = false, unique = true)
 	private String pathImagem;
 
 	Restaurante() {
