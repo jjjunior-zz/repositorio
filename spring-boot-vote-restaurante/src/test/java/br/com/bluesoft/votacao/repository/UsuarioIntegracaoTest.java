@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.service;
+package br.com.bluesoft.votacao.repository;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +19,7 @@ import br.com.bluesoft.votacao.repository.UsuarioRepository;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-data-test.xml"})
 @Transactional @Rollback(true)
-public class UsuarioServiceTest {
+public class UsuarioIntegracaoTest {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;	
