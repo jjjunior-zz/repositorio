@@ -2,23 +2,15 @@ package br.com.bluesoft.votacao.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name = "restaurante")
-@NamedQueries({ 
-		@NamedQuery(name = Restaurante.TUDO, query = "select r from Restaurante r"),
-		@NamedQuery(name = Restaurante.SELECIONAR_POR_NOME, query = "select r from Restaurante r where r.nome = :nome")
-})
 public class Restaurante extends AbstractPersistable<Integer> {
 
 	private static final long	serialVersionUID	= 1L;
-	public static final String	TUDO				= "br.com.bluesoft.votacao.domain.Restaurante.todos";
-	public static final String	SELECIONAR_POR_NOME	= "br.com.bluesoft.votacao.domain.Restaurante.selecionarPorNome";
 	
 	@Column(nullable = false, unique = true)
 	private String				nome;

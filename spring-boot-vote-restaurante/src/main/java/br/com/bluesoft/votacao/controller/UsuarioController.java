@@ -17,14 +17,13 @@ import br.com.bluesoft.votacao.validation.UsuarioValidation;
 @Controller
 public class UsuarioController {
 	
-	@InitBinder
-	public void initBinder(WebDataBinder binder){
-		binder.addValidators(new UsuarioValidation());		
-	}
-	
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@InitBinder
+	public void initBinder(WebDataBinder binder){
+		binder.addValidators(new UsuarioValidation());		
+	}	
 	
 	@RequestMapping(value ="/formulario" , method = RequestMethod.GET)
 	public ModelAndView form(Usuario usuario) {

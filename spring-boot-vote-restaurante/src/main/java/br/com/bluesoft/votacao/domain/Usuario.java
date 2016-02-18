@@ -4,8 +4,6 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -17,15 +15,9 @@ import br.com.bluesoft.votacao.util.Util;
 
 @Table(name = "usuario")
 @Entity
-@NamedQueries({ 
-	@NamedQuery(name = Usuario.TUDO, query = "select u from Usuario u"),
-	@NamedQuery(name = Usuario.SELECIONAR_POR_EMAIL, query = "select u from Usuario u where u.email = :email")
-})
 public class Usuario extends AbstractPersistable<Integer> {
 
 	private static final long	serialVersionUID		= 1L;
-	public static final String	TUDO					= "br.com.bluesoft.votacao.domain.Usuario.tudo";
-	public static final String	SELECIONAR_POR_EMAIL	= "br.com.bluesoft.votacao.domain.Usuario.selecionarPorEmail";
 
 	@Column(nullable = false, unique = true)
 	private String				nome;
