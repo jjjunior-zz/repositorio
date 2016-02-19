@@ -11,12 +11,12 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Restaurante extends AbstractPersistable<Integer> {
 
 	private static final long	serialVersionUID	= 1L;
-	
+
 	@Column(nullable = false, unique = true)
 	private String				nome;
-	
-	@Column(name ="path_imagem", nullable = false, unique = true)
-	private String pathImagem;
+
+	@Column(name = "path_imagem", nullable = false, unique = true)
+	private String				pathImagem;
 
 	Restaurante() {
 	}
@@ -25,15 +25,15 @@ public class Restaurante extends AbstractPersistable<Integer> {
 		return new Restaurante();
 	}
 
-	public static Restaurante newInstance(String nome,String pathImagem) {
+	public static Restaurante newInstance(String nome, String pathImagem) {
 		Restaurante restaurante = new Restaurante();
 		restaurante.setNome(nome);
 		restaurante.setPathImagem(pathImagem);
 		return restaurante;
 	}
-	
+
 	@Override
-	public void setId(Integer id) {	
+	public void setId(Integer id) {
 		super.setId(id);
 	}
 
@@ -43,7 +43,7 @@ public class Restaurante extends AbstractPersistable<Integer> {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}	
+	}
 
 	public String getPathImagem() {
 		return pathImagem;
@@ -52,9 +52,9 @@ public class Restaurante extends AbstractPersistable<Integer> {
 	public void setPathImagem(String pathImagem) {
 		this.pathImagem = pathImagem;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.nome;
-	}	
+	}
 }

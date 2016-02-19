@@ -15,23 +15,23 @@ import br.com.bluesoft.votacao.repository.RestauranteRepository;
 @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 public class DadoMestreService {
 
-	private PossivelEscolhaRepository possivelEscolhaRepository;
-	private RestauranteRepository restauranteRepository;
+	private PossivelEscolhaRepository	possivelEscolhaRepository;
+	private RestauranteRepository		restauranteRepository;
 
 	@Autowired
-	public DadoMestreService(PossivelEscolhaRepository possivelEscolhaRepository,RestauranteRepository restauranteRepository) {
+	public DadoMestreService(PossivelEscolhaRepository possivelEscolhaRepository, RestauranteRepository restauranteRepository) {
 		this.possivelEscolhaRepository = possivelEscolhaRepository;
 		this.restauranteRepository = restauranteRepository;
 	}
 
 	@Transactional(readOnly = false)
 	public void carregar() {
-		
-		Restaurante ra = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(),RestauranteEnum.MCDONALDS.getPathImagem());
-		Restaurante rb = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(),RestauranteEnum.BURGER_KING.getPathImagem());
+
+		Restaurante ra = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(), RestauranteEnum.MCDONALDS.getPathImagem());
+		Restaurante rb = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(), RestauranteEnum.BURGER_KING.getPathImagem());
 		Restaurante rc = Restaurante.newInstance(RestauranteEnum.KFC.getNome(), RestauranteEnum.KFC.getPathImagem());
-		Restaurante rd = Restaurante.newInstance(RestauranteEnum.OUTBACK.getNome(),RestauranteEnum.OUTBACK.getPathImagem());
-		Restaurante re = Restaurante.newInstance(RestauranteEnum.SUBWAY.getNome(),RestauranteEnum.SUBWAY.getPathImagem());
+		Restaurante rd = Restaurante.newInstance(RestauranteEnum.OUTBACK.getNome(), RestauranteEnum.OUTBACK.getPathImagem());
+		Restaurante re = Restaurante.newInstance(RestauranteEnum.SUBWAY.getNome(), RestauranteEnum.SUBWAY.getPathImagem());
 
 		restauranteRepository.saveAndFlush(ra);
 		restauranteRepository.saveAndFlush(rb);

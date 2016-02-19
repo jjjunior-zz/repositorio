@@ -11,22 +11,22 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 @ControllerAdvice
 public class ExceptionController {
-	
+
 	@ExceptionHandler(Exception.class)
-	public ModelAndView exceptionGenerica(HttpServletRequest request, Exception exception){		
+	public ModelAndView exceptionGenerica(HttpServletRequest request, Exception exception) {
 		ModelAndView view = new ModelAndView("error");
 		view.addObject("mensagem", request.getRequestURL());
-		view.addObject("excecao", exception);		
+		view.addObject("excecao", exception);
 		return view;
 	}
-	
+
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND, code = HttpStatus.NOT_FOUND)
-	public ModelAndView noHandlerFoundException(HttpServletRequest request, Exception exception){
+	public ModelAndView noHandlerFoundException(HttpServletRequest request, Exception exception) {
 		ModelAndView view = new ModelAndView("error");
 		view.addObject("mensagem", "</br> Está pagina não exite para este dominio!");
 		view.addObject("url", request.getRequestURL());
-		view.addObject("excecao", exception);		
-		return view;	
+		view.addObject("excecao", exception);
+		return view;
 	}
 }

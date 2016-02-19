@@ -16,28 +16,28 @@ import br.com.bluesoft.votacao.validation.UsuarioValidation;
 
 @Controller
 public class ParticipanteController {
-	
+
 	@Autowired
-	private UsuarioService usuarioService;
+	private UsuarioService usuarioService;	
 	
 	@InitBinder
-	public void initBinder(WebDataBinder binder){
-		binder.addValidators(new UsuarioValidation());		
-	}	
-	
-	@RequestMapping(value ="/cadastroParticipante" , method = RequestMethod.GET)
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(new UsuarioValidation());
+	}
+
+	@RequestMapping(value = "/cadastroParticipante", method = RequestMethod.GET)
 	public ModelAndView form(Usuario usuario) {
-		//consultar banco de dados		
-		ModelAndView modelAndView = new ModelAndView("cadastro_participante");		
+		// consultar banco de dados
+		ModelAndView modelAndView = new ModelAndView("cadastro_participante");
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/cadastrarUsuario", method = RequestMethod.POST)
-	public ModelAndView cadastrarUsuario(@Validated Usuario usuario, BindingResult result) {
+	public ModelAndView cadastrarUsuario(@Validated Usuario usuario, BindingResult result) {				
 		if (result.hasErrors()) {
 			return form(usuario);
 		}
-		usuarioService.incluirUsuario(usuario);		
+		usuarioService.incluirUsuario(usuario);
 		return new ModelAndView("lista_ranking");
 	}
 }

@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import br.com.bluesoft.votacao.exception.UtilException;
 
 public class Util {
-	
+
 	final static Logger logger = Logger.getLogger(Util.class);
 
 	static int quantidadeDeVotacao(final int quantidadeTotalRestaurantes, final int quantidadeDeRestaurantesPorVotacao) {

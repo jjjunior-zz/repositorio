@@ -8,9 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 import br.com.bluesoft.votacao.domain.Usuario;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {	
-	
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+
 	@Query("select u from Usuario u where u.email = :email")
 	public List<Usuario> buscarUsuarioPorEmail(@Param("email") String email);
-	
+
 }

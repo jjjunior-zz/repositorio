@@ -39,9 +39,9 @@ public class PossivelEscolhaService {
 	public void incluirPossivelEscolha(PossivelEscolha possivelEscollha) {
 		this.possivelEscolhaRepository.save(possivelEscollha);
 	}
-	
-	public List<PossivelEscolha> buscarRestaurantesNaoVotados(List<Restaurante> restaurantesEsquerdo, List<Restaurante> restaurantesDireito) {			
-		List<PossivelEscolha> possiveisEscolhas = this.possivelEscolhaRepository.buscarRestaurantesNaoVotados(restaurantesEsquerdo,restaurantesDireito);		
-		return possiveisEscolhas==null?Collections.emptyList():possiveisEscolhas;
+
+	public List<PossivelEscolha> buscarRestaurantesNaoVotados(List<Restaurante> restaurantesEsquerdo, List<Restaurante> restaurantesDireito) {
+		List<PossivelEscolha> possiveisEscolhas = this.possivelEscolhaRepository.buscarRestaurantesNaoVotados(restaurantesEsquerdo, restaurantesDireito);
+		return possiveisEscolhas == null ? Collections.emptyList() : possiveisEscolhas;
 	}
 }

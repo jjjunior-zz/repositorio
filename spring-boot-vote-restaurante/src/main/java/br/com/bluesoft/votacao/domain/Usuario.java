@@ -17,7 +17,7 @@ import br.com.bluesoft.votacao.util.Util;
 @Entity
 public class Usuario extends AbstractPersistable<Integer> {
 
-	private static final long	serialVersionUID		= 1L;
+	private static final long	serialVersionUID	= 1L;
 
 	@Column(nullable = false, unique = true)
 	private String				nome;
@@ -25,33 +25,33 @@ public class Usuario extends AbstractPersistable<Integer> {
 	@Column(nullable = false, unique = true)
 	private String				email;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "data_cadastro", nullable = false)
 	private Calendar			dataCadastro;
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "data_alteracao")
 	private Calendar			dataAlteracao;
-	
-	Usuario(){		
+
+	Usuario() {
 	}
-	
-	Usuario(String nome, String email){
+
+	Usuario(String nome, String email) {
 		this.nome = nome;
-		this.email = email;	
+		this.email = email;
 	}
-	
+
 	public static Usuario newInstance() {
 		return new Usuario();
 	}
 
-	public static Usuario newInstance(String nome, String email) {		
-		return new Usuario(nome,email);
-	}	
+	public static Usuario newInstance(String nome, String email) {
+		return new Usuario(nome, email);
+	}
 
 	@PrePersist
 	public void prePersist() {
-		this.setDataCadastro(Calendar.getInstance());		
+		this.setDataCadastro(Calendar.getInstance());
 		Util.tratarAtributosString(this);
 	}
 
@@ -60,12 +60,12 @@ public class Usuario extends AbstractPersistable<Integer> {
 		this.setDataAlteracao(Calendar.getInstance());
 		Util.tratarAtributosString(this);
 	}
-	
+
 	@Override
-	public void setId(Integer id) {	
+	public void setId(Integer id) {
 		super.setId(id);
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -88,7 +88,7 @@ public class Usuario extends AbstractPersistable<Integer> {
 
 	public void setDataAlteracao(Calendar dataAlteracao) {
 		this.dataAlteracao = dataAlteracao;
-	}	
+	}
 
 	public String getNome() {
 		return nome;

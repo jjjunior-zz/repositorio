@@ -11,44 +11,44 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 @Table(name = "possivel_escolha")
 public class PossivelEscolha extends AbstractPersistable<Integer> {
-	
-	private static final long serialVersionUID = 1L;
-	
+
+	private static final long	serialVersionUID	= 1L;
+
 	@OneToOne
 	@JoinColumn(name = "restaurante_esquerdo_id")
-	private Restaurante restauranteLadoEsquerdo;
-	
+	private Restaurante			restauranteLadoEsquerdo;
+
 	@OneToOne
 	@JoinColumn(name = "restaurante_direito_id")
-	private Restaurante restauranteLadoDireito;
-	
+	private Restaurante			restauranteLadoDireito;
+
 	@Transient
-	private String pathImagemLadoEsquerdo;
-	
+	private String				pathImagemLadoEsquerdo;
+
 	@Transient
-	private String pathImagemLadoDireito;	
-	
-	PossivelEscolha(){		
+	private String				pathImagemLadoDireito;
+
+	PossivelEscolha() {
 	}
-	
-	PossivelEscolha(Restaurante restauranteLadoEsquerdo,Restaurante restauranteLadoDireito){
+
+	PossivelEscolha(Restaurante restauranteLadoEsquerdo, Restaurante restauranteLadoDireito) {
 		this.restauranteLadoEsquerdo = restauranteLadoEsquerdo;
 		this.restauranteLadoDireito = restauranteLadoDireito;
-	}	
-	
+	}
+
 	public static PossivelEscolha newInstance() {
 		return new PossivelEscolha();
 	}
-	
-	public static PossivelEscolha newInstance(Restaurante restauranteLadoEsquerdo,Restaurante restauranteLadoDireito) {
-		return new PossivelEscolha(restauranteLadoEsquerdo,restauranteLadoDireito);
+
+	public static PossivelEscolha newInstance(Restaurante restauranteLadoEsquerdo, Restaurante restauranteLadoDireito) {
+		return new PossivelEscolha(restauranteLadoEsquerdo, restauranteLadoDireito);
 	}
-	
+
 	@Override
-	public void setId(Integer id) {		
+	public void setId(Integer id) {
 		super.setId(id);
 	}
-	
+
 	public Restaurante getRestauranteLadoEsquerdo() {
 		return restauranteLadoEsquerdo;
 	}
@@ -63,7 +63,7 @@ public class PossivelEscolha extends AbstractPersistable<Integer> {
 
 	public void setRestauranteLadoDireito(Restaurante restauranteLadoDireito) {
 		this.restauranteLadoDireito = restauranteLadoDireito;
-	}	
+	}
 
 	public String getPathImagemLadoEsquerdo() {
 		return pathImagemLadoEsquerdo;

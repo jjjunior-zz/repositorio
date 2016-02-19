@@ -11,7 +11,7 @@ public class UtilException extends RuntimeException {
 	public UtilException(String descricao, Exception e) {
 		super(descricao, e);
 	}
-	
+
 	public UtilException(Exception e) {
 		super(e);
 	}
