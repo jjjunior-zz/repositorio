@@ -19,8 +19,7 @@
 					<div class="caption">
 						<h3>${escolha.restauranteLadoEsquerdo}</h3>
 						<p>
-							<a href="votacaoEsquerda" class="btn btn-primary btn-lg"
-								role="button">Votar</a>
+							<a href="votacaoEsquerda" class="btn btn-primary btn-lg" role="button">Votar</a>
 						</p>
 					</div>
 				</div>
@@ -32,8 +31,7 @@
 					<div class="caption">
 						<h3>${escolha.restauranteLadoDireito}</h3>
 						<p>
-							<a href="votacaoDireita" class="btn btn-primary btn-lg"
-								role="button">Votar</a>
+							<a href="votacaoDireita" class="btn btn-primary btn-lg"	role="button">Votar</a>
 						</p>
 					</div>
 				</div>

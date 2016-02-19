@@ -43,10 +43,9 @@
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"></bean>
 		</property>
 	</bean>	
-
 	
 	<jpa:repositories base-package="br.com.bluesoft.votacao" />
 		
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:annotation-driven transaction-manager="transactionManager" />	
 
 </beans>
