@@ -18,43 +18,43 @@ import br.com.bluesoft.votacao.domain.Restaurante;
 import br.com.bluesoft.votacao.enumeration.RestauranteEnum;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-data-test.xml"})
-@Transactional @Rollback(true)
+@ContextConfiguration(locations = { "classpath:spring-data-test.xml" })
+@Transactional
+@Rollback(true)
 public class PossivelEscolhaIntegracaoTest {
-	
+
 	@Autowired
-	private PossivelEscolhaRepository possivelEscolhaRepository;
-	
+	private PossivelEscolhaRepository	possivelEscolhaRepository;
+
 	@Autowired
-	private RestauranteRepository restauranteRepository;
-	
-	
+	private RestauranteRepository		restauranteRepository;
+
 	@Test
-	public void deveBuscarMenorEscolha() {		
-		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(),RestauranteEnum.MCDONALDS.getPathImagem());
-		Restaurante r1 = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(),RestauranteEnum.BURGER_KING.getPathImagem());
-		
-		this.restauranteRepository.saveAndFlush(r0);		
-		this.restauranteRepository.saveAndFlush(r1);		
-		
+	public void deveBuscarMenorEscolha() {
+		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(), RestauranteEnum.MCDONALDS.getPathImagem());
+		Restaurante r1 = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(), RestauranteEnum.BURGER_KING.getPathImagem());
+
+		this.restauranteRepository.saveAndFlush(r0);
+		this.restauranteRepository.saveAndFlush(r1);
+
 		PossivelEscolha possivelEscolha = PossivelEscolha.newInstance();
 		possivelEscolha.setRestauranteLadoEsquerdo(r0);
-		possivelEscolha.setRestauranteLadoDireito(r1);		
+		possivelEscolha.setRestauranteLadoDireito(r1);
 		possivelEscolhaRepository.saveAndFlush(possivelEscolha);
-		
+
 		Integer id = this.possivelEscolhaRepository.buscarMenorEscolha();
-		
-		assertEquals(1,id.intValue());		
-	}	
-	
+
+		assertEquals(1, id.intValue());
+	}
+
 	@Test
 	public void deveBuscarRestaurantesNaoSelecionados() {
-		
-		Restaurante ra = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(),RestauranteEnum.MCDONALDS.getPathImagem());
-		Restaurante rb = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(),RestauranteEnum.BURGER_KING.getPathImagem());
+
+		Restaurante ra = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(), RestauranteEnum.MCDONALDS.getPathImagem());
+		Restaurante rb = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(), RestauranteEnum.BURGER_KING.getPathImagem());
 		Restaurante rc = Restaurante.newInstance(RestauranteEnum.KFC.getNome(), RestauranteEnum.KFC.getPathImagem());
-		Restaurante rd = Restaurante.newInstance(RestauranteEnum.OUTBACK.getNome(),RestauranteEnum.OUTBACK.getPathImagem());
-		Restaurante re = Restaurante.newInstance(RestauranteEnum.SUBWAY.getNome(),RestauranteEnum.SUBWAY.getPathImagem());
+		Restaurante rd = Restaurante.newInstance(RestauranteEnum.OUTBACK.getNome(), RestauranteEnum.OUTBACK.getPathImagem());
+		Restaurante re = Restaurante.newInstance(RestauranteEnum.SUBWAY.getNome(), RestauranteEnum.SUBWAY.getPathImagem());
 
 		restauranteRepository.saveAndFlush(ra);
 		restauranteRepository.saveAndFlush(rb);
@@ -83,15 +83,15 @@ public class PossivelEscolhaIntegracaoTest {
 		possivelEscolhaRepository.saveAndFlush(p8);
 		possivelEscolhaRepository.saveAndFlush(p9);
 		possivelEscolhaRepository.saveAndFlush(p10);
-		
+
 		List<Restaurante> restaurantesEsquerdo = new ArrayList<>();
 		List<Restaurante> restaurantesDireito = new ArrayList<>();
-		
+
 		restaurantesEsquerdo.add(ra);
 		restaurantesDireito.add(ra);
-		
+
 		List<PossivelEscolha> possiveisEscolhasSemMcDonalds = possivelEscolhaRepository.buscarRestaurantesNaoVotados(restaurantesEsquerdo, restaurantesDireito);
-		
-		assertEquals(6,possiveisEscolhasSemMcDonalds.size());				
+
+		assertEquals(6, possiveisEscolhasSemMcDonalds.size());
 	}
 }
