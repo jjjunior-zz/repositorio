@@ -44,7 +44,8 @@ public class RestauranteComponent {
 		contadorInicial = this.escolhaService.buscarMenorEscolha();
 
 		if (contadorInicial == 0) {
-			dadoMestreService.carregar();
+			dadoMestreService.carregarEscolhas();
+			dadoMestreService.carregarRating();
 			contadorInicial = this.escolhaService.buscarMenorEscolha();
 		}
 

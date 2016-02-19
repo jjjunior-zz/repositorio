@@ -55,35 +55,31 @@ public class PossivelEscolhaIntegracaoTest {
 		Restaurante rc = Restaurante.newInstance(RestauranteEnum.KFC.getNome(), RestauranteEnum.KFC.getPathImagem());
 		Restaurante rd = Restaurante.newInstance(RestauranteEnum.OUTBACK.getNome(), RestauranteEnum.OUTBACK.getPathImagem());
 		Restaurante re = Restaurante.newInstance(RestauranteEnum.SUBWAY.getNome(), RestauranteEnum.SUBWAY.getPathImagem());
+		
+		List<Restaurante> restaurantes = new ArrayList<>();
+		
+		restaurantes.add(ra);
+		restaurantes.add(rb);
+		restaurantes.add(rc);
+		restaurantes.add(rd);
+		restaurantes.add(re);		
 
-		restauranteRepository.saveAndFlush(ra);
-		restauranteRepository.saveAndFlush(rb);
-		restauranteRepository.saveAndFlush(rc);
-		restauranteRepository.saveAndFlush(rd);
-		restauranteRepository.saveAndFlush(re);
-
-		PossivelEscolha p1 = PossivelEscolha.newInstance(rb, ra);
-		PossivelEscolha p2 = PossivelEscolha.newInstance(rc, ra);
-		PossivelEscolha p3 = PossivelEscolha.newInstance(rd, ra);
-		PossivelEscolha p4 = PossivelEscolha.newInstance(re, ra);
-		PossivelEscolha p5 = PossivelEscolha.newInstance(rc, rb);
-		PossivelEscolha p6 = PossivelEscolha.newInstance(rd, rb);
-		PossivelEscolha p7 = PossivelEscolha.newInstance(re, rb);
-		PossivelEscolha p8 = PossivelEscolha.newInstance(rd, rc);
-		PossivelEscolha p9 = PossivelEscolha.newInstance(re, rc);
-		PossivelEscolha p10 = PossivelEscolha.newInstance(re, rd);
-
-		possivelEscolhaRepository.saveAndFlush(p1);
-		possivelEscolhaRepository.saveAndFlush(p2);
-		possivelEscolhaRepository.saveAndFlush(p3);
-		possivelEscolhaRepository.saveAndFlush(p4);
-		possivelEscolhaRepository.saveAndFlush(p5);
-		possivelEscolhaRepository.saveAndFlush(p6);
-		possivelEscolhaRepository.saveAndFlush(p7);
-		possivelEscolhaRepository.saveAndFlush(p8);
-		possivelEscolhaRepository.saveAndFlush(p9);
-		possivelEscolhaRepository.saveAndFlush(p10);
-
+		List<PossivelEscolha> possiveisEscolhas = new ArrayList<>();
+		
+		possiveisEscolhas.add(PossivelEscolha.newInstance(rb, ra));
+		possiveisEscolhas.add(PossivelEscolha.newInstance(rc, ra));
+		possiveisEscolhas.add(PossivelEscolha.newInstance(rd, ra));
+		possiveisEscolhas.add(PossivelEscolha.newInstance(re, ra));
+		possiveisEscolhas.add(PossivelEscolha.newInstance(rc, rb));
+		possiveisEscolhas.add(PossivelEscolha.newInstance(rd, rb));
+		possiveisEscolhas.add(PossivelEscolha.newInstance(re, rb));
+		possiveisEscolhas.add(PossivelEscolha.newInstance(rd, rc));
+		possiveisEscolhas.add(PossivelEscolha.newInstance(re, rc));
+		possiveisEscolhas.add(PossivelEscolha.newInstance(re, rd));
+		
+		restaurantes.forEach(restaurante -> restauranteRepository.saveAndFlush(restaurante));
+		possiveisEscolhas.forEach(possivelEscolha -> possivelEscolhaRepository.saveAndFlush(possivelEscolha));
+		
 		List<Restaurante> restaurantesEsquerdo = new ArrayList<>();
 		List<Restaurante> restaurantesDireito = new ArrayList<>();
 
