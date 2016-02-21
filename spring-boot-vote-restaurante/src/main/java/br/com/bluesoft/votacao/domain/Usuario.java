@@ -33,10 +33,10 @@ public class Usuario extends AbstractPersistable<Integer> {
 	@Column(name = "data_alteracao")
 	private Calendar			dataAlteracao;
 
-	Usuario() {
+	public Usuario() {
 	}
 
-	Usuario(String nome, String email) {
+	public Usuario(String nome, String email) {
 		this.nome = nome;
 		this.email = email;
 	}
