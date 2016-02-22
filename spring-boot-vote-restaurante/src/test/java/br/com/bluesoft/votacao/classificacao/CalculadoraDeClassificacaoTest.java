@@ -17,11 +17,11 @@ public class CalculadoraDeClassificacaoTest {
 
 		Restaurante r = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(), RestauranteEnum.MCDONALDS.getPathImagem());
 
-		ClassificacaoRestaurante cr = ClassificacaoRestaurante.newInstance(r,0f);
+		ClassificacaoRestaurante cr = ClassificacaoRestaurante.newInstance(r,0);
 
-		CalculadoraDeClassificacao calculadora = new CalculadoraDeClassificacao();
+		CalculadoraDeClassificacao calculadora = CalculadoraDeClassificacao.newIntance();
 
-		Classificacao c = new ClassificaGanhador();
+		Classificacao c = ClassificaGanhador.newIntance();
 
 		Integer classificacao = calculadora.realizarCalculo(dc, cr, c);
 
@@ -35,11 +35,11 @@ public class CalculadoraDeClassificacaoTest {
 
 		Restaurante r = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(), RestauranteEnum.MCDONALDS.getPathImagem());
 
-		ClassificacaoRestaurante cr = ClassificacaoRestaurante.newInstance(r, 0f);
+		ClassificacaoRestaurante cr = ClassificacaoRestaurante.newInstance(r, 0);
 
-		CalculadoraDeClassificacao calculadora = new CalculadoraDeClassificacao();
+		CalculadoraDeClassificacao calculadora = CalculadoraDeClassificacao.newIntance();
 
-		Classificacao c = new ClassificaPerdedor();
+		Classificacao c = ClassificaPerdedor.newIntance();
 
 		Integer classificacao = calculadora.realizarCalculo(dc, cr, c);
 
@@ -54,11 +54,11 @@ public class CalculadoraDeClassificacaoTest {
 
 		Restaurante r = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(), RestauranteEnum.MCDONALDS.getPathImagem());
 		
-		ClassificacaoRestaurante cr = ClassificacaoRestaurante.newInstance(r, 100f);
+		ClassificacaoRestaurante cr = ClassificacaoRestaurante.newInstance(r, 100);
 
-		CalculadoraDeClassificacao calculadora = new CalculadoraDeClassificacao();
+		CalculadoraDeClassificacao calculadora = CalculadoraDeClassificacao.newIntance();
 
-		Classificacao c = new ClassificaGanhador();
+		Classificacao c = ClassificaGanhador.newIntance();
 
 		Integer classificacao = calculadora.realizarCalculo(dc, cr, c);
 
@@ -74,11 +74,11 @@ public class CalculadoraDeClassificacaoTest {
 		Restaurante r = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(), RestauranteEnum.MCDONALDS.getPathImagem());
 		
 		//pontuacao anterior 100
-		ClassificacaoRestaurante cr = ClassificacaoRestaurante.newInstance(r, 95f);
+		ClassificacaoRestaurante cr = ClassificacaoRestaurante.newInstance(r, 95);
 
-		CalculadoraDeClassificacao calculadora = new CalculadoraDeClassificacao();
+		CalculadoraDeClassificacao calculadora = CalculadoraDeClassificacao.newIntance();
 
-		Classificacao c = new ClassificaPerdedor();
+		Classificacao c = ClassificaPerdedor.newIntance();
 
 		Integer classificacao = calculadora.realizarCalculo(dc, cr, c);
 
