@@ -50,5 +50,12 @@ public class ClassificacaoRestaurante extends AbstractPersistable<Integer> {
 
 	public Restaurante getRestaurante() {
 		return restaurante;
+	}
+
+	@Override
+	public String toString() {
+		return "ClassificacaoRestaurante [restaurante=" + restaurante + ", classificacaoAtual=" + classificacaoAtual + ", classificacaoAnterior=" + classificacaoAnterior + "]";
 	}	
+	
+	
 }

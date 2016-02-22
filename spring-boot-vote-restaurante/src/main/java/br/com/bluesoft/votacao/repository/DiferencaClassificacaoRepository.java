@@ -9,7 +9,7 @@ import br.com.bluesoft.votacao.domain.DiferencaClassificacao;
 public interface DiferencaClassificacaoRepository extends JpaRepository<DiferencaClassificacao, Integer> {
 	
 	
-	@Query("select d from DiferencaClassificacao d where d.diferencaInicial >= :valor and d.diferencaFinal <= :valor " )
-	public DiferencaClassificacao buscarPorDiferencaInicialEFinal(@Param("valor") Integer valor);
+	@Query("select d from DiferencaClassificacao d where :valor between d.diferencaInicial and d.diferencaFinal " )
+	public DiferencaClassificacao buscarPorDiferencaInicialEFinal(@Param("valor") int valor);
 
 }

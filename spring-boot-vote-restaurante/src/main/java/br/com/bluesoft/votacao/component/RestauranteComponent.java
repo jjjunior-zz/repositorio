@@ -72,15 +72,16 @@ public class RestauranteComponent {
 		return modelAndView;
 	}
 
-	public String redirectVotacaoEsquerda() {
-		classificacaoComponent.calcularClassificacaoRestauranteGanhador(escolha.getRestauranteLadoDireito());
-		addVotacao(escolha.getRestauranteLadoDireito());
-		
+	public String redirectVotacaoEsquerda() {		
+		classificacaoComponent.calcularClassificacaoRestauranteGanhador(escolha.getRestauranteLadoEsquerdo());
+		classificacaoComponent.calcularClassificacaoRestaurantePerdedor(escolha.getRestauranteLadoDireito());
+		addVotacao(escolha.getRestauranteLadoEsquerdo());		
 		return redirect();
 	}
 
-	public String redirectVotacaoDireita() {
-		classificacaoComponent.calcularClassificacaoRestauranteGanhador(escolha.getRestauranteLadoDireito());		
+	public String redirectVotacaoDireita() {		
+		classificacaoComponent.calcularClassificacaoRestauranteGanhador(escolha.getRestauranteLadoDireito());
+		classificacaoComponent.calcularClassificacaoRestaurantePerdedor(escolha.getRestauranteLadoEsquerdo());
 		addVotacao(escolha.getRestauranteLadoDireito());		
 		
 		return redirect();
@@ -94,6 +95,7 @@ public class RestauranteComponent {
 	private String redirect() {
 		if (contador >= contadorFinal) {
 			contador = contadorInicial;
+			this.classificacaoComponent.printClassificacao();
 			return "redirect:/cadastroParticipante";
 		}
 		return "redirect:/votacao";
@@ -110,8 +112,5 @@ public class RestauranteComponent {
 
 	public Map<String, Integer> getVotacaoParticipante() {
 		return votacaoParticipante;
-	}
-	
-	
-	
+	}	
 }

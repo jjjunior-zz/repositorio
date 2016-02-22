@@ -30,7 +30,7 @@ public class ClassificacaoRestauranteIntegracaoTest {
 	private RestauranteRepository		restauranteRepository;
 
 	@Test
-	public void deveBuscarMenorClassificacaoDeRestaurantes() {
+	public void deveBuscarClassificacoesDeRestaurantes() {
 		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(), RestauranteEnum.MCDONALDS.getPathImagem());
 		Restaurante r1 = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(), RestauranteEnum.BURGER_KING.getPathImagem());
 		List<Restaurante> restaurantes = new ArrayList<>();
@@ -43,8 +43,22 @@ public class ClassificacaoRestauranteIntegracaoTest {
 		lista.add(ClassificacaoRestaurante.newInstance(r1, 0));		
 		lista.forEach(c -> classificacaoRestauranteRepository.saveAndFlush(c));		
 		
-		List<ClassificacaoRestaurante> c1 = classificacaoRestauranteRepository.buscarClassificacaoRestaurantes(restaurantes);
+		List<ClassificacaoRestaurante> c1 = classificacaoRestauranteRepository.buscarClassificacaoPorRestaurantes(restaurantes);
 		
 		assertEquals(2,c1.size());		
-	}	
+	}
+	
+	@Test
+	public void deveBuscarClassificacaoDeRestaurante() {
+		Restaurante r1 = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(), RestauranteEnum.BURGER_KING.getPathImagem());
+		this.restauranteRepository.saveAndFlush(r1);		
+		
+		ClassificacaoRestaurante c1 = ClassificacaoRestaurante.newInstance(r1, 0);
+		this.classificacaoRestauranteRepository.saveAndFlush(c1);
+				
+		
+		ClassificacaoRestaurante c2 = classificacaoRestauranteRepository.buscarClassificacaoPorRestaurante(r1);
+		
+		assertEquals(0,c2.getClassificacaoAnterior().intValue());		
+	}
 }
