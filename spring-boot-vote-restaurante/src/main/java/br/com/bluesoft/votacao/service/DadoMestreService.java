@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.bluesoft.votacao.domain.PossivelEscolha;
+import br.com.bluesoft.votacao.domain.ClassificacaoRestaurante;
 import br.com.bluesoft.votacao.domain.DiferencaClassificacao;
+import br.com.bluesoft.votacao.domain.PossivelEscolha;
 import br.com.bluesoft.votacao.domain.Restaurante;
 import br.com.bluesoft.votacao.enumeration.RestauranteEnum;
-import br.com.bluesoft.votacao.repository.PossivelEscolhaRepository;
+import br.com.bluesoft.votacao.repository.ClassificacaoRestauranteRepository;
 import br.com.bluesoft.votacao.repository.DiferencaClassificacaoRepository;
+import br.com.bluesoft.votacao.repository.PossivelEscolhaRepository;
 import br.com.bluesoft.votacao.repository.RestauranteRepository;
 
 @Service
@@ -21,13 +23,16 @@ import br.com.bluesoft.votacao.repository.RestauranteRepository;
 public class DadoMestreService {
 
 	@Autowired
-	private PossivelEscolhaRepository	possivelEscolhaRepository;
+	private PossivelEscolhaRepository			possivelEscolhaRepository;
 
 	@Autowired
-	private RestauranteRepository		restauranteRepository;
+	private RestauranteRepository				restauranteRepository;
 
 	@Autowired
 	private DiferencaClassificacaoRepository	diferencaClassificacaoRepository;
+
+	@Autowired
+	private ClassificacaoRestauranteRepository	classificacaoRestauranteRepository;
 
 	@Transactional(readOnly = false)
 	public void carregarEscolhas() {
@@ -66,7 +71,27 @@ public class DadoMestreService {
 	}
 
 	@Transactional(readOnly = false)
-	public void carregarRating() {
+	public void carregarClassificacaoDeRestaurantes() {
+		Restaurante ra = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(), RestauranteEnum.MCDONALDS.getPathImagem());
+		Restaurante rb = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(), RestauranteEnum.BURGER_KING.getPathImagem());
+		Restaurante rc = Restaurante.newInstance(RestauranteEnum.KFC.getNome(), RestauranteEnum.KFC.getPathImagem());
+		Restaurante rd = Restaurante.newInstance(RestauranteEnum.OUTBACK.getNome(), RestauranteEnum.OUTBACK.getPathImagem());
+		Restaurante re = Restaurante.newInstance(RestauranteEnum.SUBWAY.getNome(), RestauranteEnum.SUBWAY.getPathImagem());
+
+		List<ClassificacaoRestaurante> classificacaoRestaurantes = new ArrayList<>();
+
+		classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(ra, 0));
+		classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(rb, 0));
+		classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(rc, 0));
+		classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(rd, 0));
+		classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(re, 0));
+		
+		classificacaoRestaurantes.forEach(classificacaoRestaurante -> classificacaoRestauranteRepository.saveAndFlush(classificacaoRestaurante));
+
+	}
+
+	@Transactional(readOnly = false)
+	public void carregarDiferencaClassificacao() {
 
 		List<DiferencaClassificacao> diferencaClassificacaos = new ArrayList<>();
 

@@ -19,32 +19,36 @@ public class ClassificacaoRestaurante extends AbstractPersistable<Integer> {
 	private Restaurante restaurante;
 
 	@Column(name = "classificacao_atual" )
-	private Float classificacaoAtual;
+	private Integer classificacaoAtual;
 	
 	@Column(name = "classificacao_anterior" )
-	private Float classificacaoAnterior;	
+	private Integer classificacaoAnterior;	
 	
 	ClassificacaoRestaurante(){}	
 	
-	ClassificacaoRestaurante(Restaurante restaurante,Float classificacaoAnterior) {	
+	ClassificacaoRestaurante(Restaurante restaurante,Integer classificacaoAnterior) {	
 		this.restaurante = restaurante;		
 		this.classificacaoAnterior = classificacaoAnterior;				
 	}
 	
-	public static ClassificacaoRestaurante newInstance(Restaurante restaurante, Float classificacaoAnterior ) {
+	public static ClassificacaoRestaurante newInstance(Restaurante restaurante, Integer classificacaoAnterior ) {
 		return new ClassificacaoRestaurante(restaurante, classificacaoAnterior);
 	}
 	
-	public Float getClassificacaoAtual() {
+	public Integer getClassificacaoAtual() {
 		return classificacaoAtual;
 	}
-	public void setClassificacaoAtual(Float classificacaoAtual) {
+	public void setClassificacaoAtual(Integer classificacaoAtual) {
 		this.classificacaoAtual = classificacaoAtual;
 	}
-	public Float getClassificacaoAnterior() {
+	public Integer getClassificacaoAnterior() {
 		return classificacaoAnterior;
 	}
-	public void setClassificacaoAnterior(Float classificacaoAnterior) {
+	public void setClassificacaoAnterior(Integer classificacaoAnterior) {
 		this.classificacaoAnterior = classificacaoAnterior;
 	}
+
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}	
 }
