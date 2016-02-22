@@ -4,6 +4,13 @@ import br.com.bluesoft.votacao.domain.ClassificacaoRestaurante;
 import br.com.bluesoft.votacao.domain.DiferencaClassificacao;
 
 public class ClassificaGanhador implements Classificacao {
+	
+	private ClassificaGanhador(){		
+	}
+	
+	public static ClassificaGanhador newIntance(){
+		return new ClassificaGanhador();
+	}
 
 	@Override
 	public Integer calcular(ClassificacaoRestaurante classificacaoRestaurante,DiferencaClassificacao diferencaClassificacao) {
