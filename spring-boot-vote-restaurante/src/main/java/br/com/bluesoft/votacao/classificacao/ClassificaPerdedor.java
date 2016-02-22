@@ -13,10 +13,10 @@ public class ClassificaPerdedor implements Classificacao {
 	}
 	
 	@Override
-	public Integer calcular(ClassificacaoRestaurante classificacaoRestaurante, DiferencaClassificacao diferencaClassificacao) {		
-		Double pontosEsperados =  diferencaClassificacao.getPorcentualInferior().doubleValue() / 100;		
-		Double resultado = classificacaoRestaurante.getClassificacaoAnterior() + 10*(0 - pontosEsperados);		
-		return resultado.intValue();		
+	public int calcular(ClassificacaoRestaurante classificacaoRestaurante, DiferencaClassificacao diferencaClassificacao) {		
+		float pontosEsperados = (float) diferencaClassificacao.getPorcentualInferior() / 100;		
+		float resultado = classificacaoRestaurante.getClassificacaoAnterior() + 10*(0 - pontosEsperados);		
+		return (int)resultado;		
 	}
 
 }

@@ -5,6 +5,6 @@ import br.com.bluesoft.votacao.domain.DiferencaClassificacao;
 
 public interface Classificacao{
 	
-	public Integer calcular(ClassificacaoRestaurante classificacaoRestaurante, DiferencaClassificacao diferencaClassificacao);
+	public int calcular(ClassificacaoRestaurante classificacaoRestaurante, DiferencaClassificacao diferencaClassificacao);
 
 }

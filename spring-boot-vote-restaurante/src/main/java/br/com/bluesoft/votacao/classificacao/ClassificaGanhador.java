@@ -13,9 +13,9 @@ public class ClassificaGanhador implements Classificacao {
 	}
 
 	@Override
-	public Integer calcular(ClassificacaoRestaurante classificacaoRestaurante,DiferencaClassificacao diferencaClassificacao) {
-		Double pontosEsperados =  diferencaClassificacao.getPorcentualSuperior().doubleValue() / 100;		
-		Double resultado = classificacaoRestaurante.getClassificacaoAnterior() + 10*(1 - pontosEsperados);		
-		return resultado.intValue();		
+	public int calcular(ClassificacaoRestaurante classificacaoRestaurante,DiferencaClassificacao diferencaClassificacao) {
+		float pontosEsperados =  (float)diferencaClassificacao.getPorcentualSuperior() / 100;		
+		float resultado = classificacaoRestaurante.getClassificacaoAnterior() + 10*(1 - pontosEsperados);		
+		return (int) resultado;		
 	}
 }
