@@ -26,6 +26,9 @@ public class RestauranteComponent {
 
 	@Autowired
 	private DadoMestreService		dadoMestreService;
+	
+	@Autowired
+	private ClassificacaoRestauranteComponent classificacaoComponent;
 
 	private Integer					contadorInicial	= 1;
 	private Integer					contadorFinal	= 1;
@@ -34,8 +37,7 @@ public class RestauranteComponent {
 	private Map<String, Integer>	votacaoParticipante;
 
 	public RestauranteComponent() {
-		this.escolha = PossivelEscolha.newInstance();
-		this.votacaoParticipante = new HashMap<>();
+		this.escolha = PossivelEscolha.newInstance();		
 		votosParticipante();
 	}
 
@@ -45,7 +47,8 @@ public class RestauranteComponent {
 
 		if (contadorInicial == 0) {
 			dadoMestreService.carregarEscolhas();
-			dadoMestreService.carregarRating();
+			dadoMestreService.carregarDiferencaClassificacao();
+			dadoMestreService.carregarClassificacaoDeRestaurantes();
 			contadorInicial = this.escolhaService.buscarMenorEscolha();
 		}
 
@@ -58,7 +61,8 @@ public class RestauranteComponent {
 		escolha = escolhaService.buscarPossivelEscolhaPorIndice(contador);
 		escolha.setPathImagemLadoDireito(escolha.getRestauranteLadoDireito().getPathImagem());
 		escolha.setPathImagemLadoEsquerdo(escolha.getRestauranteLadoEsquerdo().getPathImagem());
-
+		classificacaoComponent.buscarClassificacaoRestaurantes(escolha.getRestauranteLadoDireito(), escolha.getRestauranteLadoEsquerdo());
+		classificacaoComponent.buscarDiferencaClassificacao();
 		ModelAndView modelAndView = new ModelAndView("votacao_restaurante");
 		modelAndView.addObject("escolha", escolha);
 
@@ -69,18 +73,23 @@ public class RestauranteComponent {
 	}
 
 	public String redirectVotacaoEsquerda() {
-
+		classificacaoComponent.calcularClassificacaoRestauranteGanhador(escolha.getRestauranteLadoDireito());
 		addVotacao(escolha.getRestauranteLadoDireito());
 		
 		return redirect();
 	}
 
 	public String redirectVotacaoDireita() {
-		
+		classificacaoComponent.calcularClassificacaoRestauranteGanhador(escolha.getRestauranteLadoDireito());		
 		addVotacao(escolha.getRestauranteLadoDireito());		
 		
 		return redirect();
 	}
+	
+	private void addVotacao(Restaurante restaurante){		
+		Integer votosParaRestaurante = votacaoParticipante.get(restaurante.getNome()) + 1;
+		votacaoParticipante.put(restaurante.getNome(), votosParaRestaurante);		
+	}	
 
 	private String redirect() {
 		if (contador >= contadorFinal) {
@@ -91,6 +100,7 @@ public class RestauranteComponent {
 	}
 
 	private void votosParticipante() {
+		this.votacaoParticipante = new HashMap<>();
 		this.votacaoParticipante.put(RestauranteEnum.MCDONALDS.getNome(), 0);
 		this.votacaoParticipante.put(RestauranteEnum.BURGER_KING.getNome(), 0);
 		this.votacaoParticipante.put(RestauranteEnum.KFC.getNome(), 0);
@@ -103,8 +113,5 @@ public class RestauranteComponent {
 	}
 	
 	
-	private void addVotacao(Restaurante restaurante){		
-		Integer votosParaRestaurante = votacaoParticipante.get(restaurante.getNome()) + 1;
-		votacaoParticipante.put(restaurante.getNome(), votosParaRestaurante);		
-	}	
+	
 }
