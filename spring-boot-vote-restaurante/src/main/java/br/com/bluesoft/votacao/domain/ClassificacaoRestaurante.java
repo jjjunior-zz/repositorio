@@ -19,10 +19,12 @@ public class ClassificacaoRestaurante extends AbstractPersistable<Integer> {
 	private Restaurante restaurante;
 
 	@Column(name = "classificacao_atual" )
-	private Integer classificacaoAtual;
+	private int classificacaoAtual;
 	
 	@Column(name = "classificacao_anterior" )
-	private Integer classificacaoAnterior;	
+	private int classificacaoAnterior;	
+	
+	private int posicao;
 	
 	ClassificacaoRestaurante(){}	
 	
@@ -52,10 +54,11 @@ public class ClassificacaoRestaurante extends AbstractPersistable<Integer> {
 		return restaurante;
 	}
 
-	@Override
-	public String toString() {
-		return "ClassificacaoRestaurante [restaurante=" + restaurante + ", classificacaoAtual=" + classificacaoAtual + ", classificacaoAnterior=" + classificacaoAnterior + "]";
+	public int getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(int posicao) {
+		this.posicao = posicao;
 	}	
-	
-	
 }

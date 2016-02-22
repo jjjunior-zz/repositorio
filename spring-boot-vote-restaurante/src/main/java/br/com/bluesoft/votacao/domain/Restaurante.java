@@ -24,6 +24,12 @@ public class Restaurante extends AbstractPersistable<Integer> {
 	public static Restaurante newInstance() {
 		return new Restaurante();
 	}
+	
+	public static Restaurante newInstance(String nome) {
+		Restaurante restaurante = new Restaurante();
+		restaurante.setNome(nome);		
+		return restaurante;
+	}
 
 	public static Restaurante newInstance(String nome, String pathImagem) {
 		Restaurante restaurante = new Restaurante();

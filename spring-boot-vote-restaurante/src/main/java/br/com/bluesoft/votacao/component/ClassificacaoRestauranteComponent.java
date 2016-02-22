@@ -1,5 +1,7 @@
 package br.com.bluesoft.votacao.component;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -43,13 +45,16 @@ public class ClassificacaoRestauranteComponent {
 		} else {
 			diferenca = classificacaoRestauranteEsquerda.getClassificacaoAnterior().intValue() - classificacaoRestauranteDireita.getClassificacaoAnterior().intValue();
 		}
-		this.diferencaClassificacao = diferencaClassificacaoService.buscarClassificacaoPorIndice(diferenca);	
+		this.diferencaClassificacao = buscarDiferencaDeClassificacao(diferenca);
 	}
 	
-	public void printClassificacao(){
-		classificacaoRestauranteService.buscarTodasClassificacoes().sort((p1, p2) -> p1.getClassificacaoAnterior().compareTo(p2.getClassificacaoAnterior()));
-		classificacaoRestauranteService.buscarTodasClassificacoes().forEach(System.out::println);
-		
+	public DiferencaClassificacao buscarDiferencaDeClassificacao(int diferenca){
+		return this.diferencaClassificacaoService.buscarDiferencaClassificacaoPorIndice(diferenca);
+	}
+	
+	
+	public List<ClassificacaoRestaurante> listaClassificacao(){
+		return classificacaoRestauranteService.buscarTodasClassificacoes();
 	}
 
 	public void calcularClassificacaoRestauranteGanhador(Restaurante restaurante) {		

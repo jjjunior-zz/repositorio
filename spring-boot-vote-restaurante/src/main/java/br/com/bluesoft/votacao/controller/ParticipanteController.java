@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.bluesoft.votacao.component.RestauranteComponent;
 import br.com.bluesoft.votacao.domain.Usuario;
 import br.com.bluesoft.votacao.service.UsuarioService;
 import br.com.bluesoft.votacao.validation.UsuarioValidation;
@@ -18,7 +19,10 @@ import br.com.bluesoft.votacao.validation.UsuarioValidation;
 public class ParticipanteController {
 
 	@Autowired
-	private UsuarioService usuarioService;	
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private RestauranteComponent restauranteComponent;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -37,7 +41,10 @@ public class ParticipanteController {
 		if (result.hasErrors()) {
 			return form(usuario);
 		}
-		usuarioService.incluirUsuario(usuario);
-		return new ModelAndView("lista_ranking");
+		usuarioService.incluirUsuario(usuario);		
+		ModelAndView modelAndView = new ModelAndView("lista_ranking");
+		modelAndView.addObject("rankingParticipante", restauranteComponent.getClassificacaoParticipante());		
+		modelAndView.addObject("rankingGlobal", restauranteComponent.getClassificacaoGlobal());		
+		return modelAndView;
 	}
 }

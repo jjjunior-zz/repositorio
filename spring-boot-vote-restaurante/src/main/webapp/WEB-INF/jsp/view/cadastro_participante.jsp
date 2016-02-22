@@ -6,8 +6,8 @@
 		<div class="page-header">
 			<h1>Preencha o formulario para saber o resultado!</h1>
 		</div>
-		<form:form action="cadastrarUsuario" method="POST"
-			commandName="usuario">
+		
+		<form:form action="cadastrarUsuario" method="POST"	commandName="usuario">
 			<div>
 				<form:label path="nome">Nome</form:label>
 				<form:input path="nome" />
