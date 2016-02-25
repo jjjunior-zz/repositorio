@@ -55,17 +55,17 @@ public class PossivelEscolhaIntegracaoTest {
 		Restaurante rc = Restaurante.newInstance(RestauranteEnum.KFC.getNome(), RestauranteEnum.KFC.getPathImagem());
 		Restaurante rd = Restaurante.newInstance(RestauranteEnum.OUTBACK.getNome(), RestauranteEnum.OUTBACK.getPathImagem());
 		Restaurante re = Restaurante.newInstance(RestauranteEnum.SUBWAY.getNome(), RestauranteEnum.SUBWAY.getPathImagem());
-		
+
 		List<Restaurante> restaurantes = new ArrayList<>();
-		
+
 		restaurantes.add(ra);
 		restaurantes.add(rb);
 		restaurantes.add(rc);
 		restaurantes.add(rd);
-		restaurantes.add(re);		
+		restaurantes.add(re);
 
 		List<PossivelEscolha> possiveisEscolhas = new ArrayList<>();
-		
+
 		possiveisEscolhas.add(PossivelEscolha.newInstance(rb, ra));
 		possiveisEscolhas.add(PossivelEscolha.newInstance(rc, ra));
 		possiveisEscolhas.add(PossivelEscolha.newInstance(rd, ra));
@@ -76,10 +76,10 @@ public class PossivelEscolhaIntegracaoTest {
 		possiveisEscolhas.add(PossivelEscolha.newInstance(rd, rc));
 		possiveisEscolhas.add(PossivelEscolha.newInstance(re, rc));
 		possiveisEscolhas.add(PossivelEscolha.newInstance(re, rd));
-		
+
 		restaurantes.forEach(restaurante -> restauranteRepository.saveAndFlush(restaurante));
 		possiveisEscolhas.forEach(possivelEscolha -> possivelEscolhaRepository.saveAndFlush(possivelEscolha));
-		
+
 		List<Restaurante> restaurantesEsquerdo = new ArrayList<>();
 		List<Restaurante> restaurantesDireito = new ArrayList<>();
 

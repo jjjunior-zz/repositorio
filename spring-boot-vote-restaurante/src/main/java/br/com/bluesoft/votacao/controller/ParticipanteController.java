@@ -18,8 +18,8 @@ import br.com.bluesoft.votacao.validation.UsuarioValidation;
 public class ParticipanteController {
 
 	@Autowired
-	private UsuarioService usuarioService;	
-	
+	private UsuarioService usuarioService;
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.addValidators(new UsuarioValidation());
@@ -33,7 +33,7 @@ public class ParticipanteController {
 	}
 
 	@RequestMapping(value = "/cadastrarUsuario", method = RequestMethod.POST)
-	public ModelAndView cadastrarUsuario(@Validated Usuario usuario, BindingResult result) {				
+	public ModelAndView cadastrarUsuario(@Validated Usuario usuario, BindingResult result) {
 		if (result.hasErrors()) {
 			return form(usuario);
 		}

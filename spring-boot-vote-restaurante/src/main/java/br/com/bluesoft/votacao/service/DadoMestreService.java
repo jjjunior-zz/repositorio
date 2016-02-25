@@ -72,21 +72,14 @@ public class DadoMestreService {
 
 	@Transactional(readOnly = false)
 	public void carregarClassificacaoDeRestaurantes() {
-		Restaurante ra = Restaurante.newInstance(RestauranteEnum.MCDONALDS.getNome(), RestauranteEnum.MCDONALDS.getPathImagem());
-		Restaurante rb = Restaurante.newInstance(RestauranteEnum.BURGER_KING.getNome(), RestauranteEnum.BURGER_KING.getPathImagem());
-		Restaurante rc = Restaurante.newInstance(RestauranteEnum.KFC.getNome(), RestauranteEnum.KFC.getPathImagem());
-		Restaurante rd = Restaurante.newInstance(RestauranteEnum.OUTBACK.getNome(), RestauranteEnum.OUTBACK.getPathImagem());
-		Restaurante re = Restaurante.newInstance(RestauranteEnum.SUBWAY.getNome(), RestauranteEnum.SUBWAY.getPathImagem());
+
+		List<Restaurante> restaurantes = restauranteRepository.findAll();
 
 		List<ClassificacaoRestaurante> classificacaoRestaurantes = new ArrayList<>();
 
-		classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(ra, 0));
-		classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(rb, 0));
-		classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(rc, 0));
-		classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(rd, 0));
-		classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(re, 0));
-		
-		classificacaoRestaurantes.forEach(classificacaoRestaurante -> classificacaoRestauranteRepository.saveAndFlush(classificacaoRestaurante));
+		restaurantes.forEach(restaurante -> classificacaoRestaurantes.add(ClassificacaoRestaurante.newInstance(restaurante, 0)));
+
+		classificacaoRestaurantes.forEach(classificacao -> classificacaoRestauranteRepository.saveAndFlush(classificacao));
 
 	}
 

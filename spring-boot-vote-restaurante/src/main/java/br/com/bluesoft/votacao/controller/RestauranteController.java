@@ -12,6 +12,11 @@ public class RestauranteController {
 
 	@Autowired
 	private RestauranteComponent restauranteComponent;
+	
+	@RequestMapping("/")
+	public String redirectToVotacao() {
+		return "redirect:/votacao";
+	}
 
 	@RequestMapping("/votacao")
 	public ModelAndView execute() {

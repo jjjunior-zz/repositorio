@@ -10,28 +10,28 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Table(name = "diferenca_classificacao")
 public class DiferencaClassificacao extends AbstractPersistable<Integer> {
 
-	private static final long serialVersionUID = 1L;
+	private static final long	serialVersionUID	= 1L;
 
-	@Column(name ="diferenca_inicial", nullable = false )
-	private Integer diferencaInicial;
-	
-	@Column(name ="diferenca_final", nullable = false )
-	private Integer diferencaFinal;
-	
-	@Column(name ="porcentual_superior", nullable = false )
-	private Integer porcentualSuperior;
-	
-	@Column(name ="porcentual_inferior", nullable = false )
-	private Integer porcentualInferior;	
+	@Column(name = "diferenca_inicial", nullable = false)
+	private Integer				diferencaInicial;
 
-	DiferencaClassificacao(Integer diferencaInicial, Integer diferencaFinal, Integer porcentualSuperior, Integer porcentualInferior) {		
+	@Column(name = "diferenca_final", nullable = false)
+	private Integer				diferencaFinal;
+
+	@Column(name = "porcentual_superior", nullable = false)
+	private Integer				porcentualSuperior;
+
+	@Column(name = "porcentual_inferior", nullable = false)
+	private Integer				porcentualInferior;
+
+	DiferencaClassificacao(Integer diferencaInicial, Integer diferencaFinal, Integer porcentualSuperior, Integer porcentualInferior) {
 		this.diferencaInicial = diferencaInicial;
 		this.diferencaFinal = diferencaFinal;
 		this.porcentualSuperior = porcentualSuperior;
 		this.porcentualInferior = porcentualInferior;
 	}
-	
-	public static DiferencaClassificacao newIntance(Integer diferencaInicial, Integer diferencaFinal, Integer porcentualSuperior, Integer porcentualInferior){
+
+	public static DiferencaClassificacao newIntance(Integer diferencaInicial, Integer diferencaFinal, Integer porcentualSuperior, Integer porcentualInferior) {
 		return new DiferencaClassificacao(diferencaInicial, diferencaFinal, porcentualSuperior, porcentualInferior);
 	}
 

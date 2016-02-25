@@ -24,10 +24,10 @@ import br.com.bluesoft.votacao.enumeration.RestauranteEnum;
 public class ClassificacaoRestauranteIntegracaoTest {
 
 	@Autowired
-	private ClassificacaoRestauranteRepository classificacaoRestauranteRepository;
+	private ClassificacaoRestauranteRepository	classificacaoRestauranteRepository;
 
 	@Autowired
-	private RestauranteRepository		restauranteRepository;
+	private RestauranteRepository				restauranteRepository;
 
 	@Test
 	public void deveBuscarMenorClassificacaoDeRestaurantes() {
@@ -36,15 +36,15 @@ public class ClassificacaoRestauranteIntegracaoTest {
 		List<Restaurante> restaurantes = new ArrayList<>();
 		restaurantes.add(r0);
 		restaurantes.add(r1);
-		restaurantes.forEach(r -> this.restauranteRepository.saveAndFlush(r));		
-		
-		List<ClassificacaoRestaurante> lista = new ArrayList<>();		
+		restaurantes.forEach(r -> this.restauranteRepository.saveAndFlush(r));
+
+		List<ClassificacaoRestaurante> lista = new ArrayList<>();
 		lista.add(ClassificacaoRestaurante.newInstance(r0, 0));
-		lista.add(ClassificacaoRestaurante.newInstance(r1, 0));		
-		lista.forEach(c -> classificacaoRestauranteRepository.saveAndFlush(c));		
-		
-		List<ClassificacaoRestaurante> c1 = classificacaoRestauranteRepository.buscarClassificacaoRestaurantes(restaurantes);
-		
-		assertEquals(2,c1.size());		
-	}	
+		lista.add(ClassificacaoRestaurante.newInstance(r1, 0));
+		lista.forEach(c -> classificacaoRestauranteRepository.saveAndFlush(c));
+
+		List<ClassificacaoRestaurante> c1 = classificacaoRestauranteRepository.buscarClassificacaoPorRestaurantes(restaurantes);
+
+		assertEquals(2, c1.size());
+	}
 }

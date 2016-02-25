@@ -1,6 +1,10 @@
 package br.com.bluesoft.votacao.component;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import br.com.bluesoft.votacao.classificacao.CalculadoraDeClassificacao;
@@ -10,39 +14,50 @@ import br.com.bluesoft.votacao.classificacao.Classificacao;
 import br.com.bluesoft.votacao.domain.ClassificacaoRestaurante;
 import br.com.bluesoft.votacao.domain.DiferencaClassificacao;
 import br.com.bluesoft.votacao.domain.Restaurante;
-import br.com.bluesoft.votacao.repository.ClassificacaoRestauranteRepository;
-import br.com.bluesoft.votacao.repository.DiferencaClassificacaoRepository;
+import br.com.bluesoft.votacao.service.ClassificacaoRestauranteService;
+import br.com.bluesoft.votacao.service.DiferencaClassificacaoService;
 
 @Component
+@Scope(scopeName = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ClassificacaoRestauranteComponent {
-	private ClassificacaoRestaurante			classificacaoRestauranteDireita;
-	private ClassificacaoRestaurante			classificacaoRestauranteEsquerda;
+	
+	private ClassificacaoRestaurante		classificacaoRestauranteDireita;
+	
+	private ClassificacaoRestaurante		classificacaoRestauranteEsquerda;
 
 	@Autowired
-	private ClassificacaoRestauranteRepository	classificacaoRestauranteRepository;
+	private ClassificacaoRestauranteService	classificacaoRestauranteService;
 
 	@Autowired
-	private DiferencaClassificacaoRepository	diferencaClassificacaoRepository;	
+	private DiferencaClassificacaoService	diferencaClassificacaoService;
 
-	private DiferencaClassificacao				diferencaClassificacao;
+	private DiferencaClassificacao			diferencaClassificacao;
 
 	public void buscarClassificacaoRestaurantes(Restaurante direito, Restaurante esquerdo) {
-		this.classificacaoRestauranteDireita = classificacaoRestauranteRepository.findOne(direito.getId());
-		this.classificacaoRestauranteEsquerda = classificacaoRestauranteRepository.findOne(esquerdo.getId());
+		this.classificacaoRestauranteDireita = classificacaoRestauranteService.buscarClassificacaoPorIndice(direito.getId());
+		this.classificacaoRestauranteEsquerda = classificacaoRestauranteService.buscarClassificacaoPorIndice(esquerdo.getId());
 	}
 
-	public DiferencaClassificacao buscarDiferencaClassificacao() {
-		Integer diferenca = 0;
-		if (classificacaoRestauranteDireita.getClassificacaoAnterior() >= classificacaoRestauranteEsquerda.getClassificacaoAnterior()) {
+	public void buscarDiferencaClassificacao() {
+		int diferenca = 0;
+		if (classificacaoRestauranteDireita.getClassificacaoAnterior().intValue() >= classificacaoRestauranteEsquerda.getClassificacaoAnterior().intValue()) {
 			diferenca = classificacaoRestauranteDireita.getClassificacaoAnterior().intValue() - classificacaoRestauranteEsquerda.getClassificacaoAnterior().intValue();
 		} else {
 			diferenca = classificacaoRestauranteEsquerda.getClassificacaoAnterior().intValue() - classificacaoRestauranteDireita.getClassificacaoAnterior().intValue();
 		}
-		this.diferencaClassificacao = diferencaClassificacaoRepository.buscarPorDiferencaInicialEFinal(diferenca);
-		return diferencaClassificacao;
+		this.diferencaClassificacao = buscarDiferencaDeClassificacao(diferenca);
+	}
+	
+	public DiferencaClassificacao buscarDiferencaDeClassificacao(int diferenca){
+		return this.diferencaClassificacaoService.buscarClassificacaoPorIndice(diferenca);
+	}
+	
+	
+	public List<ClassificacaoRestaurante> listaClassificacao(){
+		return classificacaoRestauranteService.buscarTodasClassificacoes();
 	}
 
-	public void calcularClassificacaoRestauranteGanhador(Restaurante restaurante) {
+	public void calcularClassificacaoRestauranteGanhador(Restaurante restaurante) {		
 		Classificacao classificacao = ClassificaGanhador.newIntance();
 		CalculadoraDeClassificacao calculadoraDeClassificacao = CalculadoraDeClassificacao.newIntance();
 
@@ -50,19 +65,16 @@ public class ClassificacaoRestauranteComponent {
 			Integer valorClassificacao = calculadoraDeClassificacao.realizarCalculo(this.diferencaClassificacao, classificacaoRestauranteDireita, classificacao);
 			classificacaoRestauranteDireita.setClassificacaoAtual(valorClassificacao);
 			classificacaoRestauranteDireita.setClassificacaoAnterior(valorClassificacao);
-			classificacaoRestauranteRepository.save(classificacaoRestauranteDireita);
+			classificacaoRestauranteService.incluirClassificacao(classificacaoRestauranteDireita);			
 		} else {
 			Integer valorClassificacao = calculadoraDeClassificacao.realizarCalculo(this.diferencaClassificacao, classificacaoRestauranteEsquerda, classificacao);
 			classificacaoRestauranteEsquerda.setClassificacaoAtual(valorClassificacao);
 			classificacaoRestauranteEsquerda.setClassificacaoAnterior(valorClassificacao);
-			classificacaoRestauranteRepository.save(classificacaoRestauranteEsquerda);
+			classificacaoRestauranteService.incluirClassificacao(classificacaoRestauranteEsquerda);			
 		}
-
-		calcularClassificacaoRestaurantePerdedor(restaurante);
-
 	}
 
-	private void calcularClassificacaoRestaurantePerdedor(Restaurante restaurante) {
+	public void calcularClassificacaoRestaurantePerdedor(Restaurante restaurante) {
 		CalculadoraDeClassificacao calculadoraDeClassificacao = CalculadoraDeClassificacao.newIntance();
 		Classificacao classificacao = ClassificaPerdedor.newIntance();
 
@@ -70,12 +82,13 @@ public class ClassificacaoRestauranteComponent {
 			Integer valorClassificacao = calculadoraDeClassificacao.realizarCalculo(this.diferencaClassificacao, classificacaoRestauranteDireita, classificacao);
 			classificacaoRestauranteDireita.setClassificacaoAtual(valorClassificacao);
 			classificacaoRestauranteDireita.setClassificacaoAnterior(valorClassificacao);
-			classificacaoRestauranteRepository.save(classificacaoRestauranteDireita);
+			classificacaoRestauranteService.incluirClassificacao(classificacaoRestauranteDireita);			
 		} else {
 			Integer valorClassificacao = calculadoraDeClassificacao.realizarCalculo(this.diferencaClassificacao, classificacaoRestauranteEsquerda, classificacao);
 			classificacaoRestauranteEsquerda.setClassificacaoAtual(valorClassificacao);
 			classificacaoRestauranteEsquerda.setClassificacaoAnterior(valorClassificacao);
-			classificacaoRestauranteRepository.save(classificacaoRestauranteEsquerda);
+			classificacaoRestauranteService.incluirClassificacao(classificacaoRestauranteEsquerda);			
 		}
 	}
 }
+	
