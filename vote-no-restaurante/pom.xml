@@ -7,6 +7,7 @@
 	<artifactId>vote-no-restaurante</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
+	
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -194,4 +195,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
 </project>
