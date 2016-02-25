@@ -34,8 +34,8 @@ public class ClassificacaoRestauranteComponent {
 	private DiferencaClassificacao			diferencaClassificacao;
 
 	public void buscarClassificacaoRestaurantes(Restaurante direito, Restaurante esquerdo) {
-		this.classificacaoRestauranteDireita = classificacaoRestauranteService.buscarClassificacaoPorIndice(direito.getId());
-		this.classificacaoRestauranteEsquerda = classificacaoRestauranteService.buscarClassificacaoPorIndice(esquerdo.getId());
+		this.classificacaoRestauranteDireita = classificacaoRestauranteService.buscarClassificacaoPorRestaurante(direito);
+		this.classificacaoRestauranteEsquerda = classificacaoRestauranteService.buscarClassificacaoPorRestaurante(esquerdo);
 	}
 
 	public void buscarDiferencaClassificacao() {
