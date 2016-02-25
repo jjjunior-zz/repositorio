@@ -156,9 +156,17 @@ public class RestauranteComponent {
 		lista.add(ClassificacaoRestaurante.newInstance(Restaurante.newInstance(RestauranteEnum.SUBWAY.getNome()), this.votacaoParticipante.get(RestauranteEnum.SUBWAY.getNome())));
 		
 		Stream<ClassificacaoRestaurante> stream = lista.stream().sorted(Comparator.comparingLong(ClassificacaoRestaurante::getClassificacaoAnterior).reversed());		
-		lista =  stream.collect(Collectors.toList());
-		addPosicao(lista);			
+		lista =  stream.collect(Collectors.toList());			
+		addPosicao(lista);		
 		return lista;
+	}
+
+	private void addPosicao(List<ClassificacaoRestaurante> lista) {
+		int j = 1;
+		for(int i= 0;i<lista.size();i++){
+			lista.get(i).setPosicao(j);
+			j=j + 1;
+		}
 	}	
 
 	public List<ClassificacaoRestaurante> getClassificacaoGlobal() {		
@@ -166,9 +174,5 @@ public class RestauranteComponent {
 		List<ClassificacaoRestaurante> lista =  stream.collect(Collectors.toList());
 		addPosicao(lista);		
 		return lista;		
-	}
-	
-	private void addPosicao(List<ClassificacaoRestaurante> lista){
-		
-	}
+	}	
 }

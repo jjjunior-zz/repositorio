@@ -23,6 +23,8 @@ public class DiferencaClassificacao extends AbstractPersistable<Integer> {
 
 	@Column(name = "porcentual_inferior", nullable = false)
 	private Integer				porcentualInferior;
+	
+	DiferencaClassificacao(){}
 
 	DiferencaClassificacao(Integer diferencaInicial, Integer diferencaFinal, Integer porcentualSuperior, Integer porcentualInferior) {
 		this.diferencaInicial = diferencaInicial;
