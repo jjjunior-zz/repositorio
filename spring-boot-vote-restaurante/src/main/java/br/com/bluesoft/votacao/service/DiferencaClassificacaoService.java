@@ -15,7 +15,7 @@ public class DiferencaClassificacaoService {
 	@Autowired
 	private DiferencaClassificacaoRepository diferencaClassificacaoRepository;
 
-	public DiferencaClassificacao buscarClassificacaoPorIndice(int valor) {
+	public DiferencaClassificacao buscarClassificacaoPorDiferencaEntreValor(int valor) {
 		return this.diferencaClassificacaoRepository.buscarPorDiferencaInicialEFinal(valor);
 	}	
 }

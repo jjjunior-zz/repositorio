@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -23,6 +24,9 @@ public class ClassificacaoRestaurante extends AbstractPersistable<Integer> {
 
 	@Column(name = "classificacao_anterior")
 	private Integer				classificacaoAnterior;
+
+	@Transient
+	private Integer				posicao;
 
 	ClassificacaoRestaurante() {
 	}
@@ -50,6 +54,14 @@ public class ClassificacaoRestaurante extends AbstractPersistable<Integer> {
 
 	public void setClassificacaoAnterior(Integer classificacaoAnterior) {
 		this.classificacaoAnterior = classificacaoAnterior;
+	}	
+
+	public Integer getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(Integer posicao) {
+		this.posicao = posicao;
 	}
 
 	public Restaurante getRestaurante() {

@@ -49,7 +49,7 @@ public class ClassificacaoRestauranteComponent {
 	}
 	
 	public DiferencaClassificacao buscarDiferencaDeClassificacao(int diferenca){
-		return this.diferencaClassificacaoService.buscarClassificacaoPorIndice(diferenca);
+		return this.diferencaClassificacaoService.buscarClassificacaoPorDiferencaEntreValor(diferenca);
 	}
 	
 	
