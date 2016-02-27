@@ -15,7 +15,7 @@
 
 			<div class="col-xs-6 col-xs-6">
 				<div class="thumbnail">
-					<img src="<c:url value="${escolha.pathImagemLadoEsquerdo}"/>"/>
+					<img src="<c:url value="${escolha.pathImagemLadoEsquerdo}"/>" class="img-rounded"/>
 					<div class="caption">
 						<h3>${escolha.restauranteLadoEsquerdo}</h3>
 						<p>
@@ -27,7 +27,7 @@
 
 			<div class="col-xs-6 col-xs-6">
 				<div class="thumbnail">
-					<img src="<c:url value="${escolha.pathImagemLadoDireito}"/>"/>
+					<img src="<c:url value="${escolha.pathImagemLadoDireito}"/>" class="img-rounded"/>
 					<div class="caption">
 						<h3>${escolha.restauranteLadoDireito}</h3>
 						<p>
