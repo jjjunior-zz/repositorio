@@ -24,6 +24,7 @@ import br.com.bluesoft.votacao.domain.ClassificacaoRestaurante;
 import br.com.bluesoft.votacao.domain.DiferencaClassificacao;
 import br.com.bluesoft.votacao.domain.PossivelEscolha;
 import br.com.bluesoft.votacao.domain.Restaurante;
+import br.com.bluesoft.votacao.domain.Usuario;
 import br.com.bluesoft.votacao.enumeration.RestauranteEnum;
 import br.com.bluesoft.votacao.service.DadoMestreService;
 import br.com.bluesoft.votacao.service.PossivelEscolhaService;
@@ -75,27 +76,48 @@ public class RestauranteComponent {
 		classificacaoComponent.buscarClassificacaoRestaurantes(escolha.getRestauranteLadoDireito(), escolha.getRestauranteLadoEsquerdo());
 		classificacaoComponent.buscarDiferencaClassificacao();
 		ModelAndView modelAndView = new ModelAndView("votacao_restaurante");
-		modelAndView.addObject("escolha", escolha);
-
-		if (contador <= contadorFinal) {
-			contador++;
-		}
+		modelAndView.addObject("escolha", escolha);		
 		return modelAndView;
 	}
 
-	public String redirectVotacaoEsquerda() {
-		classificacaoComponent.calcularClassificacaoRestauranteGanhador(escolha.getRestauranteLadoEsquerdo());
-		classificacaoComponent.calcularClassificacaoRestaurantePerdedor(escolha.getRestauranteLadoDireito());
-		classificarPorVotosParticipante(false);
-		return redirect();
+	public ModelAndView redirectVotacaoEsquerda() {
+		if (contador >= contadorFinal) {
+			return redirectCadastroParticipante();
+		}		
+		return atualizaVotacao(false);		
 	}
 
-	public String redirectVotacaoDireita() {
+	public ModelAndView redirectVotacaoDireita() {
+		if (contador >= contadorFinal) {
+			return redirectCadastroParticipante();			
+		}		
+		return atualizaVotacao(true);
+	}
+	
+	private ModelAndView redirectCadastroParticipante() {
+		contador = contadorInicial;
+		ModelAndView modelAndView = new ModelAndView("cadastro_participante");
+		modelAndView.addObject("usuario", new Usuario());			
+		return modelAndView;
+	}
+
+	private ModelAndView atualizaVotacao(boolean lado) {
 		classificacaoComponent.calcularClassificacaoRestauranteGanhador(escolha.getRestauranteLadoDireito());
 		classificacaoComponent.calcularClassificacaoRestaurantePerdedor(escolha.getRestauranteLadoEsquerdo());
-		classificarPorVotosParticipante(true);
-
-		return redirect();
+		classificarPorVotosParticipante(lado);
+		escolha = escolhaService.buscarPossivelEscolhaPorIndice(contador);
+		escolha.setPathImagemLadoDireito(escolha.getRestauranteLadoDireito().getPathImagem());
+		escolha.setPathImagemLadoEsquerdo(escolha.getRestauranteLadoEsquerdo().getPathImagem());
+		classificacaoComponent.buscarClassificacaoRestaurantes(escolha.getRestauranteLadoDireito(), escolha.getRestauranteLadoEsquerdo());
+		classificacaoComponent.buscarDiferencaClassificacao();
+		
+		ModelAndView modelAndView = new ModelAndView("restaurantes");
+		modelAndView.addObject("escolha", escolha);
+		
+		if (contador <= contadorFinal) {
+			contador++;
+		}		
+		return modelAndView;
 	}
 
 	private void classificarPorVotosParticipante(boolean ladoDireito) {
@@ -128,14 +150,6 @@ public class RestauranteComponent {
 			votacaoParticipante.put(crEsquerdo.getRestaurante().getNome(), valorClassificacaoGanhador);
 			votacaoParticipante.put(crDireito.getRestaurante().getNome(), valorClassificacaoPerdedor);
 		}
-	}
-
-	private String redirect() {
-		if (contador >= contadorFinal) {
-			contador = contadorInicial;
-			return "redirect:/cadastroParticipante";
-		}
-		return "redirect:/votacao";
 	}
 
 	private void votosParticipante() {
