@@ -24,12 +24,12 @@ public class RestauranteController {
 	}
 
 	@RequestMapping("/votacaoEsquerda")
-	public String votacaoEsquerda() {
+	public ModelAndView votacaoEsquerda() {
 		return restauranteComponent.redirectVotacaoEsquerda();
 	}
 
 	@RequestMapping("/votacaoDireita")
-	public String votacaoDireita() {
+	public ModelAndView votacaoDireita() {
 		return restauranteComponent.redirectVotacaoDireita();
 	}
 }
