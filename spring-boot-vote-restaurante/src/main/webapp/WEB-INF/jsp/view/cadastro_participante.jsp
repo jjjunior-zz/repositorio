@@ -10,7 +10,7 @@
 			<div class="form-group form-group-lg">				
 				<form:label for="idNome" class="col-sm-1 control-label" path="nome">Nome</form:label>
 				
-				<div class="col-sm-10">
+				<div class="col-sm-10">					
 					<form:input path="nome" class="form-control" id="idNome" placeholder="Nome" type="text" />
 					<form:errors path="nome" />
 				</div>
@@ -19,7 +19,7 @@
 			<div class="form-group form-group-lg">
 				<form:label for="idEmail" class="col-sm-1 control-label" path="email">Email</form:label>
 				
-				<div class="col-sm-10">
+				<div class="col-sm-10">					
 					<form:input path="email" class="form-control" id="idEmail" placeholder="Email" type="email" />
 					<form:errors path="email" />
 				</div>
