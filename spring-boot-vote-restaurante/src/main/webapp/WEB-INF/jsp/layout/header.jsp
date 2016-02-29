@@ -9,7 +9,7 @@
 				<span class="sr-only"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/">Início</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/">Vote no melhor restaurante</a>
 		</div>
 	</div>
 </nav>

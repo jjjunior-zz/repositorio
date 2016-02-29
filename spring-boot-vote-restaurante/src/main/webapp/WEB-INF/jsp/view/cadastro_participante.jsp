@@ -6,6 +6,7 @@
 		<div class="page-header">
 			<h1>Preencha o formulário para saber o resultado!</h1>
 		</div>
+		
 		<form:form action="cadastrarUsuario" method="POST" commandName="usuario" class="form-horizontal" align="left">
 			<div class="form-group form-group-lg">				
 				<form:label for="idNome" class="col-sm-1 control-label" path="nome">Nome</form:label>

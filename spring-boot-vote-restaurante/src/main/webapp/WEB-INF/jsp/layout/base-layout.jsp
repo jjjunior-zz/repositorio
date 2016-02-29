@@ -6,9 +6,10 @@
 <head>
 	<title>Vote em seu restaurante preferido|</title>
 	<link rel='stylesheet' href='<%= org.webjars.AssetLocator.getWebJarPath("css/bootstrap.min.css") %>'>
-   	<script type='text/javascript' src='<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>'></script>
    	<script type='text/javascript' src='<%= org.webjars.AssetLocator.getWebJarPath("js/bootstrap.min.js") %>'></script>    		
-   	<script type='text/javascript' src='<c:url value="/resources/js/votacao.js"/>'></script>
+   	<script type='text/javascript' src='<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>'></script>
+   	<script type='text/javascript' src='<%= org.webjars.AssetLocator.getWebJarPath("jquery.blockUI.js") %>'></script>
+   	<script type='text/javascript' src='<c:url value="/resources/js/votacao.js"/>'></script>   	
 </head>
 <body>
 	<tiles:insertAttribute name="header" />

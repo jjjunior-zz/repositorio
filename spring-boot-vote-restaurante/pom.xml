@@ -67,7 +67,11 @@
 			<artifactId>bootstrap</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery-blockui</artifactId>
+			<version>2.65</version>
+		</dependency>
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
@@ -83,7 +87,7 @@
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
-			<version>9.0-801.jdbc4</version>			
+			<version>9.0-801.jdbc4</version>
 		</dependency>
 
 	</dependencies>
