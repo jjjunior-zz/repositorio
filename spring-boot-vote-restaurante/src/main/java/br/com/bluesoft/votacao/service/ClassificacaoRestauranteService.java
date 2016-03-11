@@ -23,11 +23,11 @@ public class ClassificacaoRestauranteService {
 	}
 	
 	public ClassificacaoRestaurante buscarClassificacaoPorRestaurante(Restaurante restaurante) {
-		return this.classificacaoRestauranteRepository.buscarClassificacaoPorRestaurante(restaurante);
+		return this.classificacaoRestauranteRepository.findByRestaurante(restaurante);
 	}
 	
 	public List<ClassificacaoRestaurante> buscarClassificacaoPorRestaurantes(List<Restaurante> restaurantes) {
-		return this.classificacaoRestauranteRepository.buscarClassificacaoPorRestaurantes(restaurantes);
+		return this.classificacaoRestauranteRepository.findByRestauranteIn(restaurantes);
 	}
 
 	public List<ClassificacaoRestaurante> buscarTodasClassificacoes() {

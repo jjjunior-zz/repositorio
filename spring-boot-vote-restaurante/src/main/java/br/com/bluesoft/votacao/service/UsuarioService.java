@@ -22,7 +22,7 @@ public class UsuarioService {
 	}
 
 	public List<Usuario> buscarUsuarioPorEmail(String email) {
-		return this.usuarioRepository.buscarUsuarioPorEmail(email);
+		return this.usuarioRepository.findByEmail(email);
 	}
 
 	public List<Usuario> buscarTodosUsuarios() {

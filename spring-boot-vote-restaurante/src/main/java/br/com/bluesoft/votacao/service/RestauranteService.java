@@ -26,7 +26,7 @@ public class RestauranteService {
 	}
 
 	public List<Restaurante> buscarRestaurantePorNome(String nome) {
-		return this.restauranteRepository.buscarRestaurantePorNome(nome);
+		return this.restauranteRepository.findByNome(nome);
 	}
 
 	@Transactional(readOnly = false)

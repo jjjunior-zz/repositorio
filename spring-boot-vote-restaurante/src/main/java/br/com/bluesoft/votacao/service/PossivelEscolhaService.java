@@ -41,7 +41,7 @@ public class PossivelEscolhaService {
 	}
 
 	public List<PossivelEscolha> buscarRestaurantesNaoVotados(List<Restaurante> restaurantesEsquerdo, List<Restaurante> restaurantesDireito) {
-		List<PossivelEscolha> possiveisEscolhas = this.possivelEscolhaRepository.buscarRestaurantesNaoVotados(restaurantesEsquerdo, restaurantesDireito);
+		List<PossivelEscolha> possiveisEscolhas = this.possivelEscolhaRepository.findByRestauranteLadoEsquerdoNotInAndRestauranteLadoDireitoNotIn(restaurantesEsquerdo, restaurantesDireito);
 		return possiveisEscolhas == null ? Collections.emptyList() : possiveisEscolhas;
 	}
 }
