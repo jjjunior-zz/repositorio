@@ -56,7 +56,7 @@ public class UsuarioIntegracaoTest {
 		Usuario usuario = Usuario.newInstance("Junior", "jjjunior@gmail.com");
 		usuarioRepository.saveAndFlush(usuario);
 
-		List<Usuario> usuarios = this.usuarioRepository.buscarUsuarioPorEmail(usuario.getEmail());
+		List<Usuario> usuarios = this.usuarioRepository.findByEmail(usuario.getEmail());
 		Assert.assertEquals(1, usuarios.size());
 		Assert.assertEquals("jjjunior@gmail.com", usuario.getEmail());
 		Assert.assertEquals("Junior", usuario.getNome());
@@ -68,11 +68,11 @@ public class UsuarioIntegracaoTest {
 		Usuario usuario = Usuario.newInstance("Junior", "jjjunior@gmail.com");
 		usuarioRepository.saveAndFlush(usuario);
 
-		List<Usuario> usuarios = this.usuarioRepository.buscarUsuarioPorEmail(usuario.getEmail());
+		List<Usuario> usuarios = this.usuarioRepository.findByEmail(usuario.getEmail());
 
 		usuarioRepository.saveAndFlush(usuario);
 
-		usuarios = this.usuarioRepository.buscarUsuarioPorEmail(usuario.getEmail());
+		usuarios = this.usuarioRepository.findByEmail(usuario.getEmail());
 
 		Assert.assertEquals(1, usuarios.size());
 
@@ -88,7 +88,7 @@ public class UsuarioIntegracaoTest {
 
 		usuarioRepository.saveAndFlush(usuario);
 
-		List<Usuario> usuarios = this.usuarioRepository.buscarUsuarioPorEmail(usuario.getEmail());
+		List<Usuario> usuarios = this.usuarioRepository.findByEmail(usuario.getEmail());
 
 		Assert.assertEquals(1, usuarios.size());
 		Assert.assertEquals("jjotinha47@msn.com", usuarios.get(0).getEmail());

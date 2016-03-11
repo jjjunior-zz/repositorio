@@ -43,7 +43,7 @@ public class ClassificacaoRestauranteIntegracaoTest {
 		lista.add(ClassificacaoRestaurante.newInstance(r1, 0));
 		lista.forEach(c -> classificacaoRestauranteRepository.saveAndFlush(c));
 
-		List<ClassificacaoRestaurante> c1 = classificacaoRestauranteRepository.buscarClassificacaoPorRestaurantes(restaurantes);
+		List<ClassificacaoRestaurante> c1 = classificacaoRestauranteRepository.findByRestauranteIn(restaurantes);
 
 		assertEquals(2, c1.size());
 	}

@@ -59,13 +59,13 @@ public class RestauranteIntegracaoTest {
 		Restaurante r0 = Restaurante.newInstance(RestauranteEnum.OUTBACK.getNome(), RestauranteEnum.OUTBACK.getPathImagem());
 
 		this.restauranteRepository.saveAndFlush(r0);
-		List<Restaurante> lista = this.restauranteRepository.buscarRestaurantePorNome(RestauranteEnum.OUTBACK.getNome());
+		List<Restaurante> lista = this.restauranteRepository.findByNome(RestauranteEnum.OUTBACK.getNome());
 
 		Restaurante r1 = lista.get(0);
 
 		this.restauranteRepository.delete(r1);
 
-		List<Restaurante> lista1 = this.restauranteRepository.buscarRestaurantePorNome(RestauranteEnum.OUTBACK.getNome());
+		List<Restaurante> lista1 = this.restauranteRepository.findByNome(RestauranteEnum.OUTBACK.getNome());
 
 		assertEquals(0, lista1.size());
 	}

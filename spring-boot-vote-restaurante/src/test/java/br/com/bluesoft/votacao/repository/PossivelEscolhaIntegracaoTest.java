@@ -86,7 +86,7 @@ public class PossivelEscolhaIntegracaoTest {
 		restaurantesEsquerdo.add(ra);
 		restaurantesDireito.add(ra);
 
-		List<PossivelEscolha> possiveisEscolhasSemMcDonalds = possivelEscolhaRepository.buscarRestaurantesNaoVotados(restaurantesEsquerdo, restaurantesDireito);
+		List<PossivelEscolha> possiveisEscolhasSemMcDonalds = possivelEscolhaRepository.findByRestauranteLadoEsquerdoNotInAndRestauranteLadoDireitoNotIn(restaurantesEsquerdo, restaurantesDireito);
 
 		assertEquals(6, possiveisEscolhasSemMcDonalds.size());
 	}
