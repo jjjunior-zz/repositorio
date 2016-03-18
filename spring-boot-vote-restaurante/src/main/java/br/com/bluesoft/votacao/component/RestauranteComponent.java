@@ -47,9 +47,11 @@ public class RestauranteComponent {
 	private Integer								contador		= 1;
 	private PossivelEscolha						escolha;
 	private Map<String, Integer>				votacaoParticipante;
+	private List<Restaurante>					restaurantesVotados;
 
 	public RestauranteComponent() {
 		this.escolha = PossivelEscolha.newInstance();
+		this.restaurantesVotados = new ArrayList<>();
 		votosParticipante();
 	}
 
@@ -69,7 +71,7 @@ public class RestauranteComponent {
 	}
 
 	public ModelAndView escolherRestaurantes() {
-
+		//List<PossivelEscolha> possiveisEscolhasSemMcDonalds = possivelEscolhaRepository.findByRestauranteLadoEsquerdoNotInAndRestauranteLadoDireitoNotIn(restaurantesEsquerdo, restaurantesDireito);
 		escolha = escolhaService.buscarPossivelEscolhaPorIndice(contador);
 		escolha.setPathImagemLadoDireito(escolha.getRestauranteLadoDireito().getPathImagem());
 		escolha.setPathImagemLadoEsquerdo(escolha.getRestauranteLadoEsquerdo().getPathImagem());
