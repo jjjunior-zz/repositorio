@@ -40,8 +40,8 @@ public class PossivelEscolhaService {
 		this.possivelEscolhaRepository.save(possivelEscollha);
 	}
 
-	public List<PossivelEscolha> buscarRestaurantesNaoVotados(List<Restaurante> restaurantesEsquerdo, List<Restaurante> restaurantesDireito) {
-		List<PossivelEscolha> possiveisEscolhas = this.possivelEscolhaRepository.findByRestauranteLadoEsquerdoNotInAndRestauranteLadoDireitoNotIn(restaurantesEsquerdo, restaurantesDireito);
+	public List<PossivelEscolha> buscarRestaurantesNaoVotados(List<Restaurante> restaurantes) {
+		List<PossivelEscolha> possiveisEscolhas = this.possivelEscolhaRepository.findByRestauranteLadoEsquerdoNotInAndRestauranteLadoDireitoNotIn(restaurantes, restaurantes);
 		return possiveisEscolhas == null ? Collections.emptyList() : possiveisEscolhas;
 	}
 }
