@@ -12,8 +12,13 @@ import br.com.bluesoft.votacao.repository.UsuarioIntegracaoTest;
 import br.com.bluesoft.votacao.util.UtilTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ PossivelEscolhaIntegracaoTest.class, RestauranteIntegracaoTest.class, UsuarioIntegracaoTest.class, CalculadoraDeClassificacaoTest.class, ClassificacaoRestauranteIntegracaoTest.class,
-		UtilTest.class })
+@SuiteClasses({ PossivelEscolhaIntegracaoTest.class,
+				RestauranteIntegracaoTest.class,
+				UsuarioIntegracaoTest.class,
+				CalculadoraDeClassificacaoTest.class,
+				ClassificacaoRestauranteIntegracaoTest.class,
+				UtilTest.class
+			 })
 public class AllTests {
 
 }
