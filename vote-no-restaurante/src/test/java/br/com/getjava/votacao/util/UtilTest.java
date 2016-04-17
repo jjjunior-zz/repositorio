@@ -1,10 +1,11 @@
-package br.com.bluesoft.votacao.util;
+package br.com.getjava.votacao.util;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import br.com.bluesoft.votacao.exception.UtilException;
+import br.com.getjava.votacao.exception.UtilException;
+import br.com.getjava.votacao.util.Util;
 
 public class UtilTest {
 

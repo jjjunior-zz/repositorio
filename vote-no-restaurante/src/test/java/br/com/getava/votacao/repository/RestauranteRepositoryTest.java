@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.repository;
+package br.com.getava.votacao.repository;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,11 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import br.com.bluesoft.votacao.domain.Restaurante;
-import br.com.bluesoft.votacao.enumeration.RestauranteEnum;
-import br.com.bluesoft.votacao.exception.ModeloException;
-import br.com.bluesoft.votacao.repository.RestauranteRepository;
+import br.com.getjava.votacao.domain.Restaurante;
+import br.com.getjava.votacao.enumeration.RestauranteEnum;
+import br.com.getjava.votacao.exception.ModeloException;
+import br.com.getjava.votacao.repository.RestauranteRepository;
 
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
