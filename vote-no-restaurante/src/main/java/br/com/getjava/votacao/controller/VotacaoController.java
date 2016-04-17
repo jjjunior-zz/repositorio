@@ -1,13 +1,13 @@
-package br.com.bluesoft.votacao.controller;
+package br.com.getjava.votacao.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.bluesoft.votacao.domain.PossivelEscolha;
-import br.com.bluesoft.votacao.repository.DadoMestreRepository;
-import br.com.bluesoft.votacao.repository.PossivelEscolhaRepository;
+import br.com.getjava.votacao.domain.PossivelEscolha;
+import br.com.getjava.votacao.repository.DadoMestreRepository;
+import br.com.getjava.votacao.repository.PossivelEscolhaRepository;
 
 @Controller
 @RequestMapping("/")

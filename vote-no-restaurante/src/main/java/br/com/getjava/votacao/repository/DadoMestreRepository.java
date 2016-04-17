@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.repository;
+package br.com.getjava.votacao.repository;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -7,11 +7,11 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.bluesoft.votacao.dao.DAO;
-import br.com.bluesoft.votacao.domain.PossivelEscolha;
-import br.com.bluesoft.votacao.domain.Restaurante;
-import br.com.bluesoft.votacao.enumeration.RestauranteEnum;
-import br.com.bluesoft.votacao.exception.ModeloException;
+import br.com.getjava.votacao.dao.DAO;
+import br.com.getjava.votacao.domain.PossivelEscolha;
+import br.com.getjava.votacao.domain.Restaurante;
+import br.com.getjava.votacao.enumeration.RestauranteEnum;
+import br.com.getjava.votacao.exception.ModeloException;
 
   
 @Repository

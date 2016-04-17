@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.validation;
+package br.com.getjava.votacao.validation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,7 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import br.com.bluesoft.votacao.domain.Usuario;
+import br.com.getjava.votacao.domain.Usuario;
 
 public class UsuarioValidation implements Validator {
 

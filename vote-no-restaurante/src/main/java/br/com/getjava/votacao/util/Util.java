@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.util;
+package br.com.getjava.votacao.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
-import br.com.bluesoft.votacao.exception.UtilException;
+import br.com.getjava.votacao.exception.UtilException;
 
 public class Util {
 	

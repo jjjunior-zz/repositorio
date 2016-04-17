@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.dao;
+package br.com.getjava.votacao.dao;
 
 import java.util.HashMap;
 import java.util.Map;

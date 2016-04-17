@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.domain;
+package br.com.getjava.votacao.domain;
 
 import java.io.Serializable;
 
@@ -20,8 +20,8 @@ import javax.persistence.Table;
 public class Restaurante implements Serializable {
 
 	private static final long	serialVersionUID	= 1L;
-	public static final String	TUDO				= "br.com.bluesoft.votacao.domain.Restaurante.todos";
-	public static final String	SELECIONAR_POR_NOME	= "br.com.bluesoft.votacao.domain.Restaurante.selecionarPorNome";
+	public static final String	TUDO				= "br.com.getjava.votacao.domain.Restaurante.todos";
+	public static final String	SELECIONAR_POR_NOME	= "br.com.getjava.votacao.domain.Restaurante.selecionarPorNome";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

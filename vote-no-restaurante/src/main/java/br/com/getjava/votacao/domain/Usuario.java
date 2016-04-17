@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.domain;
+package br.com.getjava.votacao.domain;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import br.com.bluesoft.votacao.util.Util;
+import br.com.getjava.votacao.util.Util;
 
 @Table(name = "usuario")
 @Entity
@@ -27,8 +27,8 @@ import br.com.bluesoft.votacao.util.Util;
 public class Usuario implements Serializable {
 
 	private static final long	serialVersionUID		= 1L;
-	public static final String	TUDO					= "br.com.bluesoft.votacao.domain.Usuario.tudo";
-	public static final String	SELECIONAR_POR_EMAIL	= "br.com.bluesoft.votacao.domain.Usuario.selecionarPorEmail";	
+	public static final String	TUDO					= "br.com.getjava.votacao.domain.Usuario.tudo";
+	public static final String	SELECIONAR_POR_EMAIL	= "br.com.getjava.votacao.domain.Usuario.selecionarPorEmail";	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

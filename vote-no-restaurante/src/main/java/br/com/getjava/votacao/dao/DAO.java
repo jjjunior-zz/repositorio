@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.dao;
+package br.com.getjava.votacao.dao;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +19,7 @@ import javax.persistence.TypedQuery;
 
 import org.apache.log4j.Logger;
 
-import br.com.bluesoft.votacao.exception.ModeloException;
+import br.com.getjava.votacao.exception.ModeloException;
 
 public class DAO<T, K> {
 

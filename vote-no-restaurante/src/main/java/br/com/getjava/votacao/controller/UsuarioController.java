@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.controller;
+package br.com.getjava.votacao.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.bluesoft.votacao.domain.Usuario;
-import br.com.bluesoft.votacao.exception.ModeloException;
-import br.com.bluesoft.votacao.repository.UsuarioRepository;
-import br.com.bluesoft.votacao.validation.UsuarioValidation;
+import br.com.getjava.votacao.domain.Usuario;
+import br.com.getjava.votacao.exception.ModeloException;
+import br.com.getjava.votacao.repository.UsuarioRepository;
+import br.com.getjava.votacao.validation.UsuarioValidation;
 
 @Controller
 public class UsuarioController {

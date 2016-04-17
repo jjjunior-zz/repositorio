@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.domain;
+package br.com.getjava.votacao.domain;
 
 import java.io.Serializable;
 
@@ -24,9 +24,9 @@ public class PossivelEscolha implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public static final String TUDO = "br.com.bluesoft.votacao.domain.PossivelEscolha.tudo";	
-	public static final String SELECIONAR_RESTAURANTES_NAO_VOTADOS = "br.com.bluesoft.votacao.domain.PossivelEscolha.selecionaNaoVotados";
-	public static final String MENOR_ESCOLHA = "br.com.bluesoft.votacao.domain.PossivelEscolha.menorEscolha";
+	public static final String TUDO = "br.com.getjava.votacao.domain.PossivelEscolha.tudo";	
+	public static final String SELECIONAR_RESTAURANTES_NAO_VOTADOS = "br.com.getjava.votacao.domain.PossivelEscolha.selecionaNaoVotados";
+	public static final String MENOR_ESCOLHA = "br.com.getjava.votacao.domain.PossivelEscolha.menorEscolha";
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)	

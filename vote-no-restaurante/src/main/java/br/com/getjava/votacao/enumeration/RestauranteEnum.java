@@ -1,4 +1,4 @@
-package br.com.bluesoft.votacao.enumeration;
+package br.com.getjava.votacao.enumeration;
 
 public enum RestauranteEnum {
 
