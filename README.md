@@ -1,4 +1,4 @@
-#Repositorio para códigos java
+#Repositório para códigos java
 
 ##Projeto spring-boot-vote-restaurante
   Consiste em um sistema de votação de restaurante que ao final da votação mostra qual o melhor restaurante, exibindo o Ranking Geral e no Ranking de quem votou, para classificar os restaurantes foi utilizado o calculo ELO Rating, bastante utilizado para classificar jogadores de xadrez.
