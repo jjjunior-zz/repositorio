@@ -4,9 +4,9 @@
                         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="votacao_pu" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>br.com.bluesoft.votacao.domain.Restaurante</class>
-		<class>br.com.bluesoft.votacao.domain.Usuario</class>			   		
-		<class>br.com.bluesoft.votacao.domain.PossivelEscolha</class>			   
+		<class>br.com.getjava.votacao.domain.Restaurante</class>
+		<class>br.com.getjava.votacao.domain.Usuario</class>			   		
+		<class>br.com.getjava.votacao.domain.PossivelEscolha</class>			   
 		<properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:votacao;DB_CLOSE_DELAY=-1" />
