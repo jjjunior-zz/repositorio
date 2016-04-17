@@ -9,5 +9,6 @@
   * Spring-data
   * Twitter-bootstrap
   * Hibernate
+  
 ###Deploy na Nuvem
   * [Endereço da aplicaçao no Heroku] (https://floating-bayou-16676.herokuapp.com)
