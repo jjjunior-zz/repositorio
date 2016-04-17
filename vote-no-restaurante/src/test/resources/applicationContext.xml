@@ -10,10 +10,9 @@
                            http://www.springframework.org/schema/tx 
                            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
-    <context:component-scan base-package="br.com.bluesoft.votacao.domain" />
-	<context:component-scan base-package="br.com.bluesoft.votacao.controller" />
-	<context:component-scan base-package="br.com.bluesoft.votacao.repository" />
-	<context:component-scan base-package="br.com.bluesoft.votacao.service" />
+    <context:component-scan base-package="br.com.getjava.votacao.domain" />
+	<context:component-scan base-package="br.com.getjava.votacao.controller" />
+	<context:component-scan base-package="br.com.getjava.votacao.repository" />	
     
     <tx:annotation-driven />   
 </beans>
