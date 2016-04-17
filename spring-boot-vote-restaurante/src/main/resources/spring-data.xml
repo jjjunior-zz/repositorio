@@ -40,7 +40,7 @@
 
 	<bean id="entityManagerFactory"	class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="br.com.bluesoft.votacao.domain" />
+		<property name="packagesToScan" value="br.com.getjava.votacao.domain" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="showSql" value="true" />
@@ -57,7 +57,7 @@
 		</property>
 	</bean>
 
-	<jpa:repositories base-package="br.com.bluesoft.votacao" />
+	<jpa:repositories base-package="br.com.getjava.votacao" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
