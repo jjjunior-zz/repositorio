@@ -11,8 +11,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import br.com.getjava.cloudws.domain.Cerveja.Tipo;
 import br.com.getjava.cloudws.enumeration.Status;
+import br.com.getjava.cloudws.enumeration.Tipo;
 
 @XmlRootElement(name = "instancia")
 @XmlAccessorType(XmlAccessType.FIELD)
