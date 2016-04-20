@@ -25,7 +25,7 @@ public class Instancia implements Serializable {
 	private Integer				id;
 
 	@Column(name = "qtd_processadores")
-	private Integer				processadores;
+	private Integer				processador;
 
 	@Column(name = "qtd_memoria")
 	private Integer				memoria;
@@ -43,8 +43,8 @@ public class Instancia implements Serializable {
 	
 	Instancia(){}		
 
-	Instancia(Integer processadores, Integer memoria, Integer armazenamento, Status status, Tipo tipo, Template template) {		
-		this.processadores = processadores;
+	Instancia(Integer processador, Integer memoria, Integer armazenamento, Status status, Tipo tipo, Template template) {		
+		this.processador = processador;
 		this.memoria = memoria;
 		this.armazenamento = armazenamento;
 		this.status = status;
@@ -52,8 +52,8 @@ public class Instancia implements Serializable {
 		this.template = template;
 	}
 	
-	public static Instancia newInstance(Integer processadores, Integer memoria, Integer armazenamento, Status status, Tipo tipo, Template template) {
-		return new Instancia(processadores, memoria, armazenamento, status, tipo, template);
+	public static Instancia newInstance(Integer processador, Integer memoria, Integer armazenamento, Status status, Tipo tipo, Template template) {
+		return new Instancia(processador, memoria, armazenamento, status, tipo, template);
 	}	
 
 	public Integer getId() {
@@ -62,14 +62,14 @@ public class Instancia implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}	
+
+	public Integer getProcessador() {
+		return processador;
 	}
 
-	public Integer getProcessadores() {
-		return processadores;
-	}
-
-	public void setProcessadores(Integer processadores) {
-		this.processadores = processadores;
+	public void setProcessador(Integer processador) {
+		this.processador = processador;
 	}
 
 	public Integer getMemoria() {
@@ -139,6 +139,6 @@ public class Instancia implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Instancia [processadores=" + processadores + ", memoria=" + memoria + ", armazenamento=" + armazenamento + ", status=" + status + ", tipo=" + tipo + ", template=" + template + "]";
+		return "Instancia [processador=" + processador + ", memoria=" + memoria + ", armazenamento=" + armazenamento + ", status=" + status + ", tipo=" + tipo + ", template=" + template + "]";
 	}
 }
