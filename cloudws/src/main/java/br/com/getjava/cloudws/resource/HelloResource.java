@@ -20,6 +20,7 @@ import br.com.getjava.cloudws.domain.Template;
 import br.com.getjava.cloudws.enumeration.Bits;
 import br.com.getjava.cloudws.enumeration.SistemaOperacional;
 import br.com.getjava.cloudws.enumeration.Status;
+import br.com.getjava.cloudws.enumeration.Tipo;
 
 public class HelloResource extends ServerResource {
 
@@ -37,7 +38,7 @@ public class HelloResource extends ServerResource {
 	public String representXml() {
 
 		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, br.com.getjava.cloudws.enumeration.Tipo.LARGE, t);
+		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, Tipo.LARGE, t);
 
 		StringWriter sw = new StringWriter();
 		try {
