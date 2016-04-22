@@ -38,8 +38,8 @@ public class InstanciaResource extends ServerResource {
 
 	public String representXml() {
 
-		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, Tipo.LARGE, t);
+		//Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
+		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, Tipo.LARGE );
 
 		StringWriter sw = new StringWriter();
 		try {
@@ -57,7 +57,7 @@ public class InstanciaResource extends ServerResource {
 
 	public String representJson() {
 		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, br.com.getjava.cloudws.enumeration.Tipo.LARGE, t);
+		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, br.com.getjava.cloudws.enumeration.Tipo.LARGE);
 		Gson gson = new GsonBuilder().create();
 
 		return gson.toJson(c);
@@ -65,7 +65,7 @@ public class InstanciaResource extends ServerResource {
 	
 	public String representText() {
 		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, br.com.getjava.cloudws.enumeration.Tipo.LARGE, t);
+		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, br.com.getjava.cloudws.enumeration.Tipo.LARGE);
 		return c.toString();
 	}
 
