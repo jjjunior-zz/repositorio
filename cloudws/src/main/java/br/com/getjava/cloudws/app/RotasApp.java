@@ -1,4 +1,4 @@
-package br.com.getjava.cloudws;
+package br.com.getjava.cloudws.app;
 
 import org.restlet.Application;
 import org.restlet.Restlet;
