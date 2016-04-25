@@ -1,6 +1,8 @@
 package br.com.getjava.cloudws.resource;
 
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -25,7 +27,7 @@ import br.com.getjava.cloudws.enumeration.Tipo;
 public class InstanciaResource extends ServerResource {
 	
 	
-	@Get("xml|json")
+	@Get("json")
 	public String representation(Variant variant) {
 
 		if (MediaType.APPLICATION_JSON.equals(variant.getMediaType())) {
@@ -57,10 +59,20 @@ public class InstanciaResource extends ServerResource {
 
 	public String representJson() {
 		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, br.com.getjava.cloudws.enumeration.Tipo.LARGE);
-		Gson gson = new GsonBuilder().create();
+		
+		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, Tipo.XLARGE);
+		c.setId(1);		
+		
+		Instancia c1 = Instancia.newInstance(20, 30, 300, Status.INICIADO, Tipo.MICRO);
+		c1.setId(2);
 
-		return gson.toJson(c);
+		Gson gson = new GsonBuilder().create();
+		
+		List<Instancia> lista = new ArrayList<>(); 
+		lista.add(c);
+		lista.add(c1);
+
+		return gson.toJson(lista);
 	}	
 	
 	public String representText() {

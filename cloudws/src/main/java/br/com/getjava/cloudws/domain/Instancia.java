@@ -3,8 +3,10 @@ package br.com.getjava.cloudws.domain;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -14,13 +16,13 @@ import br.com.getjava.cloudws.enumeration.Tipo;
 
 @XmlRootElement(name = "instancia")
 @XmlAccessorType(XmlAccessType.FIELD)
-//@Entity
+@Entity
 public class Instancia implements Serializable {
 
 	private static final long	serialVersionUID	= 1L;
 
-	//@Id
-	//private Integer				id;
+	@Id
+	private Integer				id;
 
 	@Column(name = "qtd_processadores")
 	private Integer				processador;
@@ -54,13 +56,13 @@ public class Instancia implements Serializable {
 		return new Instancia(processador, memoria, armazenamento, status, tipo);
 	}	
 
-//	public Integer getId() {
-//		return id;
-//	}
-//
-//	public void setId(Integer id) {
-//		this.id = id;
-//	}	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}	
 
 	public Integer getProcessador() {
 		return processador;
