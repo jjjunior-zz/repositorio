@@ -10,7 +10,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.com.getjava.cloudws.enumeration.TipoUsuario;
 
@@ -30,29 +34,29 @@ public class Usuario implements Serializable {
 	@Column
 	private String senha;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_cadastro")
 	private Calendar dtCadastro;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_alteracao")
 	private Calendar dtAlteracao;
 
 	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_usuario")
 	private TipoUsuario tipoUsuario;
 
 	Usuario() {
 	}
 
-	Usuario(String email, String senha, Calendar dtCadastro, Calendar dtAlteracao, TipoUsuario tipoUsuario) {
+	Usuario(String email, String senha, TipoUsuario tipoUsuario) {
 		this.email = email;
-		this.senha = senha;
-		this.dtCadastro = dtCadastro;
-		this.dtAlteracao = dtAlteracao;
+		this.senha = senha;		
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	public static Usuario newInstance(String email, String senha, Calendar dtCadastro, Calendar dtAlteracao,
-			TipoUsuario tipoUsuario) {
-		return new Usuario(email, senha, dtCadastro, dtAlteracao, tipoUsuario);
+	public static Usuario newInstance(String email, String senha, TipoUsuario tipoUsuario) {
+		return new Usuario(email, senha, tipoUsuario);
 	}
 
 	public Integer getId() {
@@ -138,6 +142,16 @@ public class Usuario implements Serializable {
 	public String toString() {
 		return "Usuario [id=" + id + ", email=" + email + ", dtCadastro=" + dtCadastro + ", dtAlteracao=" + dtAlteracao
 				+ ", tipoUsuario=" + tipoUsuario + "]";
+	}
+	
+	@PrePersist
+	public void prePersist() {
+		this.dtCadastro = Calendar.getInstance();			
+	}
+
+	@PreUpdate
+	public void preUpdate() {
+		this.dtAlteracao = Calendar.getInstance();				
 	}
 
 }

@@ -1,6 +1,7 @@
 package br.com.getjava.cloudws.domain;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,11 +12,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import br.com.getjava.cloudws.enumeration.Status;
 import br.com.getjava.cloudws.enumeration.TipoMaquina;
 
 @XmlRootElement(name = "instancia")
@@ -28,7 +34,10 @@ public class Instancia implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 	
-	private int				id;
+	private int		id;	
+	
+	@Column
+	private String			nome;
 
 	@Column(name = "qtd_processadores")
 	private int				processador;
@@ -40,24 +49,42 @@ public class Instancia implements Serializable {
 	private int				armazenamento;
 
 	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_maquina")
 	private TipoMaquina			tipo;
+	
+	@Enumerated(EnumType.STRING)
+	private Status		status;
 
 	@OneToOne(cascade=CascadeType.ALL)
 	private Template			template;
+	
+	@OneToOne
+	private Usuario usuario;	
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "dt_cadastro")
+	private Calendar dtCadastro;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "dt_alteracao")
+	private Calendar dtAlteracao;	
 
 	Instancia() {
 	}
 
-	Instancia(Integer processador, Integer memoria, Integer armazenamento, TipoMaquina tipo, Template template) {
+	Instancia(String nome,Integer processador, Integer memoria, Integer armazenamento, TipoMaquina tipo, Template template, Usuario usuario) {
+		this.nome = nome;
 		this.processador = processador;
 		this.memoria = memoria;
 		this.armazenamento = armazenamento;
 		this.tipo = tipo;
 		this.template = template;
+		this.status = Status.PARADO;
+		this.usuario = usuario;
 	}
 
-	public static Instancia newInstance(Integer processador, Integer memoria, Integer armazenamento, TipoMaquina tipo, Template template) {
-		return new Instancia(processador, memoria, armazenamento, tipo, template);
+	public static Instancia newInstance(String nome,Integer processador, Integer memoria, Integer armazenamento, TipoMaquina tipo, Template template,Usuario usuario) {
+		return new Instancia(nome,processador, memoria, armazenamento, tipo, template,usuario);
 	}
 	
 	public int getId() {
@@ -106,12 +133,53 @@ public class Instancia implements Serializable {
 
 	public void setTemplate(Template template) {
 		this.template = template;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}	
 
-	
+	public Status getStatus() {
+		return status;
+	}
 
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Calendar getDtCadastro() {
+		return dtCadastro;
+	}	
+
+	public Calendar getDtAlteracao() {
+		return dtAlteracao;
+	}	
+	
 	@Override
 	public String toString() {
-		return "Instancia [id=" + id + ", processador=" + processador + ", memoria=" + memoria + ", armazenamento=" + armazenamento + ", tipo=" + tipo + ", template=" + template + "]";
+		return "Instancia [id=" + id + ", nome=" + nome + ", processador=" + processador + ", memoria=" + memoria + ", armazenamento=" + armazenamento + ", tipo=" + tipo + ", status=" + status
+				+ ", template=" + template + ", usuario=" + usuario + ", dtCadastro=" + dtCadastro + ", dtAlteracao=" + dtAlteracao + "]";
+	}
+
+	@PrePersist
+	public void prePersist() {
+		this.dtCadastro = Calendar.getInstance();			
+	}
+
+	@PreUpdate
+	public void preUpdate() {
+		this.dtAlteracao = Calendar.getInstance();				
 	}
 }

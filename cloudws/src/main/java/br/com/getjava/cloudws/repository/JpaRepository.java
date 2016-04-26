@@ -55,8 +55,7 @@ abstract class JpaRepository<T, ID> {
 		try {
 			return getEntityManager().find(this.entityClass, id);
 		} catch (Exception e) {
-			mensagemException(
-					"Problema ao consultar:" + " find(ID id) da entidade: " + this.entityClass.getName() + ".", e);
+			mensagemException("Problema ao consultar:" + " find(ID id) da entidade: " + this.entityClass.getName() + ".", e);
 			e.printStackTrace();
 		}
 		return null;
@@ -66,8 +65,7 @@ abstract class JpaRepository<T, ID> {
 		try {
 			return this.querySingle(this.getEntityManager().createQuery(query, entityClass));
 		} catch (Exception e) {
-			mensagemException("Problema ao consultar:" + " querySingle(String query) da entidade: "
-					+ this.entityClass.getName() + ".", e);
+			mensagemException("Problema ao consultar:" + " querySingle(String query) da entidade: " + this.entityClass.getName() + ".", e);
 			e.printStackTrace();
 		}
 		return null;
@@ -78,9 +76,7 @@ abstract class JpaRepository<T, ID> {
 			query = setParametros(parametros, query);
 			return query.getSingleResult();
 		} catch (Exception e) {
-			mensagemException("Problema ao consultar:"
-					+ " querySingle(TypedQuery<T> query,Map<String, Object> parametros) da entidade: "
-					+ this.entityClass.getName() + ".", e);
+			mensagemException("Problema ao consultar:" + " querySingle(TypedQuery<T> query,Map<String, Object> parametros) da entidade: " + this.entityClass.getName() + ".", e);
 		}
 		return null;
 	}
@@ -89,8 +85,7 @@ abstract class JpaRepository<T, ID> {
 		try {
 			return querySingle(query, null);
 		} catch (Exception e) {
-			mensagemException("Problema ao consultar:" + " querySingle(TypedQuery<T> query) da entidade: "
-					+ this.entityClass.getName() + ".", e);
+			mensagemException("Problema ao consultar:" + " querySingle(TypedQuery<T> query) da entidade: " + this.entityClass.getName() + ".", e);
 			e.printStackTrace();
 		}
 		return null;
@@ -100,8 +95,7 @@ abstract class JpaRepository<T, ID> {
 		try {
 			return this.queryList(this.getEntityManager().createQuery(query, entityClass));
 		} catch (Exception e) {
-			mensagemException("Problema ao consultar:" + " queryList(String query) da entidade: "
-					+ this.entityClass.getName() + ".", e);
+			mensagemException("Problema ao consultar:" + " queryList(String query) da entidade: " + this.entityClass.getName() + ".", e);
 			e.printStackTrace();
 		}
 		return null;
@@ -112,8 +106,7 @@ abstract class JpaRepository<T, ID> {
 		try {
 			return queryList(query, null);
 		} catch (Exception e) {
-			mensagemException("Problema ao consultar:" + " queryList(TypedQuery<T> query) da entidade: "
-					+ this.entityClass.getName() + ".", e);
+			mensagemException("Problema ao consultar:" + " queryList(TypedQuery<T> query) da entidade: " + this.entityClass.getName() + ".", e);
 			e.printStackTrace();
 		}
 
@@ -129,9 +122,7 @@ abstract class JpaRepository<T, ID> {
 			query = setParametros(parametros, query);
 			return query.getResultList();
 		} catch (Exception e) {
-			mensagemException("Problema ao consultar:"
-					+ " queryList(TypedQuery<T> query,Map<String, Object> parametros) da entidade: "
-					+ this.entityClass.getName() + ".", e);
+			mensagemException("Problema ao consultar:" + " queryList(TypedQuery<T> query,Map<String, Object> parametros) da entidade: " + this.entityClass.getName() + ".", e);
 			e.printStackTrace();
 		}
 
@@ -175,7 +166,7 @@ abstract class JpaRepository<T, ID> {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void rollback() {
 		try {
 			this.getEntityManager().getTransaction().rollback();

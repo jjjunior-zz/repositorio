@@ -2,6 +2,7 @@ package br.com.getjava.cloudws.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,21 +23,22 @@ import br.com.getjava.cloudws.enumeration.SistemaOperacional;
 @Table(name = "template")
 public class Template implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long	serialVersionUID	= 1L;
 
-	@Id	
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer				id;
 
-	private String descricao;
+	private String				descricao;
 
-	private String aplicacoes;
-
-	@Enumerated(EnumType.STRING)
-	private SistemaOperacional sistemaOperacional;
+	private String				aplicacoes;
 
 	@Enumerated(EnumType.STRING)
-	private Bits bits;
+	@Column(name = "sistema_operacional")
+	private SistemaOperacional	sistemaOperacional;
+
+	@Enumerated(EnumType.STRING)
+	private Bits				bits;
 
 	Template() {
 	}
@@ -48,8 +50,7 @@ public class Template implements Serializable {
 		this.bits = bits;
 	}
 
-	public static Template newInstance(String descricao, String aplicacoes, SistemaOperacional sistemaOperacional,
-			Bits bits) {
+	public static Template newInstance(String descricao, String aplicacoes, SistemaOperacional sistemaOperacional, Bits bits) {
 		return new Template(descricao, aplicacoes, sistemaOperacional, bits);
 	}
 
@@ -120,7 +121,6 @@ public class Template implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Template [id=" + id + ", descricao=" + descricao + ", aplicacoes=" + aplicacoes
-				+ ", sistemaOperacional=" + sistemaOperacional + ", bits=" + bits + "]";
+		return "Template [id=" + id + ", descricao=" + descricao + ", aplicacoes=" + aplicacoes + ", sistemaOperacional=" + sistemaOperacional + ", bits=" + bits + "]";
 	}
 }

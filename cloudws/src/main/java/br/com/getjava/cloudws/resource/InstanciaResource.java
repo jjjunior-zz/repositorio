@@ -19,9 +19,11 @@ import com.google.gson.GsonBuilder;
 
 import br.com.getjava.cloudws.domain.Instancia;
 import br.com.getjava.cloudws.domain.Template;
+import br.com.getjava.cloudws.domain.Usuario;
 import br.com.getjava.cloudws.enumeration.Bits;
 import br.com.getjava.cloudws.enumeration.SistemaOperacional;
 import br.com.getjava.cloudws.enumeration.TipoMaquina;
+import br.com.getjava.cloudws.enumeration.TipoUsuario;
 
 public class InstanciaResource extends ServerResource {
 	
@@ -39,8 +41,9 @@ public class InstanciaResource extends ServerResource {
 
 	public String representXml() {
 
+		Usuario usuario = Usuario.newInstance("jjjunior@gmail.com", "1234546", TipoUsuario.ROOT);
 		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, TipoMaquina.LARGE,t );
+		Instancia c = Instancia.newInstance("Servidor Wildfly",2, 20, 200, TipoMaquina.LARGE,t,usuario);
 
 		StringWriter sw = new StringWriter();
 		try {
@@ -57,12 +60,14 @@ public class InstanciaResource extends ServerResource {
 	}
 
 	public String representJson() {
+		
+		Usuario usuario = Usuario.newInstance("jjjunior@gmail.com", "1234546", TipoUsuario.ROOT);
 		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
 		
-		Instancia c = Instancia.newInstance(2, 20, 200, TipoMaquina.XLARGE,t);
+		Instancia c = Instancia.newInstance("Teste1e144",2, 20, 200, TipoMaquina.XLARGE,t,usuario);
 		c.setId(1);		
 		
-		Instancia c1 = Instancia.newInstance(20, 30, 300, TipoMaquina.MICRO,t);
+		Instancia c1 = Instancia.newInstance("Teste1e1445",20, 30, 300, TipoMaquina.MICRO,t,usuario);
 		c1.setId(2);
 
 		Gson gson = new GsonBuilder().create();
@@ -75,8 +80,9 @@ public class InstanciaResource extends ServerResource {
 	}	
 	
 	public String representText() {
+		Usuario usuario = Usuario.newInstance("jjjunior@gmail.com", "1234546", TipoUsuario.ROOT);
 		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, TipoMaquina.LARGE,t);
+		Instancia c = Instancia.newInstance("Teste1e14445",2, 20, 200, TipoMaquina.LARGE,t,usuario);
 		return c.toString();
 	}
 
