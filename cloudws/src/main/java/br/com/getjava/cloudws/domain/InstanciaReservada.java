@@ -3,27 +3,33 @@ package br.com.getjava.cloudws.domain;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import br.com.getjava.cloudws.enumeration.Status;
 
-@Entity(name = "instancia_reservada")
+@Entity
+@Table(name = "instancia_reservada")
 public class InstanciaReservada implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Integer id;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Instancia instancia;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Usuario usuario;
 	
 	@Enumerated(EnumType.STRING)
@@ -34,6 +40,21 @@ public class InstanciaReservada implements Serializable {
 	
 	@Column(name = "dt_alteracao")
 	private Calendar dtAlteracao;
+	
+	InstanciaReservada() {
+	}
+	
+	InstanciaReservada(Instancia instancia, Usuario usuario, Status status, Calendar dtCadastro,Calendar dtAlteracao) {	
+		this.instancia = instancia;
+		this.usuario = usuario;
+		this.status = status;
+		this.dtCadastro = dtCadastro;
+		this.dtAlteracao = dtAlteracao;
+	}
+
+	public static InstanciaReservada newInstance(Instancia instancia, Usuario usuario, Status status, Calendar dtCadastro,Calendar dtAlteracao) {
+		return new InstanciaReservada(instancia, usuario, status, dtCadastro,	dtAlteracao) ;
+	}
 
 	@Override
 	public int hashCode() {

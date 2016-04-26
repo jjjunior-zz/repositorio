@@ -2,11 +2,16 @@ package br.com.getjava.cloudws.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,25 +21,28 @@ import br.com.getjava.cloudws.enumeration.TipoMaquina;
 @XmlRootElement(name = "instancia")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
+@Table(name = "instancia")
 public class Instancia implements Serializable {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Id
-	private Integer				id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY) 	
+	private int				id;
 
 	@Column(name = "qtd_processadores")
-	private Integer				processador;
+	private int				processador;
 
 	@Column(name = "qtd_memoria")
-	private Integer				memoria;
+	private int				memoria;
 
 	@Column(name = "qtd_armazenamento")
-	private Integer				armazenamento;
+	private int				armazenamento;
 
 	@Enumerated(EnumType.STRING)
 	private TipoMaquina			tipo;
 
+	@OneToOne(cascade=CascadeType.ALL)
 	private Template			template;
 
 	Instancia() {
@@ -51,36 +59,36 @@ public class Instancia implements Serializable {
 	public static Instancia newInstance(Integer processador, Integer memoria, Integer armazenamento, TipoMaquina tipo, Template template) {
 		return new Instancia(processador, memoria, armazenamento, tipo, template);
 	}
-
-	public Integer getId() {
+	
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getProcessador() {
+	public int getProcessador() {
 		return processador;
 	}
 
-	public void setProcessador(Integer processador) {
+	public void setProcessador(int processador) {
 		this.processador = processador;
 	}
 
-	public Integer getMemoria() {
+	public int getMemoria() {
 		return memoria;
 	}
 
-	public void setMemoria(Integer memoria) {
+	public void setMemoria(int memoria) {
 		this.memoria = memoria;
 	}
 
-	public Integer getArmazenamento() {
+	public int getArmazenamento() {
 		return armazenamento;
 	}
 
-	public void setArmazenamento(Integer armazenamento) {
+	public void setArmazenamento(int armazenamento) {
 		this.armazenamento = armazenamento;
 	}
 
@@ -100,30 +108,7 @@ public class Instancia implements Serializable {
 		this.template = template;
 	}	
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Instancia other = (Instancia) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+	
 
 	@Override
 	public String toString() {

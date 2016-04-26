@@ -7,45 +7,52 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import br.com.getjava.cloudws.enumeration.TipoUsuario;
 
-@Entity(name = "usuario")
+@Entity
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id
+
+	@Id	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(unique = true)
 	private String email;
-	
+
 	@Column
 	private String senha;
-	
+
 	@Column(name = "dt_cadastro")
 	private Calendar dtCadastro;
-	
+
 	@Column(name = "dt_alteracao")
 	private Calendar dtAlteracao;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TipoUsuario tipoUsuario;
 
-	Usuario(){}
-	
-	Usuario(String email, String senha, Calendar dtCadastro, Calendar dtAlteracao,TipoUsuario tipoUsuario) {		
+	Usuario() {
+	}
+
+	Usuario(String email, String senha, Calendar dtCadastro, Calendar dtAlteracao, TipoUsuario tipoUsuario) {
 		this.email = email;
 		this.senha = senha;
 		this.dtCadastro = dtCadastro;
 		this.dtAlteracao = dtAlteracao;
 		this.tipoUsuario = tipoUsuario;
 	}
-	
-	public static Usuario newInstance(String email, String senha, Calendar dtCadastro, Calendar dtAlteracao,TipoUsuario tipoUsuario) {
-		return new Usuario(email,senha,dtCadastro,dtAlteracao,tipoUsuario);
+
+	public static Usuario newInstance(String email, String senha, Calendar dtCadastro, Calendar dtAlteracao,
+			TipoUsuario tipoUsuario) {
+		return new Usuario(email, senha, dtCadastro, dtAlteracao, tipoUsuario);
 	}
 
 	public Integer getId() {
@@ -129,7 +136,8 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", email=" + email + ", dtCadastro=" + dtCadastro + ", dtAlteracao=" + dtAlteracao	+ ", tipoUsuario=" + tipoUsuario + "]";
+		return "Usuario [id=" + id + ", email=" + email + ", dtCadastro=" + dtCadastro + ", dtAlteracao=" + dtAlteracao
+				+ ", tipoUsuario=" + tipoUsuario + "]";
 	}
 
 }

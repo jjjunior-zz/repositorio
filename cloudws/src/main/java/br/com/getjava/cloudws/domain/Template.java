@@ -3,7 +3,12 @@ package br.com.getjava.cloudws.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -14,31 +19,37 @@ import br.com.getjava.cloudws.enumeration.SistemaOperacional;
 @XmlRootElement(name = "template")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Template implements Serializable {	
+@Table(name = "template")
+public class Template implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	private Integer id;	
-	
-	private String descricao;
-	
-	private String aplicacoes;
-	
-	private SistemaOperacional sistemaOperacional;
-	
-	private Bits bits;		
-	
-	Template(){}
 
-	Template(String descricao, String aplicacoes, SistemaOperacional sistemaOperacional, Bits bits) {		
+	@Id	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+
+	private String descricao;
+
+	private String aplicacoes;
+
+	@Enumerated(EnumType.STRING)
+	private SistemaOperacional sistemaOperacional;
+
+	@Enumerated(EnumType.STRING)
+	private Bits bits;
+
+	Template() {
+	}
+
+	Template(String descricao, String aplicacoes, SistemaOperacional sistemaOperacional, Bits bits) {
 		this.descricao = descricao;
 		this.aplicacoes = aplicacoes;
 		this.sistemaOperacional = sistemaOperacional;
 		this.bits = bits;
 	}
-	
-	public static Template newInstance(String descricao, String aplicacoes, SistemaOperacional sistemaOperacional, Bits bits){
+
+	public static Template newInstance(String descricao, String aplicacoes, SistemaOperacional sistemaOperacional,
+			Bits bits) {
 		return new Template(descricao, aplicacoes, sistemaOperacional, bits);
 	}
 
@@ -109,6 +120,7 @@ public class Template implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Template [id=" + id + ", descricao=" + descricao + ", aplicacoes=" + aplicacoes + ", sistemaOperacional=" + sistemaOperacional + ", bits=" + bits + "]";
-	}	
+		return "Template [id=" + id + ", descricao=" + descricao + ", aplicacoes=" + aplicacoes
+				+ ", sistemaOperacional=" + sistemaOperacional + ", bits=" + bits + "]";
+	}
 }
