@@ -1,8 +1,6 @@
 package br.com.getjava.cloudws.resource;
 
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -18,8 +16,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import br.com.getjava.cloudws.domain.Instancia;
-import br.com.getjava.cloudws.enumeration.Status;
-import br.com.getjava.cloudws.enumeration.Tipo;
+import br.com.getjava.cloudws.domain.Template;
+import br.com.getjava.cloudws.enumeration.Bits;
+import br.com.getjava.cloudws.enumeration.SistemaOperacional;
+import br.com.getjava.cloudws.enumeration.TipoMaquina;
 
 public class InstanciaResourceIdResource extends ServerResource {
 	
@@ -37,8 +37,8 @@ public class InstanciaResourceIdResource extends ServerResource {
 
 	public String representXml() {
 
-		//Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, Tipo.LARGE );
+		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
+		Instancia c = Instancia.newInstance(2, 20, 200, TipoMaquina.LARGE,t );
 
 		StringWriter sw = new StringWriter();
 		try {
@@ -55,8 +55,8 @@ public class InstanciaResourceIdResource extends ServerResource {
 	}
 
 	public String representJson() {
-		//Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, Tipo.XLARGE);
+		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
+		Instancia c = Instancia.newInstance(2, 20, 200,TipoMaquina.XLARGE,t);
 		c.setId(1);		
 		
 		Gson gson = new GsonBuilder().create();		
@@ -66,8 +66,8 @@ public class InstanciaResourceIdResource extends ServerResource {
 	}	
 	
 	public String representText() {
-		//Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, br.com.getjava.cloudws.enumeration.Tipo.LARGE);
+		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
+		Instancia c = Instancia.newInstance(2, 20, 200, TipoMaquina.LARGE,t);
 		return c.toString();
 	}
 

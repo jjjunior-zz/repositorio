@@ -21,8 +21,7 @@ import br.com.getjava.cloudws.domain.Instancia;
 import br.com.getjava.cloudws.domain.Template;
 import br.com.getjava.cloudws.enumeration.Bits;
 import br.com.getjava.cloudws.enumeration.SistemaOperacional;
-import br.com.getjava.cloudws.enumeration.Status;
-import br.com.getjava.cloudws.enumeration.Tipo;
+import br.com.getjava.cloudws.enumeration.TipoMaquina;
 
 public class InstanciaResource extends ServerResource {
 	
@@ -40,8 +39,8 @@ public class InstanciaResource extends ServerResource {
 
 	public String representXml() {
 
-		//Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, Tipo.LARGE );
+		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
+		Instancia c = Instancia.newInstance(2, 20, 200, TipoMaquina.LARGE,t );
 
 		StringWriter sw = new StringWriter();
 		try {
@@ -60,10 +59,10 @@ public class InstanciaResource extends ServerResource {
 	public String representJson() {
 		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
 		
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, Tipo.XLARGE);
+		Instancia c = Instancia.newInstance(2, 20, 200, TipoMaquina.XLARGE,t);
 		c.setId(1);		
 		
-		Instancia c1 = Instancia.newInstance(20, 30, 300, Status.INICIADO, Tipo.MICRO);
+		Instancia c1 = Instancia.newInstance(20, 30, 300, TipoMaquina.MICRO,t);
 		c1.setId(2);
 
 		Gson gson = new GsonBuilder().create();
@@ -77,7 +76,7 @@ public class InstanciaResource extends ServerResource {
 	
 	public String representText() {
 		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance(2, 20, 200, Status.INICIADO, br.com.getjava.cloudws.enumeration.Tipo.LARGE);
+		Instancia c = Instancia.newInstance(2, 20, 200, TipoMaquina.LARGE,t);
 		return c.toString();
 	}
 
