@@ -3,9 +3,9 @@
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
 
-	<persistence-unit name="cloudwsbd" transaction-type="RESOURCE_LOCAL">
-	
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>		
+	<persistence-unit name="cloudwstest" transaction-type="RESOURCE_LOCAL">
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 				
 		<class>br.com.getjava.cloudws.domain.Instancia</class>
 		<class>br.com.getjava.cloudws.domain.InstanciaReservada</class>
@@ -13,11 +13,11 @@
 		<class>br.com.getjava.cloudws.domain.Usuario</class>		
 		
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/cloudws" />
-			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="javax.persistence.jdbc.user" value="postgres" />
-			<property name="javax.persistence.jdbc.password" value="Vinicius123" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />		
+			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:cloudwsdb;shutdown=true" />
+			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />			
 			<property name="hibernate.hbm2ddl.auto" value="create-drop"/>			
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />			
@@ -25,6 +25,7 @@
 			<property name="hibernate.dbcp.maxActive" value = "20"/>
 			<property name="hibernate.dbcp.maxIdle" value = "20"/>
 			<property name="hibernate.dbcp.minIdle" value = "0"/>
-		</properties>
+		</properties>	
+		
 	</persistence-unit>
 </persistence>
