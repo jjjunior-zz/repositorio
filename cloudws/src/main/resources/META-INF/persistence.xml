@@ -7,10 +7,9 @@
 	
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>		
 				
-		<class>br.com.getjava.cloudws.domain.Instancia</class>
-		<class>br.com.getjava.cloudws.domain.InstanciaReservada</class>
+		<class>br.com.getjava.cloudws.domain.Instance</class>		
 		<class>br.com.getjava.cloudws.domain.Template</class>
-		<class>br.com.getjava.cloudws.domain.Usuario</class>		
+		<class>br.com.getjava.cloudws.domain.User</class>		
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/cloudws" />
