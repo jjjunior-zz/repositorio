@@ -1,5 +1,5 @@
 package br.com.getjava.cloudws.enumeration;
 
-public enum SistemaOperacional{
+public enum OperationalSystem{
 	LINUX,WINDOWS;
 }

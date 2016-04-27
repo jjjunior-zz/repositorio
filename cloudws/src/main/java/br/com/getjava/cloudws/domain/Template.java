@@ -14,8 +14,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import br.com.getjava.cloudws.enumeration.Bits;
-import br.com.getjava.cloudws.enumeration.SistemaOperacional;
+import br.com.getjava.cloudws.enumeration.ProcessorArchitecture;
+import br.com.getjava.cloudws.enumeration.OperationalSystem;
 
 @XmlRootElement(name = "template")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -23,35 +23,36 @@ import br.com.getjava.cloudws.enumeration.SistemaOperacional;
 @Table(name = "template")
 public class Template implements Serializable {
 
-	private static final long	serialVersionUID	= 1L;
+	private static final long		serialVersionUID	= 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer				id;
+	private Integer					id;
 
-	private String				descricao;
+	private String					description;
 
-	private String				aplicacoes;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "sistema_operacional")
-	private SistemaOperacional	sistemaOperacional;
+	private String					application;
 
 	@Enumerated(EnumType.STRING)
-	private Bits				bits;
+	@Column(name = "operational_system")
+	private OperationalSystem		operationalSystem;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "processor_architecture")
+	private ProcessorArchitecture	processorArchitecture;
 
 	Template() {
+	}	
+
+	Template(String description, String application, OperationalSystem operationalSystem, ProcessorArchitecture processorArchitecture) {		
+		this.description = description;
+		this.application = application;
+		this.operationalSystem = operationalSystem;
+		this.processorArchitecture = processorArchitecture;
 	}
 
-	Template(String descricao, String aplicacoes, SistemaOperacional sistemaOperacional, Bits bits) {
-		this.descricao = descricao;
-		this.aplicacoes = aplicacoes;
-		this.sistemaOperacional = sistemaOperacional;
-		this.bits = bits;
-	}
-
-	public static Template newInstance(String descricao, String aplicacoes, SistemaOperacional sistemaOperacional, Bits bits) {
-		return new Template(descricao, aplicacoes, sistemaOperacional, bits);
+	public static Template newInstance(String description, String application, OperationalSystem operationalSystem, ProcessorArchitecture processorArchitecture) {
+		return new Template(description, application, operationalSystem, processorArchitecture);
 	}
 
 	public Integer getId() {
@@ -62,36 +63,36 @@ public class Template implements Serializable {
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public String getAplicacoes() {
-		return aplicacoes;
+	public String getApplication() {
+		return application;
 	}
 
-	public void setAplicacoes(String aplicacoes) {
-		this.aplicacoes = aplicacoes;
+	public void setApplication(String application) {
+		this.application = application;
 	}
 
-	public SistemaOperacional getSo() {
-		return sistemaOperacional;
+	public OperationalSystem getOperationalSystem() {
+		return operationalSystem;
 	}
 
-	public void setSo(SistemaOperacional sistemaOperacional) {
-		this.sistemaOperacional = sistemaOperacional;
+	public void setOperationalSystem(OperationalSystem operationalSystem) {
+		this.operationalSystem = operationalSystem;
 	}
 
-	public Bits getBits() {
-		return bits;
+	public ProcessorArchitecture getProcessorArchitecture() {
+		return processorArchitecture;
 	}
 
-	public void setBits(Bits bits) {
-		this.bits = bits;
+	public void setProcessorArchitecture(ProcessorArchitecture processorArchitecture) {
+		this.processorArchitecture = processorArchitecture;
 	}
 
 	@Override
@@ -121,6 +122,7 @@ public class Template implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Template [id=" + id + ", descricao=" + descricao + ", aplicacoes=" + aplicacoes + ", sistemaOperacional=" + sistemaOperacional + ", bits=" + bits + "]";
-	}
+		return "Template [id=" + id + ", description=" + description + ", application=" + application + ", operationalSystem=" + operationalSystem + ", processorArchitecture=" + processorArchitecture
+				+ "]";
+	}	
 }

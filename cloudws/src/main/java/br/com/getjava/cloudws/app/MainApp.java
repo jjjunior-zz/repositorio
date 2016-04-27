@@ -11,7 +11,7 @@ public class MainApp {
 
 		component.getServers().add(Protocol.HTTP, 8080);
 
-		component.getDefaultHost().attach("/cloudws", new RotasApp());
+		component.getDefaultHost().attach("/cloudws", new RouterApp());
 
 		component.start();
 	}

@@ -16,11 +16,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.getjava.cloudws.enumeration.TipoUsuario;
+import br.com.getjava.cloudws.enumeration.UserType;
 
 @Entity
-@Table(name = "usuario")
-public class Usuario implements Serializable {
+@Table(name = "user")
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,31 +32,31 @@ public class Usuario implements Serializable {
 	private String email;
 
 	@Column
-	private String senha;
+	private String password;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "dt_register")
+	private Calendar			dtRegister;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "dt_cadastro")
-	private Calendar dtCadastro;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "dt_alteracao")
-	private Calendar dtAlteracao;
+	@Column(name = "dt_update")
+	private Calendar			dtUpdate;	
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo_usuario")
-	private TipoUsuario tipoUsuario;
+	@Column(name = "user_type")
+	private UserType userType;
 
-	Usuario() {
+	User() {
 	}
 
-	Usuario(String email, String senha, TipoUsuario tipoUsuario) {
+	User(String email, String password, UserType userType) {		
 		this.email = email;
-		this.senha = senha;		
-		this.tipoUsuario = tipoUsuario;
+		this.password = password;
+		this.userType = userType;
 	}
 
-	public static Usuario newInstance(String email, String senha, TipoUsuario tipoUsuario) {
-		return new Usuario(email, senha, tipoUsuario);
+	public static User newInstance(String email, String password, UserType userType) {
+		return new User( email, password, userType);
 	}
 
 	public Integer getId() {
@@ -73,38 +73,30 @@ public class Usuario implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}	
+	
+	public String getPassword() {
+		return password;
 	}
 
-	public String getSenha() {
-		return senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public Calendar getDtRegister() {
+		return dtRegister;
 	}
 
-	public Calendar getDtCadastro() {
-		return dtCadastro;
+	public Calendar getDtUpdate() {
+		return dtUpdate;
 	}
 
-	public void setDtCadastro(Calendar dtCadastro) {
-		this.dtCadastro = dtCadastro;
+	public UserType getUserType() {
+		return userType;
 	}
 
-	public Calendar getDtAlteracao() {
-		return dtAlteracao;
-	}
-
-	public void setDtAlteracao(Calendar dtAlteracao) {
-		this.dtAlteracao = dtAlteracao;
-	}
-
-	public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
 	@Override
@@ -124,7 +116,7 @@ public class Usuario implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		User other = (User) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -136,22 +128,21 @@ public class Usuario implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
+	}	
+	
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", email=" + email + ", dtCadastro=" + dtCadastro + ", dtAlteracao=" + dtAlteracao
-				+ ", tipoUsuario=" + tipoUsuario + "]";
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", dtRegister=" + dtRegister + ", dtUpdate=" + dtUpdate + ", userType=" + userType + "]";
 	}
-	
+
 	@PrePersist
 	public void prePersist() {
-		this.dtCadastro = Calendar.getInstance();			
+		this.dtRegister = Calendar.getInstance();			
 	}
 
 	@PreUpdate
 	public void preUpdate() {
-		this.dtAlteracao = Calendar.getInstance();				
+		this.dtUpdate = Calendar.getInstance();				
 	}
 
 }
