@@ -15,15 +15,16 @@ import org.restlet.resource.ServerResource;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import br.com.getjava.cloudws.domain.Instancia;
+import br.com.getjava.cloudws.domain.Instance;
 import br.com.getjava.cloudws.domain.Template;
-import br.com.getjava.cloudws.domain.Usuario;
-import br.com.getjava.cloudws.enumeration.Bits;
-import br.com.getjava.cloudws.enumeration.SistemaOperacional;
-import br.com.getjava.cloudws.enumeration.TipoMaquina;
-import br.com.getjava.cloudws.enumeration.TipoUsuario;
+import br.com.getjava.cloudws.domain.User;
+import br.com.getjava.cloudws.enumeration.ProcessorArchitecture;
+import br.com.getjava.cloudws.enumeration.Status;
+import br.com.getjava.cloudws.enumeration.OperationalSystem;
+import br.com.getjava.cloudws.enumeration.CpuType;
+import br.com.getjava.cloudws.enumeration.UserType;
 
-public class InstanciaResourceIdResource extends ServerResource {
+public class InstanceResourceById extends ServerResource {
 	
 	
 	@Get("json")
@@ -38,9 +39,9 @@ public class InstanciaResourceIdResource extends ServerResource {
 	}
 
 	public String representXml() {
-		Usuario usuario = Usuario.newInstance("jjjunior@gmail.com", "1234546", TipoUsuario.ROOT);
-		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance("Teste1455e",2, 20, 200, TipoMaquina.LARGE,t,usuario );
+		User usuario = User.newInstance("jjjunior@gmail.com", "1234546", UserType.ROOT);
+		Template t = Template.newInstance("Teste1e", "wildfly 10", OperationalSystem.LINUX, ProcessorArchitecture.bit64);
+		Instance c = Instance.newInstance("Teste1455e",2, 20, 200, CpuType.LARGE,Status.STOP,t,usuario );
 
 		StringWriter sw = new StringWriter();
 		try {
@@ -57,9 +58,9 @@ public class InstanciaResourceIdResource extends ServerResource {
 	}
 
 	public String representJson() {
-		Usuario usuario = Usuario.newInstance("jjjunior@gmail.com", "1234546", TipoUsuario.ROOT);
-		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance("Teste441455e",2, 20, 200,TipoMaquina.XLARGE,t,usuario);
+		User usuario = User.newInstance("jjjunior@gmail.com", "1234546", UserType.ROOT);
+		Template t = Template.newInstance("Teste1e", "wildfly 10", OperationalSystem.LINUX, ProcessorArchitecture.bit64);
+		Instance c = Instance.newInstance("Teste441455e",2, 20, 200,CpuType.XLARGE,Status.STOP,t,usuario);
 		c.setId(1);		
 		
 		Gson gson = new GsonBuilder().create();		
@@ -69,9 +70,9 @@ public class InstanciaResourceIdResource extends ServerResource {
 	}	
 	
 	public String representText() {
-		Usuario usuario = Usuario.newInstance("jjjunior@gmail.com", "1234546", TipoUsuario.ROOT);
-		Template t = Template.newInstance("Teste1e", "wildfly 10", SistemaOperacional.LINUX, Bits.bits64);
-		Instancia c = Instancia.newInstance("Teste44145485e",2, 20, 200, TipoMaquina.LARGE,t,usuario);
+		User usuario = User.newInstance("jjjunior@gmail.com", "1234546", UserType.ROOT);
+		Template t = Template.newInstance("Teste1e", "wildfly 10", OperationalSystem.LINUX, ProcessorArchitecture.bit64);
+		Instance c = Instance.newInstance("Teste44145485e",2, 20, 200, CpuType.LARGE,Status.STOP,t,usuario);
 		return c.toString();
 	}
 

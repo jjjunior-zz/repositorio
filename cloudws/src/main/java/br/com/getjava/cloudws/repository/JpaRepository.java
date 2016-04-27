@@ -12,7 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
-import br.com.getjava.cloudws.exception.ModeloException;
+import br.com.getjava.cloudws.exception.ModelException;
 
 abstract class JpaRepository<T, ID> {
 
@@ -213,8 +213,8 @@ abstract class JpaRepository<T, ID> {
 		return typedQuery;
 	}
 
-	private void mensagemException(String mensagem, Exception e) throws ModeloException {
+	private void mensagemException(String mensagem, Exception e) throws ModelException {
 		Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, mensagem, e);
-		throw new ModeloException(mensagem, e);
+		throw new ModelException(mensagem, e);
 	}
 }

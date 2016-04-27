@@ -1,5 +1,5 @@
 package br.com.getjava.cloudws.enumeration;
 
-public enum TipoMaquina{
+public enum CpuType{
 	NANO,MICRO,SMALL,MEDIUM,LARGE,XLARGE;
 }
