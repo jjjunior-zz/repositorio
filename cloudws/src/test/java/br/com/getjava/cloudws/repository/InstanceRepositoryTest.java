@@ -2,6 +2,9 @@ package br.com.getjava.cloudws.repository;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,34 +12,44 @@ import org.junit.Test;
 import br.com.getjava.cloudws.domain.Instance;
 import br.com.getjava.cloudws.domain.Template;
 import br.com.getjava.cloudws.domain.User;
+import br.com.getjava.cloudws.domain.UserGrupo;
+import br.com.getjava.cloudws.enumeration.CpuType;
+import br.com.getjava.cloudws.enumeration.OperationalSystem;
 import br.com.getjava.cloudws.enumeration.ProcessorArchitecture;
 import br.com.getjava.cloudws.enumeration.Status;
-import br.com.getjava.cloudws.enumeration.OperationalSystem;
-import br.com.getjava.cloudws.enumeration.CpuType;
 import br.com.getjava.cloudws.enumeration.UserType;
 
 public class InstanceRepositoryTest {
 
 	private InstanceRepository	instanceRepository;
 	private UserRepository		userRepository;
+	private GroupRepository		groupRepository;
 
 	@Before
 	public void before() {
 		instanceRepository = InstanceRepository.newInstance(JpaConnection.getInstance("cloudwstest"));
 		userRepository = UserRepository.newInstance(JpaConnection.getInstance("cloudwstest"));
+		groupRepository = GroupRepository.newInstance(JpaConnection.getInstance("cloudwstest"));		
 	}
 
 	@After
 	public void after() {		
 		instanceRepository.getEntityManager().close();
-		userRepository.getEntityManager().close();		
+		userRepository.getEntityManager().close();	
+		groupRepository.getEntityManager().close();
 	}
 
 	@Test
-	public void validateAddInstanceWhenFindUserByEmail() {
+	public void validateAddInstanceWhenFindUserByEmail() {		
 		User user = User.newInstance("jjjunior@gmail.com", "123456", UserType.ROOT);
-		userRepository.addUser(user);
-		userRepository.commit();
+		List<User> users = new ArrayList<>();
+		
+		UserGrupo userGrupo = UserGrupo.newInstance("ROOT", users);		
+		
+		groupRepository.begin();		
+		groupRepository.persist(userGrupo);
+		groupRepository.commit();		
+		
 		
 		Template template = Template.newInstance("teste", "test2", OperationalSystem.LINUX, ProcessorArchitecture.bit64);
 		User userFind = userRepository.findUserByEmail(user.getEmail());

@@ -10,6 +10,7 @@
 		<class>br.com.getjava.cloudws.domain.Instance</class>		
 		<class>br.com.getjava.cloudws.domain.Template</class>
 		<class>br.com.getjava.cloudws.domain.User</class>				
+		<class>br.com.getjava.cloudws.domain.UserGrupo</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:cloudwsdb;shutdown=true" />

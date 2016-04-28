@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
@@ -71,24 +72,30 @@ abstract class JpaRepository<T, ID> {
 		return null;
 	}
 
-	public T querySingle(TypedQuery<T> query, Map<String, Object> parametros) {
+	public T querySingle(TypedQuery<T> query, Map<String, Object> parameters) {
+		T t = null;
 		try {
-			query = setParametros(parametros, query);
-			return query.getSingleResult();
+			query = setParameters(parameters, query);
+			t = query.getSingleResult();
+		} catch (NoResultException e) {
+			return t;	
 		} catch (Exception e) {
-			mensagemException("Problema ao consultar:" + " querySingle(TypedQuery<T> query,Map<String, Object> parametros) da entidade: " + this.entityClass.getName() + ".", e);
+			mensagemException("Problema ao consultar:" + " querySingle(TypedQuery<T> query,Map<String, Object> parameters) da entidade: " + this.entityClass.getName() + ".", e);
 		}
-		return null;
+		return t;
 	}
 
 	public T querySingle(TypedQuery<T> query) {
+		T t = null;
 		try {
-			return querySingle(query, null);
+			t =querySingle(query, null);			
+		} catch (NoResultException e) {
+			return t;	
 		} catch (Exception e) {
 			mensagemException("Problema ao consultar:" + " querySingle(TypedQuery<T> query) da entidade: " + this.entityClass.getName() + ".", e);
 			e.printStackTrace();
 		}
-		return null;
+		return t;
 	}
 
 	public List<T> queryList(String query) {
@@ -116,13 +123,13 @@ abstract class JpaRepository<T, ID> {
 
 	}
 
-	public List<T> queryList(TypedQuery<T> query, Map<String, Object> parametros) {
+	public List<T> queryList(TypedQuery<T> query, Map<String, Object> parameters) {
 		List<T> lista = null;
 		try {
-			query = setParametros(parametros, query);
+			query = setParameters(parameters, query);
 			return query.getResultList();
 		} catch (Exception e) {
-			mensagemException("Problema ao consultar:" + " queryList(TypedQuery<T> query,Map<String, Object> parametros) da entidade: " + this.entityClass.getName() + ".", e);
+			mensagemException("Problema ao consultar:" + " queryList(TypedQuery<T> query,Map<String, Object> parameters) da entidade: " + this.entityClass.getName() + ".", e);
 			e.printStackTrace();
 		}
 
@@ -203,9 +210,9 @@ abstract class JpaRepository<T, ID> {
 		return null;
 	}
 
-	private TypedQuery<T> setParametros(Map<String, Object> parametros, TypedQuery<T> typedQuery) {
-		if (parametros != null) {
-			Set<Entry<String, Object>> lParam = parametros.entrySet();
+	private TypedQuery<T> setParameters(Map<String, Object> parameter, TypedQuery<T> typedQuery) {
+		if (parameter != null) {
+			Set<Entry<String, Object>> lParam = parameter.entrySet();
 			for (Entry<String, Object> entry : lParam) {
 				typedQuery.setParameter(entry.getKey(), entry.getValue());
 			}

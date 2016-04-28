@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ParameterQuery {
 
-	private Map<String, Object>	parameters	= null;
+	private Map<String, Object> parameters = null;
 
 	private ParameterQuery(String name, Object value) {
 		this.parameters = new HashMap<String, Object>();

@@ -36,7 +36,7 @@ public class Instance implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int					id;
 
-	@Column
+	@Column(name = "name")
 	private String				name;
 
 	@Column(name = "cpu")
@@ -53,12 +53,13 @@ public class Instance implements Serializable {
 	private CpuType				cpuType;
 
 	@Enumerated(EnumType.STRING)
+	@Column(name = "status")
 	private Status				status;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)	
 	private Template			template;
-	
-	@OneToOne
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private User				user;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -93,7 +94,7 @@ public class Instance implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}	
+	}
 
 	public String getName() {
 		return name;
@@ -166,7 +167,7 @@ public class Instance implements Serializable {
 	public Calendar getDtUpdate() {
 		return dtUpdate;
 	}
-	
+
 	@PrePersist
 	public void prePersist() {
 		this.dtRegister = Calendar.getInstance();

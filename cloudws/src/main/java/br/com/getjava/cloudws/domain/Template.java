@@ -29,8 +29,10 @@ public class Template implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer					id;
 
+	@Column(name = "description")
 	private String					description;
 
+	@Column(name = "application")
 	private String					application;
 
 	@Enumerated(EnumType.STRING)
@@ -42,9 +44,9 @@ public class Template implements Serializable {
 	private ProcessorArchitecture	processorArchitecture;
 
 	Template() {
-	}	
+	}
 
-	Template(String description, String application, OperationalSystem operationalSystem, ProcessorArchitecture processorArchitecture) {		
+	Template(String description, String application, OperationalSystem operationalSystem, ProcessorArchitecture processorArchitecture) {
 		this.description = description;
 		this.application = application;
 		this.operationalSystem = operationalSystem;
@@ -124,5 +126,5 @@ public class Template implements Serializable {
 	public String toString() {
 		return "Template [id=" + id + ", description=" + description + ", application=" + application + ", operationalSystem=" + operationalSystem + ", processorArchitecture=" + processorArchitecture
 				+ "]";
-	}	
+	}
 }

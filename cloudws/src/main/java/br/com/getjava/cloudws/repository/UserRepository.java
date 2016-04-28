@@ -18,8 +18,7 @@ public class UserRepository extends JpaRepository<User, Integer> {
 		return new UserRepository(entityManager);
 	}
 
-	public void addUser(User user) {
-		begin();
+	public void addUser(User user) {		
 		persist(user);
 		flush();
 	}
