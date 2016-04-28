@@ -3,6 +3,7 @@ package br.com.getjava.cloudws.domain;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -22,41 +25,45 @@ import br.com.getjava.cloudws.enumeration.UserType;
 @Table(name = "user")
 public class User implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long	serialVersionUID	= 1L;
 
-	@Id	
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer				id;
 
 	@Column(unique = true)
-	private String email;
+	private String				email;
 
-	@Column
-	private String password;
-	
+	@Column(name = "password")
+	private String				password;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_register")
 	private Calendar			dtRegister;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_update")
-	private Calendar			dtUpdate;	
+	private Calendar			dtUpdate;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "user_type")
-	private UserType userType;
+	private UserType			userType;
+
+	@ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private UserGrupo			userGrupo;
 
 	User() {
 	}
 
-	User(String email, String password, UserType userType) {		
+	User(String email, String password, UserType userType) {
 		this.email = email;
 		this.password = password;
 		this.userType = userType;
 	}
 
 	public static User newInstance(String email, String password, UserType userType) {
-		return new User( email, password, userType);
+		return new User(email, password, userType);
 	}
 
 	public Integer getId() {
@@ -73,8 +80,8 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}	
-	
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -97,6 +104,14 @@ public class User implements Serializable {
 
 	public void setUserType(UserType userType) {
 		this.userType = userType;
+	}
+
+	public UserGrupo getUserGrupo() {
+		return userGrupo;
+	}
+
+	public void setUserGrupo(UserGrupo userGrupo) {
+		this.userGrupo = userGrupo;
 	}
 
 	@Override
@@ -128,8 +143,8 @@ public class User implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
-	
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", dtRegister=" + dtRegister + ", dtUpdate=" + dtUpdate + ", userType=" + userType + "]";
@@ -137,12 +152,12 @@ public class User implements Serializable {
 
 	@PrePersist
 	public void prePersist() {
-		this.dtRegister = Calendar.getInstance();			
+		this.dtRegister = Calendar.getInstance();
 	}
 
 	@PreUpdate
 	public void preUpdate() {
-		this.dtUpdate = Calendar.getInstance();				
+		this.dtUpdate = Calendar.getInstance();
 	}
 
 }
