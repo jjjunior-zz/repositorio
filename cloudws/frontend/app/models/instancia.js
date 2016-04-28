@@ -1,10 +1,13 @@
 import Model from 'ember-data/model';
 import DS from "ember-data";
 
-export default Model.extend({    
-  processador: DS.attr('number'),
-  memoria: DS.attr('number'),
-  armazenamento:DS.attr('number'),
+export default Model.extend({
+  name:DS.attr('string'),
+  cpu:DS.attr('number'),
+  memory: DS.attr('number'),
+  storage:DS.attr('number'),
+  cpuType:DS.attr('string'),
   status: DS.attr('string'),
-  tipo: DS.attr('string')    
+  template: DS.belongsTo('template'),
+  user: DS.belongsTo('user')  
 });

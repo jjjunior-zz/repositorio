@@ -20,18 +20,17 @@ import com.google.gson.GsonBuilder;
 import br.com.getjava.cloudws.domain.Instance;
 import br.com.getjava.cloudws.domain.Template;
 import br.com.getjava.cloudws.domain.User;
+import br.com.getjava.cloudws.enumeration.CpuType;
+import br.com.getjava.cloudws.enumeration.OperationalSystem;
 import br.com.getjava.cloudws.enumeration.ProcessorArchitecture;
 import br.com.getjava.cloudws.enumeration.Status;
-import br.com.getjava.cloudws.enumeration.OperationalSystem;
-import br.com.getjava.cloudws.enumeration.CpuType;
 import br.com.getjava.cloudws.enumeration.UserType;
 
 public class InstanceResource extends ServerResource {
-	
-	
-	@Get("json")
-	public String representation(Variant variant) {
 
+	@Get("json|xml")
+	public String representation(Variant variant) {
+		
 		if (MediaType.APPLICATION_JSON.equals(variant.getMediaType())) {
 			return representJson();
 		} else if (MediaType.APPLICATION_XML.equals(variant.getMediaType())) {
@@ -44,7 +43,7 @@ public class InstanceResource extends ServerResource {
 
 		User usuario = User.newInstance("jjjunior@gmail.com", "1234546", UserType.ROOT);
 		Template t = Template.newInstance("Teste1e", "wildfly 10", OperationalSystem.LINUX, ProcessorArchitecture.bit64);
-		Instance c = Instance.newInstance("Servidor Wildfly",2, 20, 200, CpuType.LARGE,Status.STOP,t,usuario);
+		Instance c = Instance.newInstance("Servidor Wildfly", 2, 20, 200, CpuType.LARGE, Status.STOP, t, usuario);
 
 		StringWriter sw = new StringWriter();
 		try {
@@ -61,29 +60,29 @@ public class InstanceResource extends ServerResource {
 	}
 
 	public String representJson() {
-		
+
 		User user = User.newInstance("jjjunior@gmail.com", "1234546", UserType.ROOT);
 		Template t = Template.newInstance("Teste1e", "wildfly 10", OperationalSystem.LINUX, ProcessorArchitecture.bit64);
-		
-		Instance c = Instance.newInstance("Teste1e144",2, 20, 200, CpuType.XLARGE,Status.STOP,t,user);
-		c.setId(1);		
-		
-		Instance c1 = Instance.newInstance("Teste1e1445",20, 30, 300, CpuType.MICRO,Status.STOP,t,user);
+
+		Instance c = Instance.newInstance("Teste1e144", 2, 20, 200, CpuType.XLARGE, Status.STOP, t, user);
+		c.setId(1);
+
+		Instance c1 = Instance.newInstance("Teste1e1445", 20, 30, 300, CpuType.MICRO, Status.STOP, t, user);
 		c1.setId(2);
 
 		Gson gson = new GsonBuilder().create();
-		
-		List<Instance> lista = new ArrayList<>(); 
+
+		List<Instance> lista = new ArrayList<>();
 		lista.add(c);
 		lista.add(c1);
 
 		return gson.toJson(lista);
-	}	
-	
+	}
+
 	public String representText() {
 		User usuario = User.newInstance("jjjunior@gmail.com", "1234546", UserType.ROOT);
 		Template t = Template.newInstance("Teste1e", "wildfly 10", OperationalSystem.LINUX, ProcessorArchitecture.bit64);
-		Instance c = Instance.newInstance("Teste1e14445",2, 20, 200, CpuType.LARGE,Status.STOP,t,usuario);
+		Instance c = Instance.newInstance("Teste1e14445", 2, 20, 200, CpuType.LARGE, Status.STOP, t, usuario);
 		return c.toString();
 	}
 

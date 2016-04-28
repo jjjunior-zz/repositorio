@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class JpaConnection {
+class JpaConnection {
 
 	private static EntityManagerFactory emf = null;
 

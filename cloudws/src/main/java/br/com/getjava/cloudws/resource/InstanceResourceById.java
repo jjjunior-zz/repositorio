@@ -27,7 +27,7 @@ import br.com.getjava.cloudws.enumeration.UserType;
 public class InstanceResourceById extends ServerResource {
 	
 	
-	@Get("json")
+	@Get("json|xml")
 	public String representation(Variant variant) {
 
 		if (MediaType.APPLICATION_JSON.equals(variant.getMediaType())) {
