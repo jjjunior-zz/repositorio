@@ -8,6 +8,6 @@ export default Model.extend({
   storage:DS.attr('number'),
   cpuType:DS.attr('string'),
   status: DS.attr('string'),
-  template: DS.belongsTo('template'),
-  user: DS.belongsTo('user')  
+  template: DS.belongsTo('template',{ async: false }),
+  user: DS.belongsTo('user',{ async: false })  
 });
