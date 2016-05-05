@@ -13,8 +13,8 @@ public class RouterApp extends Application {
 	public synchronized Restlet createInboundRoot() {
 	
 		Router router = new Router(getContext());		
-		router.attach("/instancia", InstanceResource.class);
-		router.attach("/instancia/{instancia_id}", InstanceResourceById.class);
+		router.attach("/instances", InstanceResource.class);
+		router.attach("/instances/{instances_id}", InstanceResourceById.class);
 		return router;
 	}
 }

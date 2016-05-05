@@ -39,5 +39,9 @@
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
     "loader.js": "^4.0.1"
+  },
+  "dependencies": {
+    "broccoli": "^0.16.9",
+    "ember-data": "^2.5.2"
   }
 }

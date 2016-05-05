@@ -42,8 +42,13 @@ public class InstanceResource extends ServerResource {
 	public String representXml() {
 
 		User usuario = User.newInstance("jjjunior@gmail.com", "1234546", UserType.ROOT);
+		usuario.setId(1);
+		
 		Template t = Template.newInstance("Teste1e", "wildfly 10", OperationalSystem.LINUX, ProcessorArchitecture.bit64);
+		t.setId(1);
+		
 		Instance c = Instance.newInstance("Servidor Wildfly", 2, 20, 200, CpuType.LARGE, Status.STOP, t, usuario);
+		c.setId(1);
 
 		StringWriter sw = new StringWriter();
 		try {
@@ -62,7 +67,10 @@ public class InstanceResource extends ServerResource {
 	public String representJson() {
 
 		User user = User.newInstance("jjjunior@gmail.com", "1234546", UserType.ROOT);
+		user.setId(1);
+		
 		Template t = Template.newInstance("Teste1e", "wildfly 10", OperationalSystem.LINUX, ProcessorArchitecture.bit64);
+		t.setId(1);
 
 		Instance c = Instance.newInstance("Teste1e144", 2, 20, 200, CpuType.XLARGE, Status.STOP, t, user);
 		c.setId(1);

@@ -59,7 +59,10 @@ public class InstanceResourceById extends ServerResource {
 
 	public String representJson() {
 		User usuario = User.newInstance("jjjunior@gmail.com", "1234546", UserType.ROOT);
+		usuario.setId(1);
 		Template t = Template.newInstance("Teste1e", "wildfly 10", OperationalSystem.LINUX, ProcessorArchitecture.bit64);
+		t.setId(1);
+		
 		Instance c = Instance.newInstance("Teste441455e",2, 20, 200,CpuType.XLARGE,Status.STOP,t,usuario);
 		c.setId(1);		
 		

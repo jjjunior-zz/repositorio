@@ -6,8 +6,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('instancia');
-  this.route('instancia', { path: '/instancia/:instancia_id' });
+  this.route('instance');
+  this.route('instance', { path: '/instance/:instance_id' });
   this.route('template');
   this.route('user');
 });
